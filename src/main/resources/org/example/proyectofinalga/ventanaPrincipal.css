@@ -1,0 +1,11 @@
+.btnInicio{
+    -fx-background-color: #f4f4f4;
+    -fx-background-radius: 10;
+    -fx-border-color: #000000;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-padding: 10 20 10 20;
+}
