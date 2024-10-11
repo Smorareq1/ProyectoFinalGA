@@ -35,7 +35,7 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="132.0" prefWidth="332.0" stylesheets="@../Css/ventanaPrincipal.css">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="267.0" style="-fx-background-radius: 50; -fx-border-radius: 50;" stylesheets="@../Css/ventanaPrincipal.css" text="Gestionar" textFill="WHITE">
+                  <Button fx:id="btnGestionar" mnemonicParsing="false" prefHeight="38.0" prefWidth="267.0" style="-fx-background-radius: 50; -fx-border-radius: 50;" stylesheets="@../Css/ventanaPrincipal.css" text="Gestionar" textFill="WHITE" onAction="#gestionarButtonAction">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
