@@ -5,3 +5,15 @@
 .vbox_background_right{
     -fx-background-image: url("../img/LoginPage/bgRight@2x.jpg");
 }
+
+.cursor_hand{
+    -fx-cursor: hand;
+}
+
+.gestionar_btn{
+    -fx-background-color:  #ed6637;
+}
+
+.gestionar_btn:hover{
+    -fx-background-color:  #f5a25d;
+}
