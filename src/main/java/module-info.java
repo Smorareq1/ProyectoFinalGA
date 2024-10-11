@@ -6,6 +6,10 @@ module org.example.proyectofinalga {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
 
-    opens org.example.proyectofinalga to javafx.fxml;
-    exports org.example.proyectofinalga;
+
+    exports Controllers;
+    opens Controllers to javafx.fxml;
+
+    exports Clases;
+    opens Clases to javafx.fxml;
 }
