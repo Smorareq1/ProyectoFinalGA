@@ -1,0 +1,33 @@
+.side_ankerpane{
+    -fx-background-color: #0A5745;
+    -fx-border-color: black;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+
+.inner_pane{
+    -fx-background-color: #EDE3D0;
+    -fx-border-color: black;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}
+
+
+.btn_General{
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-border-style: solid;
+    -fx-cursor: hand;
+}
+
+.btn_General:hover{
+    -fx-background-color: black;
+    -fx-border-color: white;
+}
