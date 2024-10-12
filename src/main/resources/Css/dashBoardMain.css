@@ -1,0 +1,30 @@
+.root{
+    -fx-background-color: white;
+}
+
+.text_search{
+    -fx-background-color: transparent;
+    -fx-border-color: #0A5745;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+.Titles{
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Century Gothic";
+}
+
+.Texts{
+    -fx-font-size: 18px;
+    -fx-font-weight: regular;
+    -fx-font-family: "Century Gothic";
+}
+
+.pane_1{
+    -fx-border-color: black;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+}

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="1470.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <fx:include source="lateralMenu.fxml" />
+      <AnchorPane layoutX="290.0" layoutY="14.0" prefHeight="758.0" prefWidth="1167.0">
+         <children>
+            <Text layoutX="565.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LINEA" wrappingWidth="36.62890625" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

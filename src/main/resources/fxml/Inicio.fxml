@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="1470.0" stylesheets="@../Css/menu.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InicioController">
+<HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="1470.0" styleClass="root" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InicioController">
    <children>
       <fx:include source="lateralMenu.fxml" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INICIO" wrappingWidth="137.033203125" />
+      <Pane prefHeight="781.0" prefWidth="1187.0">
+         <children>
+            <Pane prefHeight="78.0" prefWidth="1187.0">
+               <children>
+                  <TextField fx:id="txt_search" layoutX="749.0" layoutY="27.0" prefHeight="30.0" prefWidth="198.0" promptText="Buscar..." styleClass="text_search" stylesheets="@../Css/dashBoardMain.css">
+                     <font>
+                        <Font name="Century Gothic" size="13.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="41.0" fitWidth="46.0" layoutX="691.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/Inicio/searchIconMinimalist.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label layoutX="34.0" layoutY="121.0" styleClass="Titles" stylesheets="@../Css/dashBoardMain.css" text="Informacion Relevante: ">
+               <font>
+                  <Font name="Century Gothic Bold" size="31.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="169.0" styleClass="Texts" stylesheets="@../Css/dashBoardMain.css" text="Toda la información que necesitas para elegir tu auto ideal, ¡al alcance de un click !" />
+            <Pane fx:id="pane_1" layoutX="34.0" layoutY="212.0" prefHeight="225.0" prefWidth="145.0" styleClass="pane_1" stylesheets="@../Css/dashBoardMain.css" />
+         </children>
+      </Pane>
    </children>
+   <stylesheets>
+      <URL value="@../Css/menu.css" />
+      <URL value="@../Css/dashBoardMain.css" />
+   </stylesheets>
 </HBox>
