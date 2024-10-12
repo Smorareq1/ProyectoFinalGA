@@ -1,7 +1,6 @@
 package Controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -29,7 +28,7 @@ public class MainController {
     private void gestionarButtonAction(ActionEvent event) {
         try {
             // Cargar la segunda ventana (Menu)
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Menu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Inicio.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
             // Crear una nueva ventana (Stage) para la escena del Menu
