@@ -22,6 +22,4 @@ public class Marca {
     public String getFundador() {
         return fundador;
     }
-
-
 }

@@ -12,4 +12,6 @@ module org.example.proyectofinalga {
 
     exports Clases;
     opens Clases to javafx.fxml;
+
+    opens Objetos to javafx.base;
 }

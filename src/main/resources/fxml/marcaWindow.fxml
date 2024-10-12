@@ -2,17 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="1470.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="1470.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MarcaController">
    <children>
       <fx:include source="lateralMenu.fxml" />
       <AnchorPane layoutX="290.0" layoutY="14.0" prefHeight="759.0" prefWidth="1170.0">
          <children>
-            <ListView layoutX="14.0" layoutY="128.0" prefHeight="619.0" prefWidth="1142.0" />
-            <Button layoutX="881.0" layoutY="57.0" mnemonicParsing="false" text="Agregar" />
+            <Button fx:id="btn_AgregarMarca" layoutX="881.0" layoutY="57.0" mnemonicParsing="false" text="Agregar" />
             <Button layoutX="958.0" layoutY="57.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Editar" />
             <Button layoutX="1036.0" layoutY="57.0" mnemonicParsing="false" text="Eliminar" />
             <Label layoutX="24.0" layoutY="14.0" styleClass="Title" stylesheets="@../Css/marcas.css" text="Marcas: ">
@@ -20,6 +20,13 @@
                   <Font name="Century Gothic Bold" size="24.0" />
                </font>
             </Label>
+            <TableView fx:id="tableViewMarcas" layoutX="28.0" layoutY="136.0" prefHeight="550.0" prefWidth="1115.0">
+              <columns>
+                <TableColumn fx:id="colNombre" prefWidth="333.0" text="Nombre" />
+                <TableColumn fx:id="colFundador" prefWidth="406.0" text="Fundador" />
+                  <TableColumn fx:id="colAnio" minWidth="0.0" prefWidth="375.0" text="Año de Creacion" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </children>

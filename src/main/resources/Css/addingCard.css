@@ -1,0 +1,78 @@
+.title{
+    -fx-font-size: 24px;
+    -fx-font-weight: regular;
+    -fx-font-family: "Roboto";
+
+}
+
+.custom-text {
+    -fx-text-fill: #030303; /* Color del texto */
+    -fx-font-size: 14px; /* Tamaño de la fuente */
+    -fx-font-family: "Roboto"; /* Tipo de letra */
+    -fx-line-spacing: 20px; /* Espaciado de línea */
+}
+
+.custom-textfield {
+    -fx-pref-width: 384px;
+    -fx-pref-height: 44px;
+    -fx-padding: 0 8px;
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 24px;
+    -fx-background-radius: 24px;
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.24), 8, 0, 0, 2);
+    -fx-font-size: 14px;
+    -fx-font-family: "Roboto";
+    -fx-text-fill: #94a3b8;
+    -fx-line-spacing: 44px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-width: 0;
+}
+
+.custom-vbox {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 24px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(3,3,3,0.5), 10, 0, 2, 0);
+    -fx-border-radius: 24px;
+}
+
+.custom-spinner {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 24px;
+    -fx-padding: 0 8px;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.24), 8, 0, 0, 2);
+    -fx-font-size: 14px;
+    -fx-font-family: "Roboto";
+    -fx-text-fill: black;
+    -fx-line-height: 44px; /* Altura de línea */
+}
+
+.custom-button {
+    -fx-cursor: hand; /* Cambiar el cursor a pointer */
+    -fx-background-color: #0A5745; /* Color de fondo */
+    -fx-background-radius: 24px; /* Bordes redondeados */
+    -fx-text-fill: #ffffff; /* Color del texto */
+    -fx-font-size: 14px; /* Tamaño de la fuente */
+    -fx-font-family: "Roboto"; /* Tipo de letra */
+    -fx-padding: 0 8px; /* Relleno interno */
+    -fx-border-color: transparent; /* Sin borde */
+    -fx-min-width: 113px; /* Ancho mínimo */
+    -fx-min-height: 44px; /* Altura mínima */
+    -fx-line-height: 20px; /* Espaciado de línea */
+}
+
+.cancel-button {
+    -fx-cursor: hand; /* Cambiar el cursor a pointer */
+    -fx-background-color:red; /* Color de fondo */
+    -fx-background-radius: 24px; /* Bordes redondeados */
+    -fx-text-fill: white; /* Color del texto */
+    -fx-font-size: 14px; /* Tamaño de la fuente */
+    -fx-font-family: "Roboto"; /* Tipo de letra */
+    -fx-padding: 0 8px; /* Relleno interno */
+    -fx-border-color: transparent; /* Sin borde */
+    -fx-min-width: 113px; /* Ancho mínimo */
+    -fx-min-height: 44px; /* Altura mínima */
+    -fx-line-height: 20px; /* Espaciado de línea */
+}
