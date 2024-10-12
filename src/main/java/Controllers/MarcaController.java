@@ -25,6 +25,9 @@ public class MarcaController {
     private Button btn_AgregarMarca;
 
     @FXML
+    private Button btn_EditarMarca;
+
+    @FXML
     private TableView<Marca> tableViewMarcas;
 
     @FXML
@@ -97,6 +100,8 @@ public class MarcaController {
         tableViewMarcas.setItems(marcas);
 
         btn_AgregarMarca.setOnAction(event -> abrirVentanaAgregarMarca());
+
+        btn_EditarMarca.setOnAction(event -> editarMarcaSeleccionada());
     }
 
     private void abrirVentanaAgregarMarca() {
@@ -128,6 +133,35 @@ public class MarcaController {
         marcas.addAll(GestorDeArchivos.listaMarcas);
         // Actualizar el TableView
         tableViewMarcas.setItems(marcas);
+    }
+
+    private void editarMarcaSeleccionada() {
+        // Obtener la marca seleccionada
+        Marca marcaSeleccionada = tableViewMarcas.getSelectionModel().getSelectedItem();
+
+        if (marcaSeleccionada != null) {
+            // Acceder a las propiedades de la marca seleccionada
+            String nombre = marcaSeleccionada.getNombre();
+            String fundador = marcaSeleccionada.getFundador();
+            String anioDeCreacion = marcaSeleccionada.getAnioDeCreacion();
+
+            // Aquí puedes abrir una nueva ventana para editar la información
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Editar Marca");
+            alert.setHeaderText("Información de la Marca Seleccionada:");
+            alert.setContentText("Nombre: " + nombre + "\nFundador: " + fundador + "\nAño de Creación: " + anioDeCreacion);
+            alert.showAndWait();
+
+            // Aquí podrías abrir una nueva ventana de edición en lugar de la alerta
+            // También puedes actualizar la información en la tabla después de editarla
+        } else {
+            // Mostrar un mensaje de alerta si no se seleccionó ninguna marca
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Ninguna Marca Seleccionada");
+            alert.setContentText("Por favor, selecciona una marca para editar.");
+            alert.showAndWait();
+        }
     }
 
 }

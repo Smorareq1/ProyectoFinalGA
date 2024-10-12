@@ -29,10 +29,6 @@ public class addingMarcaController {
         cancelarButton.setOnAction(event -> cerrarVentana());
     }
 
-    // Establecer la referencia del controlador de Marca
-    public void setMarcaController(MarcaController controller) {
-        this.marcaController = controller;
-    }
 
     private void añadirMarca() {
         String nombre = nombreField.getText();

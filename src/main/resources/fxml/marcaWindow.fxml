@@ -13,7 +13,7 @@
       <AnchorPane layoutX="290.0" layoutY="14.0" prefHeight="759.0" prefWidth="1170.0">
          <children>
             <Button fx:id="btn_AgregarMarca" layoutX="881.0" layoutY="57.0" mnemonicParsing="false" text="Agregar" />
-            <Button layoutX="958.0" layoutY="57.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Editar" />
+            <Button fx:id="btn_EditarMarca" layoutX="958.0" layoutY="57.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Editar" />
             <Button layoutX="1036.0" layoutY="57.0" mnemonicParsing="false" text="Eliminar" />
             <Label layoutX="24.0" layoutY="14.0" styleClass="Title" stylesheets="@../Css/marcas.css" text="Marcas: ">
                <font>
