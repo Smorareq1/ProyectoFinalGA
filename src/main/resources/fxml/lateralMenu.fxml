@@ -30,7 +30,7 @@
                   </HBox>
                </children>
             </Pane>
-            <Button fx:id="btn_inicio" layoutX="17.0" layoutY="135.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Inicio" textFill="WHITE">
+            <Button fx:id="btn_inicio" layoutX="17.0" layoutY="135.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Inicio" textFill="WHITE" onAction="#handleInicioAction">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -42,7 +42,7 @@
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btn_marca" layoutX="17.0" layoutY="209.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Marca" textFill="WHITE">
+            <Button fx:id="btn_marca" layoutX="17.0" layoutY="209.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Marca" textFill="WHITE" onAction="#handleMarcaAction">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,7 +54,7 @@
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btn_tipo" layoutX="17.0" layoutY="277.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Tipo" textFill="WHITE">
+            <Button fx:id="btn_tipo" layoutX="17.0" layoutY="277.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Tipo" textFill="WHITE" onAction="#handleTipoAction">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,7 +66,7 @@
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btn_linea" layoutX="17.0" layoutY="356.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Linea" textFill="WHITE">
+            <Button fx:id="btn_linea" layoutX="17.0" layoutY="356.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Linea" textFill="WHITE" onAction="#handleLineaAction">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -78,7 +78,7 @@
                   <Font name="Century Gothic Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btn_vehiculo" layoutX="17.0" layoutY="438.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Vehiculo" textFill="WHITE">
+            <Button fx:id="btn_vehiculo" layoutX="17.0" layoutY="438.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="248.0" styleClass="btn_General" stylesheets="@../Css/menu.css" text="Vehiculo" textFill="WHITE" onAction="#handleVehiculoAction">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                      <image>
