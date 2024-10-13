@@ -1,9 +1,9 @@
 package Objetos;
 
 public class Marca {
-    private String nombre;
-    private String anioDeCreacion;
-    private String fundador;
+    public String nombre;
+    public String anioDeCreacion;
+    public String fundador;
 
     public Marca(String nombre, String anioDeCreacion, String fundador) {
         this.nombre = nombre;

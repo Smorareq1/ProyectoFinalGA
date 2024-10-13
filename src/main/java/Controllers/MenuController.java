@@ -1,5 +1,6 @@
 package Controllers;
 
+import Objetos.GestorDeArchivos;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -27,6 +28,11 @@ public class MenuController {
         // Configurar el evento de clic para el ImageView
         exitImage.setOnMouseClicked((MouseEvent event) -> {
             Platform.exit(); // Cierra completamente el programa
+
+            //Guardar los datos en un archivo
+            GestorDeArchivos.guardarDatosEnJson();
+
+
         });
     }
 
