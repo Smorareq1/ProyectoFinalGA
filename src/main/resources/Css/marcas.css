@@ -3,3 +3,16 @@
     -fx-font-weight: bold;
     -fx-font-family: "Century Gothic";
 }
+
+.add-button{
+    -fx-border-width: 1px;
+    -fx-border-radius: 24px;
+    -fx-background-radius: 24px;
+    -fx-background-color: #dbedd7;
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.24), 8, 0, 0, 2);
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+    -fx-font-family: "Mulish";
+    -fx-font-weight: 300;
+    -fx-alignment: center;
+}
