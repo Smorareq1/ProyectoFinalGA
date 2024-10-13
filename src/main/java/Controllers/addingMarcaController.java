@@ -29,7 +29,6 @@ public class addingMarcaController {
         cancelarButton.setOnAction(event -> cerrarVentana());
     }
 
-
     private void añadirMarca() {
         String nombre = nombreField.getText();
         String anioDeCreacion = anioDeCreacionField.getText();
@@ -37,7 +36,7 @@ public class addingMarcaController {
 
         if (!nombre.isEmpty() && !anioDeCreacion.isEmpty() && !fundador.isEmpty()) {
             Marca nuevaMarca = new Marca(nombre, anioDeCreacion, fundador);
-            GestorDeArchivos.listaMarcas.add(nuevaMarca); // Acceso directo a la lista estática
+            GestorDeArchivos.diccionarioNombreMarcas.put(nombre, nuevaMarca); // Agregar la marca al Map
 
             // Limpiar los campos después de añadir
             nombreField.clear();

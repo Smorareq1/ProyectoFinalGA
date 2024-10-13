@@ -1,16 +1,14 @@
 package Objetos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class GestorDeArchivos {
 
-    // Crear una lista de marcas
-    public static List<Marca> listaMarcas = new ArrayList<>();
-
-
+    // Crear un diccionario de marcas
+    public static Map<String, Marca> diccionarioNombreMarcas = new HashMap<>(); // Usar HashMap para almacenar las marcas
 
     // Método para mostrar marcas en un Alert
     public static void mostrarMarcas() {
@@ -19,11 +17,12 @@ public class GestorDeArchivos {
         alert.setHeaderText(null); // No header text
         StringBuilder marcas = new StringBuilder();
 
-        if (listaMarcas.isEmpty()) {
+        if (diccionarioNombreMarcas.isEmpty()) {
             marcas.append("No hay marcas en la lista.");
         } else {
-            for (Marca marca : listaMarcas) {
-                marcas.append("Nombre: ").append(marca.getNombre())
+            for (Map.Entry<String, Marca> entry : diccionarioNombreMarcas.entrySet()) {
+                Marca marca = entry.getValue(); // Obtener el objeto Marca
+                marcas.append("Nombre: ").append(entry.getKey()) // Obtener el nombre de la marca
                       .append(", Año de Creación: ").append(marca.getAnioDeCreacion())
                       .append(", Fundador: ").append(marca.getFundador())
                       .append("\n");
