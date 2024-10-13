@@ -16,3 +16,76 @@
     -fx-font-weight: 300;
     -fx-alignment: center;
 }
+
+.edit-button{
+    -fx-border-color: #c0c0c0;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 24px;
+    -fx-background-radius: 24px;
+    -fx-background-color: #dfeded;
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.24), 8, 0, 0, 2);
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+    -fx-font-family: "Mulish";
+    -fx-font-weight: 300;
+    -fx-alignment: center;
+    -fx-line-height: 32px;
+}
+
+.delete-button{
+    -fx-border-color: #c0c0c3;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 24px;
+    -fx-background-radius: 24px;
+    -fx-background-color: #ff4d4d;
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.24), 8, 0, 0, 2);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: "Mulish";
+    -fx-font-weight: 300;
+    -fx-alignment: center;
+    -fx-line-height: 32px;
+}
+
+/* Table view */
+#tableViewMarcas {
+    -fx-background-color: #f5f5f5; /* Background color for the entire TableView */
+    -fx-border-color: #c0c0c0; /* Border color */
+    -fx-border-width: 1px;
+    -fx-table-cell-border-color: #d1d1d1; /* Border between cells */
+}
+
+#tableViewMarcas .column-header-background {
+    -fx-background-color: #ff4d4d; /* Header background color */
+}
+
+#tableViewMarcas .column-header,
+#tableViewMarcas .column-header .label {
+    -fx-font-family: "Mulish";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: black; /* Text color for headers */
+    -fx-alignment: center; /* Center-align text in headers */
+}
+
+#tableViewMarcas .table-row-cell:odd {
+    -fx-background-color: #e8f5e9; /* Light background color for odd rows */
+}
+
+#tableViewMarcas .table-row-cell:even {
+    -fx-background-color: #ffffff; /* White background color for even rows */
+}
+
+#tableViewMarcas .table-row-cell:selected {
+    -fx-background-color: #ffcccb; /* Background color when a row is selected */
+    -fx-text-fill: #000000; /* Text color when a row is selected */
+}
+
+#tableViewMarcas .table-cell {
+    -fx-font-family: "Mulish";
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555; /* Text color for table cells */
+    -fx-alignment: center-left; /* Align text to the center-left */
+}

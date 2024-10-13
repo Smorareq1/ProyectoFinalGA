@@ -14,6 +14,9 @@ public class editarMarcaController {
     private Button editarButton;
 
     @FXML
+    private Button cancelarButton;
+
+    @FXML
     private TextField nombreField;
 
     @FXML
@@ -46,6 +49,7 @@ public class editarMarcaController {
 
         // Set the action of the button
         editarButton.setOnAction(event -> editarMarca());
+        cancelarButton.setOnAction(event -> cerrarVentana());
     }
 
     private void editarMarca() {
@@ -64,7 +68,7 @@ public class editarMarcaController {
             GestorDeArchivos.diccionarioNombreMarcas.put(nuevoNombre, nuevaMarca);
 
             // Show a success message
-            showAlert("Éxito", "Marca editada correctamente.");
+            //showAlert("Éxito", "Marca editada correctamente.");
 
             if (marcaController != null) {
                 marcaController.actualizarTableView(); // Actualizar el TableView
