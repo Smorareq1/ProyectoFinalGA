@@ -1,0 +1,12 @@
+{
+  "Nombre1": {
+    "nombre": "Nombre1",
+    "anioDeCreacion": "2005",
+    "fundador": "Fundador1"
+  },
+  "NombreEjemplo": {
+    "nombre": "NombreEjemplo",
+    "anioDeCreacion": "AñoEjemplo",
+    "fundador": "FundadorEjemplo"
+  }
+}
