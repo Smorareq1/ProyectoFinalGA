@@ -18,6 +18,17 @@ public class GestorDeArchivos {
     // Crear un diccionario de marcas
     public static Map<String, Marca> diccionarioNombreMarcas = new HashMap<>();
 
+    //Diccionario de tipos
+    public static Map<String, Tipo> diccionarioNombreTipos = new HashMap<>();
+
+    //Diccionario de lineas
+    public static Map<String, Linea> diccionarioNombreLineas = new HashMap<>();
+
+    //Diccionario de Vehiuclos
+    public static Map<String, Vehiculo> diccionarioNombreVehiculos = new HashMap<>();
+
+
+
     public static void cargarDatosDesdeJson() {
         Gson gson = new Gson();
         Path path = Paths.get("src/main/resources/datos/marcas.json"); // Path to the JSON file
