@@ -54,11 +54,15 @@
     -fx-background-color: #f5f5f5; /* Background color for the entire TableView */
     -fx-border-color: #c0c0c0; /* Border color */
     -fx-border-width: 1px;
+    -fx-border-radius: 15; /* Rounded corners for the border */
+    -fx-background-radius: 15; /* Rounded corners for the background */
     -fx-table-cell-border-color: #d1d1d1; /* Border between cells */
 }
 
 #tableViewMarcas .column-header-background {
     -fx-background-color: #ff4d4d; /* Header background color */
+    -fx-background-radius: 15 15 0 0; /* Top corners rounded for header */
+    -fx-border-radius: 15 15 0 0; /* Rounded border for header */
 }
 
 #tableViewMarcas .column-header,
@@ -83,9 +87,15 @@
     -fx-text-fill: #000000; /* Text color when a row is selected */
 }
 
+#tableViewMarcas .table-row-cell:last {
+    -fx-background-radius: 0 0 15 15; /* Bottom corners rounded for the last row */
+    -fx-border-radius: 0 0 15 15; /* Rounded border for the last row */
+}
+
 #tableViewMarcas .table-cell {
     -fx-font-family: "Mulish";
     -fx-font-size: 14px;
     -fx-text-fill: #555555; /* Text color for table cells */
     -fx-alignment: center-left; /* Align text to the center-left */
 }
+

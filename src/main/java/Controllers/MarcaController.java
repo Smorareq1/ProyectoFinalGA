@@ -16,6 +16,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableCell;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 public class MarcaController {
 
@@ -27,6 +29,15 @@ public class MarcaController {
 
     @FXML
     private Button btn_EliminarMarca; // Nuevo botón para eliminar
+
+    @FXML
+    private TextField searchFieldNombre;
+
+    @FXML
+    private ImageView searchImg;
+
+    @FXML
+    private ImageView refreshIcon;
 
     @FXML
     private TableView<Marca> tableViewMarcas;
@@ -68,6 +79,10 @@ public class MarcaController {
         btn_AgregarMarca.setOnAction(event -> abrirVentanaAgregarMarca());
         btn_EditarMarca.setOnAction(event -> editarMarcaSeleccionada());
         btn_EliminarMarca.setOnAction(event -> eliminarMarcaSeleccionada()); // Asignar acción de eliminación
+
+        // Asignar acción de búsqueda a la imagen
+        searchImg.setOnMouseClicked(event -> filtrarMarcasPorNombre());
+        refreshIcon.setOnMouseClicked(event -> actualizarTableView());
     }
 
     private void setTableCellAlignment(TableColumn<Marca, String> column) {
@@ -184,5 +199,21 @@ public class MarcaController {
             alert.setContentText("Por favor, selecciona una marca para eliminar.");
             alert.showAndWait();
         }
+    }
+
+    private void filtrarMarcasPorNombre() {
+        String filtro = searchFieldNombre.getText().toLowerCase().trim();
+        if (filtro.isEmpty()) {
+            actualizarTableView(); // Si el filtro está vacío, restaurar la lista completa
+        } else {
+            ObservableList<Marca> marcasFiltradas = FXCollections.observableArrayList();
+            for (Marca marca : GestorDeArchivos.diccionarioNombreMarcas.values()) {
+                if (marca.getNombre().toLowerCase().contains(filtro)) {
+                    marcasFiltradas.add(marca);
+                }
+            }
+            tableViewMarcas.setItems(marcasFiltradas);
+        }
+        searchFieldNombre.clear(); // Limpiar el campo de búsqueda después de filtrar
     }
 }
