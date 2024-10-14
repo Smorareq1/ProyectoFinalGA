@@ -15,6 +15,7 @@ public class Main extends Application {
         //Cargar datos
         GestorDeArchivos.cargarDatosDesdeJson();
 
+
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/ventanaPrincipal.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("ProyectoFinal Gestion-De-Archivos!");
