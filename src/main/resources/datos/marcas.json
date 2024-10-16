@@ -1,4 +1,9 @@
 {
+  "Buenas": {
+    "nombre": "Buenas",
+    "anioDeCreacion": "13",
+    "fundador": "2005"
+  },
   "Nombre2": {
     "nombre": "Nombre2",
     "anioDeCreacion": "AñoEjemplo",

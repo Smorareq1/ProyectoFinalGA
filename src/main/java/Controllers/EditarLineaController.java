@@ -51,8 +51,6 @@ public class EditarLineaController {
             lineaAEditar.setNombreLinea(nuevoNombreLinea);  // Actualizar el nombre
             lineaAEditar.setAnioLinea(nuevoAnioLinea);      // Actualizar el año
 
-            // Guardar los cambios en el archivo JSON
-            GestorDeArchivos.guardarLineasEnJson();
 
             // Actualizar el TableView en el controlador principal
             if (lineaController != null) {

@@ -1,12 +1,12 @@
 {
-  "Amarok": {
-    "nombreMarca": "Nombre2",
-    "nombreLinea": "LandRover",
-    "anioLinea": "2019"
-  },
-  "ref": {
-    "nombreMarca": "Nombre1",
-    "nombreLinea": "taos",
-    "anioLinea": "2023"
+  "Sedan": {
+    "nombreMarcaDeLinea": "Nombre2",
+    "nombreLinea": "Sedan",
+    "anioLinea": "2003",
+    "marca": {
+      "nombre": "Nombre2",
+      "anioDeCreacion": "AñoEjemplo",
+      "fundador": "FundadorEjemplo"
+    }
   }
 }

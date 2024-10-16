@@ -70,9 +70,9 @@
             <TextField fx:id="searchFieldNombre" layoutX="206.0" layoutY="88.0" prefHeight="27.0" prefWidth="398.0" promptText="Buscar por Nombre de la linea..." styleClass="My-border" stylesheets="@../Css/LineaWindow.css" />
             <TableView fx:id="tableView" layoutX="101.0" layoutY="145.0" prefHeight="520.0" prefWidth="666.0" stylesheets="@../Css/LineaWindow.css">
                <columns>
-                  <TableColumn fx:id="marcaColumn" prefWidth="179.99996948242188" text="Marca" />
-                  <TableColumn fx:id="lineaColumn" prefWidth="224.0" text="Línea" />
-                  <TableColumn fx:id="anioColumn" prefWidth="205.60003662109375" text="Año de Línea" />
+                  <TableColumn fx:id="marcaColumn" prefWidth="231.0" text="Marca" />
+                  <TableColumn fx:id="lineaColumn" prefWidth="228.0" text="Línea" />
+                  <TableColumn fx:id="anioColumn" prefWidth="202.0" text="Año de Línea" />
                </columns>
             </TableView>
             <ImageView fx:id="searchImg" fitHeight="36.0" fitWidth="39.0" layoutX="615.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">

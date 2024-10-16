@@ -54,6 +54,9 @@ public class LineaController {
 
     @FXML
     public void initialize() {
+
+        System.out.println(GestorDeArchivos.diccionarioNombreLineas.size());
+
         // Inicializar ComboBox con las marcas
         marcaComboBox.getItems().clear();
         marcaComboBox.getItems().addAll(GestorDeArchivos.diccionarioNombreMarcas.keySet());
@@ -62,19 +65,15 @@ public class LineaController {
         lineasList = FXCollections.observableArrayList();
 
         // Vincular columnas del TableView con propiedades de la clase Linea
-        marcaColumn.setCellValueFactory(new PropertyValueFactory<>("nombreMarca"));
+        marcaColumn.setCellValueFactory(new PropertyValueFactory<>("nombreMarcaDeLinea"));
         lineaColumn.setCellValueFactory(new PropertyValueFactory<>("nombreLinea"));
         anioColumn.setCellValueFactory(new PropertyValueFactory<>("anioLinea"));
 
-        // Cargar las líneas desde el archivo JSON
-        GestorDeArchivos.cargarLineasDesdeJson();
 
         // Verificar si el diccionario no está vacío y cargar las líneas al TableView
-        if (!GestorDeArchivos.diccionarioNombreLineas.isEmpty()) {
-            lineasList.addAll(GestorDeArchivos.diccionarioNombreLineas.values());
-            System.out.println("Líneas cargadas al TableView: " + GestorDeArchivos.diccionarioNombreLineas.values());
-        } else {
-            System.out.println("No hay líneas guardadas en el archivo.");
+       for(Linea linea : GestorDeArchivos.diccionarioNombreLineas.values())
+        {
+            lineasList.add(linea);
         }
 
         // Establecer la lista en el TableView
@@ -115,9 +114,6 @@ public class LineaController {
 
         // Agregar la nueva línea a la lista observable para que aparezca en el TableView
         lineasList.add(nuevaLinea);
-
-        // Guardar las líneas en el archivo JSON
-        GestorDeArchivos.guardarLineasEnJson();
 
         // Limpiar los campos después de agregar
         nombreLineaTextField.clear();
@@ -181,16 +177,23 @@ public class LineaController {
 
         if (lineaSeleccionada != null) {
 
+            //Prints de prueba
+            System.out.println("La línea seleccionada es: " + lineaSeleccionada.getNombreLinea());
+            System.out.println("El tamaño del diccionario de líneas es: " + GestorDeArchivos.diccionarioNombreLineas.size());
+
+            // Eliminar la línea del diccionario
             GestorDeArchivos.diccionarioNombreLineas.remove(lineaSeleccionada.getNombreLinea());
 
             actualizarTableView();
-            GestorDeArchivos.guardarLineasEnJson();
+
             // Mostrar mensaje de éxito
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Línea Eliminada");
             alert.setHeaderText(null);
             alert.setContentText("La línea ha sido eliminada exitosamente.");
             alert.showAndWait();
+
+            System.out.println(GestorDeArchivos.diccionarioNombreLineas.size());
         } else {
             // Mostrar un mensaje de alerta si no se seleccionó ninguna línea
             Alert alert = new Alert(Alert.AlertType.WARNING);
