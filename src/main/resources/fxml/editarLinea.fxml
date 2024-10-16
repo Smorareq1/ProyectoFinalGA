@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="466.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditarLineaController">
+   <children>
+      <Pane layoutX="1.0" layoutY="1.0" prefHeight="125.0" prefWidth="406.0">
+         <children>
+            <Label layoutX="31.0" layoutY="63.0" text="Editar Linea:">
+               <font>
+                  <Font name="Century Gothic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutY="111.0" prefHeight="256.0" prefWidth="406.0">
+         <children>
+            <Pane layoutY="242.0" prefHeight="118.0" prefWidth="406.0">
+               <children>
+                  <Button fx:id="editarButton" layoutX="89.0" layoutY="22.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="107.0" styleClass="Btneditar" stylesheets="@../Css/Editarlinea.css" text="Editar">
+                     <font>
+                        <Font name="Century Gothic" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cancelarButton" layoutX="218.0" layoutY="22.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="107.0" styleClass="Btncancelar" stylesheets="@../Css/Editarlinea.css" text="Cancelar">
+                     <font>
+                        <Font name="Century Gothic" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Label layoutX="31.0" layoutY="29.0" text="Linea:">
+               <font>
+                  <Font name="Century Gothic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="lineaTextField" layoutX="32.0" layoutY="58.0" prefHeight="25.0" prefWidth="251.0" />
+            <Label layoutX="35.0" layoutY="119.0" text="Año:">
+               <font>
+                  <Font name="Century Gothic" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="anioTextField" layoutX="32.0" layoutY="147.0" prefHeight="25.0" prefWidth="251.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

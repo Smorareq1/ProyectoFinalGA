@@ -52,6 +52,31 @@ public class GestorDeArchivos {
         }
     }
 
+    public static void cargarLineasDesdeJson() {
+        Gson gson = new Gson();
+        Path path = Paths.get("src/main/resources/datos/lineas.json");
+
+        try {
+            // Leer todas las líneas del archivo JSON
+            String json = Files.readString(path);
+            System.out.println("Contenido del archivo JSON: " + json);  // Verifica el contenido
+
+            // Deserializar el JSON en un Map<String, Linea>
+            Map<String, Linea> lineasMap = gson.fromJson(json, new com.google.gson.reflect.TypeToken<Map<String, Linea>>() {}.getType());
+
+            // Inicializar el diccionario de líneas con los datos desde el JSON
+            if (lineasMap != null) {
+                diccionarioNombreLineas.putAll(lineasMap);
+                System.out.println("Líneas cargadas: " + lineasMap);  // Verifica los datos cargados
+            } else {
+                System.out.println("No se encontraron líneas en el archivo JSON.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al cargar las líneas desde JSON: " + e.getMessage());
+        }
+    }
+
+
 
     // Método para mostrar marcas en un Alert
     public static void mostrarMarcas() {
@@ -96,6 +121,27 @@ public class GestorDeArchivos {
             }
         } catch (IOException e) {
             System.err.println("Error al guardar los datos en JSON: " + e.getMessage());
+        }
+    }
+    public static void guardarLineasEnJson() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create(); // Usar PrettyPrinting para que el JSON sea más legible
+        String json = gson.toJson(diccionarioNombreLineas);
+
+        // Ruta del archivo JSON donde se guardarán las líneas
+        Path path = Paths.get("src/main/resources/datos/lineas.json");
+
+        try {
+            // Crear el directorio si no existe
+            Files.createDirectories(path.getParent());
+
+            // Escribir el JSON en el archivo
+            try (FileWriter writer = new FileWriter(path.toFile())) {
+                writer.write(json);
+                writer.flush();
+                System.out.println("Líneas guardadas correctamente en el archivo JSON.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al guardar las líneas en JSON: " + e.getMessage());
         }
     }
 }

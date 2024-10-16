@@ -1,0 +1,84 @@
+/* Estilo para toda la tabla */
+.table-view {
+    -fx-border-color: #87470D;
+    -fx-border-width: 2px;
+    -fx-background-color: #fefefe;
+}
+
+.Btnagregar {
+    -fx-background-color: #a8d5b1; /* Verde claro */
+    -fx-background-radius: 20px; /* Puntas redondeadas */
+    -fx-border-radius: 20px; /* Borde redondeado */
+}
+
+.btnEditar {
+    -fx-background-color: #a8c7d5; /* Azul claro */
+    -fx-background-radius: 20px; /* Puntas redondeadas */
+    -fx-border-radius: 20px; /* Borde redondeado */
+}
+
+.BtnEliminar {
+    -fx-background-color: #e9a3a3; /* Rojo claro */
+    -fx-background-radius: 20px; /* Puntas redondeadas */
+    -fx-border-radius: 20px; /* Borde redondeado */
+}
+
+#tableView {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ef4d6d6; /* Color del borde */
+    -fx-border-width: 1px;
+    -fx-border-radius: 15; /* Esquinas redondeadas para el borde */
+    -fx-background-radius: 15; /* Esquinas redondeadas para el fondo */
+    -fx-table-cell-border-color: #d1d1d1; /* Borde entre celdas */
+}
+
+#tableView .column-header-background {
+    -fx-background-color: #f0caca; /* Color más claro para el encabezado */
+    -fx-background-radius: 15 15 0 0; /* Esquinas superiores redondeadas para el encabezado */
+    -fx-border-radius: 15 15 0 0; /* Borde redondeado para el encabezado */
+}
+
+#tableView .column-header,
+#tableView .column-header .label {
+    -fx-font-family: "Mulish";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: black; /* Color de texto para los encabezados */
+    -fx-alignment: center; /* Texto alineado al centro en los encabezados */
+}
+
+#tableView .table-row-cell:odd {
+    -fx-background-color: #f9e4e4; /* Color más suave para las filas impares */
+}
+
+#tableView .table-row-cell:even {
+    -fx-background-color: #ffffff; /* Color blanco para las filas pares */
+}
+
+#tableView .table-row-cell:selected {
+    -fx-background-color: #ffd6d6; /* Color de fondo más claro cuando una fila está seleccionada */
+    -fx-text-fill: #000000; /* Color de texto cuando una fila está seleccionada */
+}
+
+#tableView .table-row-cell:last {
+    -fx-background-radius: 0 0 15 15; /* Esquinas inferiores redondeadas para la última fila */
+    -fx-border-radius: 0 0 15 15; /* Borde redondeado para la última fila */
+}
+
+#tableView .table-cell {
+    -fx-font-family: "Mulish";
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555; /* Color del texto en las celdas */
+    -fx-alignment: center-left; /* Alinear el texto al centro-izquierda */
+}
+
+#searchFieldNombre {
+    -fx-border-color: #87470D; /* Color del borde del TableView */
+    -fx-border-width: 1px; /* Grosor del borde */
+    -fx-border-radius: 15px; /* Esquinas redondeadas como el TableView */
+    -fx-background-radius: 15px; /* Radio de fondo para hacer el borde redondeado */
+    -fx-padding: 5px; /* Espaciado interno */
+    -fx-background-color: white; /* Color de fondo blanco */
+    -fx-font-family: "Mulish"; /* Fuente */
+    -fx-font-size: 14px; /* Tamaño de fuente */
+}
