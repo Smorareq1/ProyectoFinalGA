@@ -82,7 +82,6 @@ public class MarcaController {
 
         // Asignar acción de búsqueda a la imagen
         searchImg.setOnMouseClicked(event -> filtrarMarcasPorNombre());
-        refreshIcon.setOnMouseClicked(event -> actualizarTableView());
     }
 
     private void setTableCellAlignment(TableColumn<Marca, String> column) {
@@ -135,7 +134,8 @@ public class MarcaController {
         // Obtener la marca seleccionada
         Marca marcaSeleccionada = tableViewMarcas.getSelectionModel().getSelectedItem();
 
-        if (marcaSeleccionada != null) {
+        if (marcaSeleccionada != null)
+        {
             // Acceder a las propiedades de la marca seleccionada
             String nombre = marcaSeleccionada.getNombre();
             String fundador = marcaSeleccionada.getFundador();
