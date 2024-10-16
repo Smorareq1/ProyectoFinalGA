@@ -1,0 +1,13 @@
+.Btncancelar
+{
+    -fx-background-color: #e9a3a3; /* Rojo claro */
+    -fx-background-radius: 20px; /* Puntas redondeadas */
+    -fx-border-radius: 20px;
+}
+
+.Btneditar
+{
+    -fx-background-color: #a8d5b1; /* Verde claro */
+    -fx-background-radius: 20px; /* Puntas redondeadas */
+    -fx-border-radius: 20px; /* Borde redondeado */
+}

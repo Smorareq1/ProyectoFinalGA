@@ -33,7 +33,8 @@ public class editarMarcaController {
     private static String fundadorAEditar;
 
 
-    public static void InformacionAEditar(String nombre, String anioDeCreacion, String fundador) {
+    public static void InformacionAEditar(String nombre, String anioDeCreacion, String fundador)
+    {
         nombreAEditar = nombre;
         anioDeCreacionAEditar = anioDeCreacion;
         fundadorAEditar = fundador;

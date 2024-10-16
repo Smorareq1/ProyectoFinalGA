@@ -1,0 +1,12 @@
+{
+  "Amarok": {
+    "nombreMarca": "Nombre2",
+    "nombreLinea": "LandRover",
+    "anioLinea": "2019"
+  },
+  "ref": {
+    "nombreMarca": "Nombre1",
+    "nombreLinea": "taos",
+    "anioLinea": "2023"
+  }
+}
