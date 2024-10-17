@@ -8,25 +8,28 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+
+import javafx.scene.SubScene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class GestorDeArchivos {
 
-    // Crear un diccionario de marcas
+    // Diccionarios
     public static Map<String, Marca> diccionarioNombreMarcas = new HashMap<>();
 
-    //Diccionario de tipos
     public static Map<String, Tipo> diccionarioNombreTipos = new HashMap<>();
 
-    //Diccionario de lineas
     public static Map<String, Linea> diccionarioNombreLineas = new HashMap<>();
 
-    //Diccionario de Vehiuclos
     public static Map<String, Vehiculo> diccionarioNombreVehiculos = new HashMap<>();
+
+    //Sets para evitar duplicados en propiedades de vehiculo
+    public static Set<String> setPlacas = new HashSet<>();
+    public static Set<String> setChasis = new HashSet<>();
+    public static Set<String> setMotores = new HashSet<>();
+    public static Set<String> setVins = new HashSet<>();
 
     ///////////////////////////////////// MARCAS ///////////////////////////////////////////////////
 
@@ -149,7 +152,7 @@ public class GestorDeArchivos {
         }
     }
 
-    public static void buscarYEliminarPorMarca(String nombreMarca) {
+    public static void buscarYEliminarLineaPorMarca(String nombreMarca) {
         Iterator<Map.Entry<String, Linea>> it = diccionarioNombreLineas.entrySet().iterator();
 
         while (it.hasNext()) {
@@ -162,26 +165,30 @@ public class GestorDeArchivos {
         }
     }
 
-    public static void editarLineasPorMarca(String nombreMarca, String nuevoNombreMarca) {
+    public static void editarLineasPorMarca(String nombreMarca, Marca nuevaMarca) {
         for (Map.Entry<String, Linea> entry : diccionarioNombreLineas.entrySet()) {
             Linea linea = entry.getValue();
 
             // Verificamos si el nombre de la marca en la línea coincide con el que estamos editando
             if (linea.getNombreMarcaDeLinea().equals(nombreMarca)) {
                 // Actualizamos el nombre de la marca en la línea
-                linea.setNombreMarcaDeLinea(nuevoNombreMarca);
+                linea.setNombreMarcaDeLinea(nuevaMarca.getNombre());
 
                 // También actualizamos el objeto Marca dentro de la línea si es necesario
                 Marca marca = linea.getMarca();
                 if (marca != null && marca.getNombre().equals(nombreMarca)) {
-                    marca.setNombre(nuevoNombreMarca);
+
+                    //Editar los valores de marca que fueron modificados
+                    marca.setNombre(nuevaMarca.getNombre());
+                    marca.setAnioDeCreacion(nuevaMarca.anioDeCreacion);
+                    marca.setFundador(nuevaMarca.fundador);
+
+
                     linea.setMarca(marca); // Aseguramos que la línea tenga la referencia actualizada a la marca
                 }
             }
         }
     }
-
-
 
     public static void printLineas(){
         for (Map.Entry<String, Linea> entry : diccionarioNombreLineas.entrySet()) {
@@ -246,4 +253,210 @@ public class GestorDeArchivos {
             System.err.println("Error al cargar las líneas desde JSON: " + e.getMessage());
         }
     }
+
+    //////////////////////////////// VEHICULOS ///////////////////////////////////
+
+    public static void guardarVehiculosEnJson() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(diccionarioNombreVehiculos);
+
+        // Ruta del archivo JSON donde se guardarán los vehiculos
+        Path path = Paths.get("src/main/resources/datos/vehiculos.json");
+
+        try {
+            // Crear el directorio si no existe
+            Files.createDirectories(path.getParent());
+
+            // Escribir el JSON en el archivo
+            try (FileWriter writer = new FileWriter(path.toFile())) {
+                writer.write(json);
+                writer.flush();
+                System.out.println("Vehiculos guardados correctamente en el archivo JSON.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al guardar los vehiculos en JSON: " + e.getMessage());
+        }
+    }
+
+    public static void cargarVehiculosDesdeJson(){
+        Gson gson = new Gson();
+        Path path = Paths.get("src/main/resources/datos/vehiculos.json");
+
+        try {
+            // Leer todas las líneas del archivo JSON
+            String json = Files.readString(path);
+            System.out.println("Contenido del archivo JSON: " + json);  // Verifica el contenido
+
+            // Deserializar el JSON en un Map<String, Linea>
+            Map<String, Vehiculo> vehiculosMap = gson.fromJson(json, new com.google.gson.reflect.TypeToken<Map<String, Vehiculo>>() {}.getType());
+
+            // Inicializar el diccionario de líneas con los datos desde el JSON
+            if (vehiculosMap != null) {
+                diccionarioNombreVehiculos.putAll(vehiculosMap);
+                System.out.println("Vehiculos cargados: " + vehiculosMap);  // Verifica los datos cargados
+            } else {
+                System.out.println("No se encontraron vehiculos en el archivo JSON.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al cargar los vehiculos desde JSON: " + e.getMessage());
+        }
+    }
+
+    public static void cargarSets(){
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+            setPlacas.add(vehiculo.getPlaca());
+            setChasis.add(vehiculo.getChasis());
+            setMotores.add(vehiculo.getMotor());
+            setVins.add(vehiculo.getVin());
+        }
+    }
+
+    public static void buscarYEliminarVehiculoPorMarca(String nombreMarca) {
+        Iterator<Map.Entry<String, Vehiculo>> it = diccionarioNombreVehiculos.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry<String, Vehiculo> entry = it.next();
+            Vehiculo vehiculo = entry.getValue();
+
+            if (vehiculo.getMarca().getNombre().equals(nombreMarca)) {
+
+                //Eliminar datos del set
+                setPlacas.remove(vehiculo.getPlaca());
+                setChasis.remove(vehiculo.getChasis());
+                setMotores.remove(vehiculo.getMotor());
+                setVins.remove(vehiculo.getVin());
+
+                //Eliminar vehiculo
+                it.remove(); // Eliminar la entrada actual si coincide la marca
+            }
+        }
+    }
+
+    public static void buscarYEliminarVehiculoPorLinea(String nombreLinea) {
+        Iterator<Map.Entry<String, Vehiculo>> it = diccionarioNombreVehiculos.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry<String, Vehiculo> entry = it.next();
+            Vehiculo vehiculo = entry.getValue();
+
+            if (vehiculo.getLinea().getNombreLinea().equals(nombreLinea)) {
+                //Eliminar datos del set
+                setPlacas.remove(vehiculo.getPlaca());
+                setChasis.remove(vehiculo.getChasis());
+                setMotores.remove(vehiculo.getMotor());
+                setVins.remove(vehiculo.getVin());
+
+
+                //Eliminar vehiculo
+                it.remove(); // Eliminar la entrada actual si coincide la marca
+            }
+        }
+    }
+
+    public static void busarYEliminarVehiculoPorTipo(String nombreTipo) {
+        Iterator<Map.Entry<String, Vehiculo>> it = diccionarioNombreVehiculos.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry<String, Vehiculo> entry = it.next();
+            Vehiculo vehiculo = entry.getValue();
+
+            if (vehiculo.getTipo().getNombreTipo().equals(nombreTipo)) {
+                //Eliminar datos del set
+                setPlacas.remove(vehiculo.getPlaca());
+                setChasis.remove(vehiculo.getChasis());
+                setMotores.remove(vehiculo.getMotor());
+                setVins.remove(vehiculo.getVin());
+
+                //Eliminar vehiculo
+                it.remove(); // Eliminar la entrada actual si coincide la marca
+            }
+        }
+    }
+
+    //Prueba
+
+    public static void printMarcasDeVehiculos(){
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+            System.out.println(" ");
+            System.out.println("Marca del vehiculo: " + vehiculo.getMarca().getNombre());
+            System.out.println("Año de creacion de la marca: " + vehiculo.getMarca().getAnioDeCreacion());
+            System.out.println("Fundador de la marca: " + vehiculo.getMarca().getFundador());
+            System.out.println(" ");
+        }
+    }
+
+    public static void printLineasDeVehiculos(){
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+            System.out.println(" ");
+            System.out.println("Nombre de la linea: " + vehiculo.getLinea().getNombreLinea());
+            System.out.println("Año de la linea: " + vehiculo.getLinea().getAnioLinea());
+            System.out.println(" ");
+        }
+    }
+
+    //Prueba fin
+
+     public static void editarVehiculosPorMarca(String nombreMarca, Marca nuevaMarca) {
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+
+            // Verificamos si el nombre de la marca en el vehiculo coincide con el que estamos editando
+            if (vehiculo.getMarca().getNombre().equals(nombreMarca)) {
+                // Actualizamos el nombre de la marca en el vehiculo
+                vehiculo.getMarca().setNombre(nuevaMarca.getNombre());
+                vehiculo.setMarcaNombreVehiculo(nuevaMarca.getNombre());
+
+                // También actualizamos los atributos adicionales de la marca en el vehiculo
+                Marca marca = vehiculo.getMarca();
+                if (marca != null && marca.getNombre().equals(nuevaMarca.getNombre())) {
+                    // Editar los valores de marca que fueron modificados
+                    marca.setAnioDeCreacion(nuevaMarca.getAnioDeCreacion());
+                    marca.setFundador(nuevaMarca.getFundador());
+                }
+
+                // Actualizamos la marca dentro de la línea asociada al vehículo
+                Linea linea = vehiculo.getLinea(); // Obtener la línea del vehículo
+                if (linea != null) {
+
+                    linea.setNombreMarcaDeLinea(nuevaMarca.getNombre()); // Actualizar el nombre de la marca en la línea
+
+                    // Verificamos si la línea está asociada con la marca que estamos actualizando
+                    if (linea.getMarca() != null && linea.getMarca().getNombre().equals(nombreMarca)) {
+                        // Actualizamos la línea con la nueva marca
+                        linea.getMarca().setNombre(nuevaMarca.getNombre());
+                        linea.getMarca().setAnioDeCreacion(nuevaMarca.getAnioDeCreacion());
+                        linea.getMarca().setFundador(nuevaMarca.getFundador());
+
+                        // Actualizamos el nombre de la marca en la línea
+                        linea.setNombreMarcaDeLinea(nuevaMarca.getNombre());
+                    }
+                }
+            }
+        }
+    }
+
+    public static void editarVehiculosDadoLineas(String nombreLineaPasado, Linea nuevaLinea) {
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+
+            // Verificamos si el nombre de la línea en el vehículo coincide con el que estamos editando
+            if (vehiculo.getLinea().getNombreLinea().equals(nombreLineaPasado)) {
+                // Actualizamos solo si la nueva línea es diferente
+                if (!vehiculo.getLinea().getNombreLinea().equals(nuevaLinea.getNombreLinea()) ||
+                    vehiculo.getLinea().getAnioLinea() != nuevaLinea.getAnioLinea()) {
+
+                    // Actualizamos los atributos de la línea
+                    Linea linea = vehiculo.getLinea();
+                    linea.setNombreLinea(nuevaLinea.getNombreLinea());
+                    linea.setAnioLinea(nuevaLinea.getAnioLinea());
+                }
+            }
+        }
+    }
+
+
+
 }

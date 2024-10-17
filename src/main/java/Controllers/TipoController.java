@@ -211,6 +211,9 @@ public class TipoController {
 
             actualizarTableView();
 
+            //Eliminar vehiculos con el tipo seleccionado
+            GestorDeArchivos.busarYEliminarVehiculoPorTipo(selectedTipo.getNombreTipo());
+
             mostrarAlerta("Tipo eliminado correctamente.");
         } else {
             mostrarAlerta("No se ha seleccionado ningún tipo para eliminar.");

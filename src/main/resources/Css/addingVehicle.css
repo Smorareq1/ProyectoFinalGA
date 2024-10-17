@@ -1,0 +1,84 @@
+
+.titulo_principal{
+    -fx-color: #030303;
+    -fx-font-size: 32px;
+    -fx-font-family: "Roboto"; /* Usa -fx- para propiedades específicas de JavaFX */
+    -fx-font-weight: bold; /* Usa -fx- para propiedades específicas de JavaFX */
+    -fx-line-height: 36px; /* Usa -fx- para propiedades específicas de JavaFX */
+}
+
+.fondo_principal{
+    -fx-background-radius: 24px; /* Radio de los bordes */
+    -fx-background-color: #ffffff; /* Color de fondo */
+    -fx-border-radius: 24px; /* Redondear los bordes */
+    -fx-border-color: #0A5745; /* Color del borde */
+    -fx-border-width: 3px; /* Ancho del borde */
+}
+
+.titles{
+    -fx-color: #030303;
+    -fx-font-size: 24px;
+    -fx-font-family: "Roboto"; /* Usa -fx- para propiedades específicas de JavaFX */
+    -fx-font-weight: 600; /* Usa -fx- para propiedades específicas de JavaFX */
+    -fx-line-height: 28px; /* Usa -fx- para propiedades específicas de JavaFX */
+}
+
+.text_cards{
+    -fx-text-fill: #030303; /* color */
+    -fx-font-size: 14px; /* font-size */
+    -fx-font-family: "Roboto"; /* font-family */
+    -fx-font-weight: 300; /* font-weight */
+    -fx-line-spacing: 2px; /* line-height: 16px - font-size: 14px = 2px */
+}
+
+.fondos{
+    -fx-background-color: #ffffff; /* background-color: #ffffff */
+    -fx-background-radius: 24px; /* border-radius: 24px */
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.24), 8, 0, 0, 2); /* box-shadow */
+    -fx-pref-height: 70px; /* height: 44px */
+    -fx-pref-width: 322px; /* width: 384px */
+    -fx-border-radius: 24px;
+    -fx-border-color: #0A5745;
+}
+
+.text_box {
+    -fx-background-color: #ffffff; /* Fondo */
+    -fx-background-radius: 24px; /* Bordes redondeados */
+    -fx-border-color: transparent; /* Sin borde */
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.4), 16, 0, 0, 4); /* Sombra más fuerte */
+    -fx-text-fill: #858585; /* Color del texto */
+    -fx-font-family: "Roboto"; /* Fuente */
+    -fx-focus-color: transparent; /* Quitar el borde de enfoque */
+    -fx-faint-focus-color: transparent; /* Quitar el color difuminado del enfoque */
+}
+
+/* Combo Box*/
+
+.combo-box {
+    -fx-background-color: #ffffff; /* Fondo del ComboBox */
+    -fx-background-radius: 24px; /* Bordes redondeados */
+    -fx-border-color: transparent; /* Sin borde */
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.4), 16, 0, 0, 4); /* Sombra más fuerte */
+    -fx-padding: 0 8px; /* Padding interno */
+    -fx-font-family: "Roboto"; /* Fuente */
+    -fx-text-fill: #858585; /* Color del texto */
+    -fx-focus-color: transparent; /* Quitar el borde de enfoque */
+    -fx-faint-focus-color: transparent; /* Quitar el color difuminado del enfoque */
+}
+
+.combo-box .arrow {
+    -fx-background-color: #ffffff; /* Fondo de la flecha */
+    -fx-background-radius: 24px; /* Bordes redondeados en la flecha */
+    -fx-border-color: transparent; /* Sin borde */
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #ffffff; /* Fondo de las opciones */
+    -fx-background-radius: 24px; /* Bordes redondeados en cada celda */
+    -fx-font-family: "Roboto"; /* Fuente */
+    -fx-text-fill: #858585; /* Color del texto */
+}
+
+.combo-box:hover {
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.5), 16, 0, 0, 4); /* Sombra más fuerte en hover */
+}

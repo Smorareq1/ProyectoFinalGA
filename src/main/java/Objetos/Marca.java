@@ -30,4 +30,8 @@ public class Marca {
     public void setAnioDeCreacion(String anioDeCreacion) {
         this.anioDeCreacion = anioDeCreacion;
     }
+
+    public void setFundador(String fundador) {
+        this.fundador = fundador;
+    }
 }

@@ -62,13 +62,21 @@ public class editarMarcaController {
         // Check if the fields are not empty
         if (!nuevoNombre.isEmpty() && !nuevoAnioDeCreacion.isEmpty() && !nuevoFundador.isEmpty()) {
             // Create a new Marca object with updated values
+            Marca nuevaMarca = new Marca(nuevoNombre, nuevoAnioDeCreacion, nuevoFundador);
+
+
 
             //Editar las lineas que tengan esta marca
             GestorDeArchivos.printLineas();
-            GestorDeArchivos.editarLineasPorMarca(nombreAEditar, nuevoNombre);
+            GestorDeArchivos.editarLineasPorMarca(nombreAEditar, nuevaMarca);
             GestorDeArchivos.printLineas();
 
-            Marca nuevaMarca = new Marca(nuevoNombre, nuevoAnioDeCreacion, nuevoFundador);
+            GestorDeArchivos.printMarcasDeVehiculos();
+            GestorDeArchivos.editarVehiculosPorMarca(nombreAEditar, nuevaMarca);
+            GestorDeArchivos.printMarcasDeVehiculos();
+
+
+
 
             // Remove the old entry and add the updated Marca to the dictionary
             GestorDeArchivos.diccionarioNombreMarcas.remove(nombreAEditar);

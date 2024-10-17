@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="939.0" prefWidth="780.0" styleClass="fondo_principal" stylesheets="@../Css/addingVehicle.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.addingVehiculoController">
+   <children>
+      <Label layoutX="50.0" layoutY="118.0" styleClass="titles" stylesheets="@../Css/addingVehicle.css" text="Informacion General" />
+      <AnchorPane layoutX="50.0" layoutY="182.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Marca" />
+            <ComboBox fx:id="marcaComboBox" layoutX="17.0" layoutY="31.0" prefHeight="25.0" prefWidth="289.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="430.0" layoutY="182.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Linea" />
+            <ComboBox fx:id="lineaComboBox" layoutX="20.0" layoutY="31.0" prefHeight="25.0" prefWidth="282.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="50.0" layoutY="272.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Tipo" />
+            <ComboBox fx:id="tipoComboBox" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="289.0" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="50.0" layoutY="370.0" styleClass="titles" stylesheets="@../Css/addingVehicle.css" text="Atributos Comunes" />
+      <AnchorPane layoutX="50.0" layoutY="435.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Modelo" />
+            <TextField fx:id="modeloField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" styleClass="text_box" stylesheets="@../Css/addingVehicle.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="430.0" layoutY="435.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Color" />
+            <TextField fx:id="colorField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="50.0" layoutY="534.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Numero de Asientos" />
+            <TextField fx:id="numeroDeAsientosField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="50.0" layoutY="623.0" styleClass="titles" stylesheets="@../Css/addingVehicle.css" text="Identificadores Unicos" />
+      <AnchorPane layoutX="50.0" layoutY="678.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Placa" />
+            <TextField fx:id="placaField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="430.0" layoutY="678.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Chasis" />
+            <TextField fx:id="chasisField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="50.0" layoutY="789.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Motor" />
+            <TextField fx:id="motorField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="430.0" layoutY="789.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Vin" />
+            <TextField fx:id="vinField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+         </children>
+      </AnchorPane>
+      <HBox prefHeight="100.0" prefWidth="780.0">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="785.0">
+               <children>
+                  <Label layoutX="46.0" layoutY="39.0" styleClass="titulo_principal" stylesheets="@../Css/addingVehicle.css" text="Agregar Vehiculos" />
+                  <Button fx:id="agregarBtn" layoutX="585.0" layoutY="38.0" mnemonicParsing="false" text="Agregar" />
+                  <Button fx:id="cancelarBtn" layoutX="694.0" layoutY="38.0" mnemonicParsing="false" text="Cancelar" />
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+</Pane>

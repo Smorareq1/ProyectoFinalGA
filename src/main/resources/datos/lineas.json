@@ -1,12 +1,22 @@
 {
-  "Honda": {
-    "nombreMarcaDeLinea": "Corola",
-    "nombreLinea": "Honda",
+  "Hrv": {
+    "nombreMarcaDeLinea": "Honda",
+    "nombreLinea": "Hrv",
     "anioLinea": "2015",
     "marca": {
-      "nombre": "Corola",
-      "anioDeCreacion": "AñoEjemplo",
-      "fundador": "FundadorEjemplo"
+      "nombre": "Honda",
+      "anioDeCreacion": "1947",
+      "fundador": "Fujitsu Yakimoto"
+    }
+  },
+  "Hummer": {
+    "nombreMarcaDeLinea": "Nissan",
+    "nombreLinea": "Hummer",
+    "anioLinea": "2005",
+    "marca": {
+      "nombre": "Nissan",
+      "anioDeCreacion": "1933",
+      "fundador": "Yoshisuke Aikawa"
     }
   }
 }

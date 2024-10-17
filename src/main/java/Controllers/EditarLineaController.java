@@ -47,6 +47,12 @@ public class EditarLineaController {
 
         // Verificar que los campos no estén vacíos
         if (!nuevoNombreLinea.isEmpty() && !nuevoAnioLinea.isEmpty()) {
+
+            GestorDeArchivos.printLineasDeVehiculos();
+            GestorDeArchivos.editarVehiculosDadoLineas(lineaAEditar.getNombreLinea(), new Linea(lineaAEditar.getMarca(), nuevoNombreLinea, nuevoAnioLinea));
+            GestorDeArchivos.printLineasDeVehiculos();
+
+
             // Actualizar los valores en la Linea original
             lineaAEditar.setNombreLinea(nuevoNombreLinea);  // Actualizar el nombre
             lineaAEditar.setAnioLinea(nuevoAnioLinea);      // Actualizar el año

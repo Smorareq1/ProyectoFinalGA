@@ -189,8 +189,9 @@ public class MarcaController {
             // Actualizar el TableView
             actualizarTableView();
 
-            // Eliminar las líneas asociadas a la marca
-            GestorDeArchivos.buscarYEliminarPorMarca(marcaSeleccionada.getNombre());
+            // Eliminar las líneas asociadas a la marca y lineas asociadas a los vehiculos de la marca
+            GestorDeArchivos.buscarYEliminarLineaPorMarca(marcaSeleccionada.getNombre());
+            GestorDeArchivos.buscarYEliminarVehiculoPorMarca(marcaSeleccionada.getNombre());
 
             // Mostrar mensaje de éxito
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
