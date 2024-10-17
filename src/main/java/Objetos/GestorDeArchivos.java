@@ -8,25 +8,27 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class GestorDeArchivos {
 
-    // Crear un diccionario de marcas
+    // Diccionarios
     public static Map<String, Marca> diccionarioNombreMarcas = new HashMap<>();
 
-    //Diccionario de tipos
     public static Map<String, Tipo> diccionarioNombreTipos = new HashMap<>();
 
-    //Diccionario de lineas
     public static Map<String, Linea> diccionarioNombreLineas = new HashMap<>();
 
-    //Diccionario de Vehiuclos
     public static Map<String, Vehiculo> diccionarioNombreVehiculos = new HashMap<>();
+
+    //Sets para evitar duplicados en propiedades de vehiculo
+    public static Set<String> setPlacas = new HashSet<>();
+    public static Set<String> setChasis = new HashSet<>();
+    public static Set<String> setMotores = new HashSet<>();
+    public static Set<String> setVins = new HashSet<>();
 
     ///////////////////////////////////// MARCAS ///////////////////////////////////////////////////
 
@@ -162,26 +164,30 @@ public class GestorDeArchivos {
         }
     }
 
-    public static void editarLineasPorMarca(String nombreMarca, String nuevoNombreMarca) {
+    public static void editarLineasPorMarca(String nombreMarca, Marca nuevaMarca) {
         for (Map.Entry<String, Linea> entry : diccionarioNombreLineas.entrySet()) {
             Linea linea = entry.getValue();
 
             // Verificamos si el nombre de la marca en la línea coincide con el que estamos editando
             if (linea.getNombreMarcaDeLinea().equals(nombreMarca)) {
                 // Actualizamos el nombre de la marca en la línea
-                linea.setNombreMarcaDeLinea(nuevoNombreMarca);
+                linea.setNombreMarcaDeLinea(nuevaMarca.getNombre());
 
                 // También actualizamos el objeto Marca dentro de la línea si es necesario
                 Marca marca = linea.getMarca();
                 if (marca != null && marca.getNombre().equals(nombreMarca)) {
-                    marca.setNombre(nuevoNombreMarca);
+
+                    //Editar los valores de marca que fueron modificados
+                    marca.setNombre(nuevaMarca.getNombre());
+                    marca.setAnioDeCreacion(nuevaMarca.anioDeCreacion);
+                    marca.setFundador(nuevaMarca.fundador);
+
+
                     linea.setMarca(marca); // Aseguramos que la línea tenga la referencia actualizada a la marca
                 }
             }
         }
     }
-
-
 
     public static void printLineas(){
         for (Map.Entry<String, Linea> entry : diccionarioNombreLineas.entrySet()) {
@@ -246,4 +252,6 @@ public class GestorDeArchivos {
             System.err.println("Error al cargar las líneas desde JSON: " + e.getMessage());
         }
     }
+
+    //////////////////////////////// VEHICULOS ///////////////////////////////////
 }

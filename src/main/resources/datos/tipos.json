@@ -1,4 +1,16 @@
 {
+  "Hash Back": {
+    "nombreTipo": "Hash Back",
+    "anioTipo": "1952"
+  },
+  "Camioneta": {
+    "nombreTipo": "Camioneta",
+    "anioTipo": "1942"
+  },
+  "Camion": {
+    "nombreTipo": "Camion",
+    "anioTipo": "1950"
+  },
   "Pick Up": {
     "nombreTipo": "Pick Up",
     "anioTipo": "1920"

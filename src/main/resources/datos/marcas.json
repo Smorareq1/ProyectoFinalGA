@@ -1,12 +1,12 @@
 {
-  "Corola": {
-    "nombre": "Corola",
-    "anioDeCreacion": "AñoEjemplo",
-    "fundador": "FundadorEjemplo"
+  "GMC": {
+    "nombre": "GMC",
+    "anioDeCreacion": "1940",
+    "fundador": "John Mclister"
   },
-  "Buenas": {
-    "nombre": "Buenas",
-    "anioDeCreacion": "13",
-    "fundador": "2005"
+  "Honda": {
+    "nombre": "Honda",
+    "anioDeCreacion": "1947",
+    "fundador": "Fujitsu Yakimoto"
   }
 }

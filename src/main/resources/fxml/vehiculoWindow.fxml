@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="781.0" prefWidth="1470.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="1470.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.VehiculoController">
    <children>
       <fx:include source="lateralMenu.fxml" />
-      <AnchorPane layoutX="292.0" layoutY="14.0" prefHeight="756.0" prefWidth="1166.0">
+      <AnchorPane layoutX="290.0" layoutY="14.0" prefHeight="759.0" prefWidth="1170.0">
          <children>
-            <Text layoutX="558.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vehiculos" />
+            <Button fx:id="btn_AgregarVehiculo" layoutX="699.0" layoutY="61.0" mnemonicParsing="false" styleClass="add-button" stylesheets="@../Css/marcas.css" text="Agregar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btn_EditarVehiculo" layoutX="788.0" layoutY="60.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="68.0" styleClass="edit-button" stylesheets="@../Css/marcas.css" text="Editar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btn_EliminarVehiculo" layoutX="868.0" layoutY="61.0" maxWidth="70.0" mnemonicParsing="false" prefHeight="30.0" styleClass="delete-button" stylesheets="@../Css/marcas.css" text="Eliminar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Label layoutX="24.0" layoutY="14.0" styleClass="Title" stylesheets="@../Css/marcas.css" text="Vehiculos:">
+               <font>
+                  <Font name="Century Gothic Bold" size="24.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableViewVehiculos" layoutX="28.0" layoutY="136.0" prefHeight="550.0" prefWidth="1115.0" stylesheets="@../Css/marcas.css">
+               <columns>
+                  <TableColumn fx:id="marcaColumn" prefWidth="115.0" text="Marca" />
+                  <TableColumn fx:id="tipoColumn" prefWidth="100.0" text="Tipo" />
+                  <TableColumn fx:id="lineaColumn" prefWidth="101.0" text="Linea" />
+                  <TableColumn fx:id="modeloColumn" prefWidth="104.0" text="Modelo" />
+                  <TableColumn fx:id="colorColumn" prefWidth="102.0" text="Color" />
+                  <TableColumn fx:id="asientosColumn" prefWidth="112.0" text="# Asientos" />
+                  <TableColumn fx:id="placaColumn" prefWidth="101.0" text="Placa" />
+                  <TableColumn fx:id="chasisColumn" prefWidth="126.0" text="Chasis" />
+                  <TableColumn fx:id="motorColumn" prefWidth="122.0" text="Motor" />
+                  <TableColumn fx:id="vinColumn" prefWidth="130.0" text="Vin" />
+               </columns>
+            </TableView>
+            <TextField fx:id="searchFieldMarca" layoutX="319.0" layoutY="64.0" prefHeight="25.0" prefWidth="243.0" promptText="Buscar por Nombre..." styleClass="text_search" stylesheets="@../Css/dashBoardMain.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </TextField>
+            <ImageView fx:id="searchImg" fitHeight="38.0" fitWidth="47.0" layoutX="576.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Inicio/searchIconMinimalist.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="refreshIcon" fitHeight="27.0" fitWidth="29.0" layoutX="1128.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Inicio/refreshIcon2.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
