@@ -146,6 +146,7 @@ public class MarcaController {
 
             try {
 
+
                 editarMarcaController.InformacionAEditar(nombre, anioDeCreacion, fundador);
 
                 // Cargar el nuevo FXML

@@ -1,10 +1,10 @@
 {
-  "Sedan": {
-    "nombreMarcaDeLinea": "Nombre2",
-    "nombreLinea": "Sedan",
-    "anioLinea": "2003",
+  "Honda": {
+    "nombreMarcaDeLinea": "Corola",
+    "nombreLinea": "Honda",
+    "anioLinea": "2015",
     "marca": {
-      "nombre": "Nombre2",
+      "nombre": "Corola",
       "anioDeCreacion": "AñoEjemplo",
       "fundador": "FundadorEjemplo"
     }

@@ -22,4 +22,12 @@ public class Marca {
     public String getFundador() {
         return fundador;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setAnioDeCreacion(String anioDeCreacion) {
+        this.anioDeCreacion = anioDeCreacion;
+    }
 }

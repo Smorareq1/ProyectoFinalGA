@@ -17,8 +17,7 @@ public class Linea {
         this.anioLinea = anioLinea;
     }
 
-    // Getter para el nombre de la marca
-
+    // Getters
     public String getNombreMarcaDeLinea() {
         return this.nombreMarcaDeLinea;
     }
@@ -34,6 +33,11 @@ public class Linea {
         return anioLinea;
     }
 
+    public Marca getMarca() {
+        return marca;
+    }
+
+    //Setter
     public void setNombreLinea(String nombreLinea)
     {
         this.nombreLinea = nombreLinea;
@@ -43,6 +47,15 @@ public class Linea {
     {
         this.anioLinea = anioLinea;
     }
+
+    public void setNombreMarcaDeLinea(String nombreMarcaDeLinea) {
+        this.nombreMarcaDeLinea = nombreMarcaDeLinea;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
+
 
 
     @Override

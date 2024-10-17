@@ -162,6 +162,43 @@ public class GestorDeArchivos {
         }
     }
 
+    public static void editarLineasPorMarca(String nombreMarca, String nuevoNombreMarca) {
+        for (Map.Entry<String, Linea> entry : diccionarioNombreLineas.entrySet()) {
+            Linea linea = entry.getValue();
+
+            // Verificamos si el nombre de la marca en la línea coincide con el que estamos editando
+            if (linea.getNombreMarcaDeLinea().equals(nombreMarca)) {
+                // Actualizamos el nombre de la marca en la línea
+                linea.setNombreMarcaDeLinea(nuevoNombreMarca);
+
+                // También actualizamos el objeto Marca dentro de la línea si es necesario
+                Marca marca = linea.getMarca();
+                if (marca != null && marca.getNombre().equals(nombreMarca)) {
+                    marca.setNombre(nuevoNombreMarca);
+                    linea.setMarca(marca); // Aseguramos que la línea tenga la referencia actualizada a la marca
+                }
+            }
+        }
+    }
+
+
+
+    public static void printLineas(){
+        for (Map.Entry<String, Linea> entry : diccionarioNombreLineas.entrySet()) {
+            Linea linea = entry.getValue();
+            System.out.println(" ");
+            System.out.println("Nombre de la marca: " + linea.getNombreMarcaDeLinea());
+
+            //Informacion de la marca
+            System.out.println("Año de creacion de la marca: " + linea.getMarca().getAnioDeCreacion());
+            System.out.println("Fundador de la marca: " + linea.getMarca().getFundador());
+
+            System.out.println("Nombre de la linea: " + linea.getNombreLinea());
+            System.out.println("Año de la linea: " + linea.getAnioLinea());
+            System.out.println(" ");
+        }
+    }
+
     //////////////////////////////// TIPOS ///////////////////////////////////
 
     public static void guardarTiposEnJson() {
