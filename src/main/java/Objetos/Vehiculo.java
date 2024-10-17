@@ -2,7 +2,7 @@ package Objetos;
 
 public class Vehiculo {
 
-    // Se asocia por marca
+    // Se asocia por marca y linea
     public Marca marca;
     public Linea linea;
     public Tipo tipo;

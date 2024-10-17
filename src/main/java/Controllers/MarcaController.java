@@ -82,6 +82,9 @@ public class MarcaController {
 
         // Asignar acción de búsqueda a la imagen
         searchImg.setOnMouseClicked(event -> filtrarMarcasPorNombre());
+
+        // Refresh icon
+        refreshIcon.setOnMouseClicked(event -> actualizarTableView());
     }
 
     private void setTableCellAlignment(TableColumn<Marca, String> column) {
@@ -143,6 +146,7 @@ public class MarcaController {
 
             try {
 
+
                 editarMarcaController.InformacionAEditar(nombre, anioDeCreacion, fundador);
 
                 // Cargar el nuevo FXML
@@ -184,6 +188,9 @@ public class MarcaController {
 
             // Actualizar el TableView
             actualizarTableView();
+
+            // Eliminar las líneas asociadas a la marca
+            GestorDeArchivos.buscarYEliminarPorMarca(marcaSeleccionada.getNombre());
 
             // Mostrar mensaje de éxito
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

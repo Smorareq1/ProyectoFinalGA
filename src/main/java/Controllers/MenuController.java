@@ -1,7 +1,6 @@
 package Controllers;
 
 import Objetos.GestorDeArchivos;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,11 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import java.io.IOException;
 
 import java.io.IOException;
 
@@ -30,7 +24,9 @@ public class MenuController {
             Platform.exit(); // Cierra completamente el programa
 
             //Guardar los datos en un archivo
-            GestorDeArchivos.guardarDatosEnJson();
+            GestorDeArchivos.guardarMarcasDatosEnJson();
+            GestorDeArchivos.guardarLineasEnJson();
+            GestorDeArchivos.guardarTiposEnJson();
 
 
         });
