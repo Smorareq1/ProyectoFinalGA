@@ -112,20 +112,76 @@ public class VehiculoController {
 
     //Botones
     private void abrirVentanaAgregarVehiculo() {
+        try {
+            // Cargar el nuevo FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addingVehiculo.fxml"));
+            Parent root = loader.load();
+
+            // Crear un nuevo escenario (Stage)
+            Stage stage = new Stage();
+            stage.setTitle("Agregar Vehiculo");
+            stage.initModality(Modality.APPLICATION_MODAL); // Hacer que esta ventana sea modal
+            stage.setScene(new Scene(root));
+
+            // Mostrar la ventana
+            stage.showAndWait();
+
+            // Después de cerrar la ventana, actualizar el TableView
+            actualizarTableView();
+        } catch (Exception e) {
+            e.printStackTrace(); // Manejar excepciones adecuadamente en tu aplicación
+        }
     }
 
     private void editarVehiculoSeleccionado() {
     }
 
     private void eliminarVehiculoSeleccionado() {
+        Vehiculo vehiculoSeleccionado = tableViewVehiculos.getSelectionModel().getSelectedItem();
+
+        if (vehiculoSeleccionado != null) {
+            GestorDeArchivos.diccionarioNombreVehiculos.remove(vehiculoSeleccionado.getPlaca());
+
+            actualizarTableView();
+
+            //Mensaje de exito
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Exito");
+            alert.setHeaderText(null);
+            alert.setContentText("Vehiculo eliminado correctamente.");
+            alert.showAndWait();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Ningun Vehiculo Seleccionado");
+            alert.setContentText("Por favor, selecciona un vehiculo para eliminar.");
+            alert.showAndWait();
+        }
     }
 
 
     //Imagenes
     private void filtrarPorMarca() {
+        String filtro = searchFieldMarca.getText();
+
+        if (filtro.isEmpty()) {
+            actualizarTableView();
+        } else {
+            vehiculos.clear();
+            for (Vehiculo vehiculo : GestorDeArchivos.diccionarioNombreVehiculos.values()) {
+                if (vehiculo.getMarcaNombreVehiculo().toLowerCase().contains(filtro.toLowerCase())) {
+                    vehiculos.add(vehiculo);
+                }
+            }
+            tableViewVehiculos.setItems(vehiculos);
+        }
     }
 
-    private void actualizarTableView() {
+    public void actualizarTableView() {
+        vehiculos.clear();
+        vehiculos.addAll(GestorDeArchivos.diccionarioNombreVehiculos.values());
+        tableViewVehiculos.setItems(vehiculos);
     }
 
 

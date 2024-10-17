@@ -254,4 +254,60 @@ public class GestorDeArchivos {
     }
 
     //////////////////////////////// VEHICULOS ///////////////////////////////////
+
+    public static void guardarVehiculosEnJson() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(diccionarioNombreVehiculos);
+
+        // Ruta del archivo JSON donde se guardarán los vehiculos
+        Path path = Paths.get("src/main/resources/datos/vehiculos.json");
+
+        try {
+            // Crear el directorio si no existe
+            Files.createDirectories(path.getParent());
+
+            // Escribir el JSON en el archivo
+            try (FileWriter writer = new FileWriter(path.toFile())) {
+                writer.write(json);
+                writer.flush();
+                System.out.println("Vehiculos guardados correctamente en el archivo JSON.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al guardar los vehiculos en JSON: " + e.getMessage());
+        }
+    }
+
+    public static void cargarVehiculosDesdeJson(){
+        Gson gson = new Gson();
+        Path path = Paths.get("src/main/resources/datos/vehiculos.json");
+
+        try {
+            // Leer todas las líneas del archivo JSON
+            String json = Files.readString(path);
+            System.out.println("Contenido del archivo JSON: " + json);  // Verifica el contenido
+
+            // Deserializar el JSON en un Map<String, Linea>
+            Map<String, Vehiculo> vehiculosMap = gson.fromJson(json, new com.google.gson.reflect.TypeToken<Map<String, Vehiculo>>() {}.getType());
+
+            // Inicializar el diccionario de líneas con los datos desde el JSON
+            if (vehiculosMap != null) {
+                diccionarioNombreVehiculos.putAll(vehiculosMap);
+                System.out.println("Vehiculos cargados: " + vehiculosMap);  // Verifica los datos cargados
+            } else {
+                System.out.println("No se encontraron vehiculos en el archivo JSON.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al cargar los vehiculos desde JSON: " + e.getMessage());
+        }
+    }
+
+    public static void cargarSets(){
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+            setPlacas.add(vehiculo.getPlaca());
+            setChasis.add(vehiculo.getChasis());
+            setMotores.add(vehiculo.getMotor());
+            setVins.add(vehiculo.getVin());
+        }
+    }
 }

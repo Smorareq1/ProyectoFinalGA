@@ -1,0 +1,15 @@
+.table-view {
+    -fx-font-family: "Roboto"; /* Fuente general para la tabla */
+}
+
+.table-view .table-row-cell {
+    -fx-alignment: CENTER; /* Centra verticalmente las filas */
+}
+
+.table-view .table-cell {
+    -fx-alignment: CENTER; /* Centra verticalmente y horizontalmente el contenido de las celdas */
+}
+
+.table-view .table-column-header {
+    -fx-alignment: CENTER; /* Centra el encabezado de las columnas */
+}
