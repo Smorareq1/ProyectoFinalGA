@@ -151,7 +151,7 @@ public class GestorDeArchivos {
         }
     }
 
-    public static void buscarYEliminarPorMarca(String nombreMarca) {
+    public static void buscarYEliminarLineaPorMarca(String nombreMarca) {
         Iterator<Map.Entry<String, Linea>> it = diccionarioNombreLineas.entrySet().iterator();
 
         while (it.hasNext()) {
@@ -308,6 +308,68 @@ public class GestorDeArchivos {
             setChasis.add(vehiculo.getChasis());
             setMotores.add(vehiculo.getMotor());
             setVins.add(vehiculo.getVin());
+        }
+    }
+
+    public static void buscarYEliminarVehiculoPorMarca(String nombreMarca) {
+        Iterator<Map.Entry<String, Vehiculo>> it = diccionarioNombreVehiculos.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry<String, Vehiculo> entry = it.next();
+            Vehiculo vehiculo = entry.getValue();
+
+            if (vehiculo.getMarca().getNombre().equals(nombreMarca)) {
+
+                //Eliminar datos del set
+                setPlacas.remove(vehiculo.getPlaca());
+                setChasis.remove(vehiculo.getChasis());
+                setMotores.remove(vehiculo.getMotor());
+                setVins.remove(vehiculo.getVin());
+
+                //Eliminar vehiculo
+                it.remove(); // Eliminar la entrada actual si coincide la marca
+            }
+        }
+    }
+
+    public static void buscarYEliminarVehiculoPorLinea(String nombreLinea) {
+        Iterator<Map.Entry<String, Vehiculo>> it = diccionarioNombreVehiculos.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry<String, Vehiculo> entry = it.next();
+            Vehiculo vehiculo = entry.getValue();
+
+            if (vehiculo.getLinea().getNombreLinea().equals(nombreLinea)) {
+                //Eliminar datos del set
+                setPlacas.remove(vehiculo.getPlaca());
+                setChasis.remove(vehiculo.getChasis());
+                setMotores.remove(vehiculo.getMotor());
+                setVins.remove(vehiculo.getVin());
+
+
+                //Eliminar vehiculo
+                it.remove(); // Eliminar la entrada actual si coincide la marca
+            }
+        }
+    }
+
+    public static void busarYEliminarVehiculoPorTipo(String nombreTipo) {
+        Iterator<Map.Entry<String, Vehiculo>> it = diccionarioNombreVehiculos.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry<String, Vehiculo> entry = it.next();
+            Vehiculo vehiculo = entry.getValue();
+
+            if (vehiculo.getTipo().getNombreTipo().equals(nombreTipo)) {
+                //Eliminar datos del set
+                setPlacas.remove(vehiculo.getPlaca());
+                setChasis.remove(vehiculo.getChasis());
+                setMotores.remove(vehiculo.getMotor());
+                setVins.remove(vehiculo.getVin());
+
+                //Eliminar vehiculo
+                it.remove(); // Eliminar la entrada actual si coincide la marca
+            }
         }
     }
 }

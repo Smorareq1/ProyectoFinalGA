@@ -186,6 +186,9 @@ public class LineaController {
 
             actualizarTableView();
 
+            //Eliminar vehículos asociados a la línea
+            GestorDeArchivos.buscarYEliminarVehiculoPorLinea(lineaSeleccionada.getNombreLinea());
+
             // Mostrar mensaje de éxito
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Línea Eliminada");
