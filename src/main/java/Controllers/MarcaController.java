@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.StageStyle;
 
 public class MarcaController {
 
@@ -113,6 +114,9 @@ public class MarcaController {
             stage.setTitle("Agregar Marca");
             stage.initModality(Modality.APPLICATION_MODAL); // Hacer que esta ventana sea modal
             stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.setMaximized(false);
+            stage.initStyle(StageStyle.UNDECORATED);
 
             // Mostrar la ventana
             stage.showAndWait();

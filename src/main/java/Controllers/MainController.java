@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.Node;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -34,6 +35,11 @@ public class MainController {
             // Crear una nueva ventana (Stage) para la escena del Menu
             Stage stage = new Stage();
             stage.setTitle("Menu");
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            stage.setResizable(false);
+            stage.setMaximized(false);
+
             stage.setScene(scene);
             stage.show();
 

@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <HBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="781.0" prefWidth="1470.0" styleClass="root" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InicioController">
    <children>
@@ -28,13 +29,60 @@
                   </ImageView>
                </children>
             </Pane>
-            <Label layoutX="34.0" layoutY="121.0" styleClass="Titles" stylesheets="@../Css/dashBoardMain.css" text="Informacion Relevante: ">
+            <Label layoutX="40.0" layoutY="142.0" styleClass="Titles" stylesheets="@../Css/dashBoardMain.css" text="Informacion Relevante: ">
                <font>
                   <Font name="Century Gothic Bold" size="31.0" />
                </font>
             </Label>
-            <Label layoutX="34.0" layoutY="169.0" styleClass="Texts" stylesheets="@../Css/dashBoardMain.css" text="Toda la información que necesitas para elegir tu auto ideal, ¡al alcance de un click !" />
-            <Pane fx:id="pane_1" layoutX="34.0" layoutY="212.0" prefHeight="225.0" prefWidth="145.0" styleClass="pane_1" stylesheets="@../Css/dashBoardMain.css" />
+            <Label layoutX="44.0" layoutY="208.0" styleClass="Texts" stylesheets="@../Css/dashBoardMain.css" text="Toda la información que necesitas para elegir tu auto ideal, ¡al alcance de un click !" />
+            <HBox alignment="CENTER" layoutX="18.0" layoutY="284.0" prefHeight="238.0" prefWidth="1165.0" styleClass="hbox_paneles" stylesheets="@../Css/dashBoardMain.css">
+               <children>
+                  <Pane fx:id="pane_1" prefHeight="225.0" prefWidth="145.0" styleClass="pane_1" stylesheets="@../Css/dashBoardMain.css">
+                     <children>
+                        <Text fx:id="marcasRegistradasText" layoutX="62.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pane_numero" text="0" />
+                        <Label layoutX="40.0" layoutY="14.0" styleClass="panel_text" stylesheets="@../Css/dashBoardMain.css" text="Marcas" />
+                        <ImageView fitHeight="58.0" fitWidth="72.0" layoutX="45.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/Inicio/brandIconDashBoardMain.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pane_11" prefHeight="225.0" prefWidth="145.0" styleClass="pane_1" stylesheets="@../Css/dashBoardMain.css">
+                     <children>
+                        <Text fx:id="tiposRegistradosText" layoutX="62.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pane_numero" text="0" />
+                        <Label layoutX="51.0" layoutY="14.0" styleClass="panel_text" stylesheets="@../Css/dashBoardMain.css" text="Tipos" />
+                        <ImageView fitHeight="58.0" fitWidth="72.0" layoutX="43.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/Inicio/tiposIconDm.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pane_111" prefHeight="225.0" prefWidth="145.0" styleClass="pane_1" stylesheets="@../Css/dashBoardMain.css">
+                     <children>
+                        <Text fx:id="lineasRegistradasText" layoutX="62.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pane_numero" text="0" />
+                        <Label layoutX="46.0" layoutY="14.0" styleClass="panel_text" stylesheets="@../Css/dashBoardMain.css" text="Lineas" />
+                        <ImageView fitHeight="58.0" fitWidth="72.0" layoutX="43.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/Inicio/lineaIconBM.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pane_112" prefHeight="225.0" prefWidth="145.0" styleClass="pane_1" stylesheets="@../Css/dashBoardMain.css">
+                     <children>
+                        <Text fx:id="vehiculosRegistradosText" layoutX="62.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pane_numero" text="0" />
+                        <Label layoutX="31.0" layoutY="14.0" styleClass="panel_text" stylesheets="@../Css/dashBoardMain.css" text="Vehiculos" />
+                        <ImageView fitHeight="58.0" fitWidth="72.0" layoutX="47.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/Inicio/icons8-vehicle-100.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
          </children>
       </Pane>
    </children>
