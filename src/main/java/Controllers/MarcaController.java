@@ -118,6 +118,7 @@ public class MarcaController {
             stage.setMaximized(false);
             stage.initStyle(StageStyle.UNDECORATED);
 
+
             // Mostrar la ventana
             stage.showAndWait();
 
