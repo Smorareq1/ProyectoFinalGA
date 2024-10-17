@@ -1,12 +1,12 @@
 {
-  "GMC": {
-    "nombre": "GMC",
-    "anioDeCreacion": "1940",
-    "fundador": "John Mclister"
-  },
   "Honda": {
     "nombre": "Honda",
     "anioDeCreacion": "1947",
     "fundador": "Fujitsu Yakimoto"
+  },
+  "Nissan": {
+    "nombre": "Nissan",
+    "anioDeCreacion": "1933",
+    "fundador": "Yoshisuke Aikawa"
   }
 }

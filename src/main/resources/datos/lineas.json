@@ -10,13 +10,13 @@
     }
   },
   "Hummer": {
-    "nombreMarcaDeLinea": "GMC",
+    "nombreMarcaDeLinea": "Nissan",
     "nombreLinea": "Hummer",
     "anioLinea": "2000",
     "marca": {
-      "nombre": "GMC",
-      "anioDeCreacion": "1940",
-      "fundador": "John Mclister"
+      "nombre": "Nissan",
+      "anioDeCreacion": "1933",
+      "fundador": "Yoshisuke Aikawa"
     }
   }
 }

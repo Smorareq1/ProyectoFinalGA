@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+import javafx.scene.SubScene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -372,4 +373,81 @@ public class GestorDeArchivos {
             }
         }
     }
+
+    //Prueba
+
+    public static void printMarcasDeVehiculos(){
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+            System.out.println(" ");
+            System.out.println("Marca del vehiculo: " + vehiculo.getMarca().getNombre());
+            System.out.println("Año de creacion de la marca: " + vehiculo.getMarca().getAnioDeCreacion());
+            System.out.println("Fundador de la marca: " + vehiculo.getMarca().getFundador());
+            System.out.println(" ");
+        }
+    }
+
+    //Prueba fin
+
+     public static void editarVehiculosPorMarca(String nombreMarca, Marca nuevaMarca) {
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+
+            // Verificamos si el nombre de la marca en el vehiculo coincide con el que estamos editando
+            if (vehiculo.getMarca().getNombre().equals(nombreMarca)) {
+                // Actualizamos el nombre de la marca en el vehiculo
+                vehiculo.getMarca().setNombre(nuevaMarca.getNombre());
+                vehiculo.setMarcaNombreVehiculo(nuevaMarca.getNombre());
+
+                // También actualizamos los atributos adicionales de la marca en el vehiculo
+                Marca marca = vehiculo.getMarca();
+                if (marca != null && marca.getNombre().equals(nuevaMarca.getNombre())) {
+                    // Editar los valores de marca que fueron modificados
+                    marca.setAnioDeCreacion(nuevaMarca.getAnioDeCreacion());
+                    marca.setFundador(nuevaMarca.getFundador());
+                }
+
+                // Actualizamos la marca dentro de la línea asociada al vehículo
+                Linea linea = vehiculo.getLinea(); // Obtener la línea del vehículo
+                if (linea != null) {
+
+                    linea.setNombreMarcaDeLinea(nuevaMarca.getNombre()); // Actualizar el nombre de la marca en la línea
+
+                    // Verificamos si la línea está asociada con la marca que estamos actualizando
+                    if (linea.getMarca() != null && linea.getMarca().getNombre().equals(nombreMarca)) {
+                        // Actualizamos la línea con la nueva marca
+                        linea.getMarca().setNombre(nuevaMarca.getNombre());
+                        linea.getMarca().setAnioDeCreacion(nuevaMarca.getAnioDeCreacion());
+                        linea.getMarca().setFundador(nuevaMarca.getFundador());
+
+                        // Actualizamos el nombre de la marca en la línea
+                        linea.setNombreMarcaDeLinea(nuevaMarca.getNombre());
+                    }
+                }
+            }
+        }
+    }
+
+    public static void editarVehiculosDadoLineas(String nombreLineaPasado, Linea nuevaLinea) {
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+
+            // Verificamos si el nombre de la marca en el vehiculo coincide con el que estamos editando
+            if (vehiculo.getLinea().getNombreLinea().equals(nombreLineaPasado)) {
+                // Actualizamos el nombre de la marca en el vehiculo
+                vehiculo.getLinea().setNombreLinea(nuevaLinea.getNombreLinea());
+                vehiculo.getLinea().setAnioLinea(nuevaLinea.getAnioLinea());
+
+                // También actualizamos los atributos adicionales de la marca en el vehiculo
+                Linea linea = vehiculo.getLinea();
+                if (linea != null && linea.getNombreLinea().equals(nuevaLinea.getNombreLinea())) {
+                    // Editar los valores de marca que fueron modificados
+                    linea.setAnioLinea(nuevaLinea.getAnioLinea());
+                    linea.setNombreLinea(nuevaLinea.getNombreLinea());
+                }
+            }
+        }
+    }
+
+
 }

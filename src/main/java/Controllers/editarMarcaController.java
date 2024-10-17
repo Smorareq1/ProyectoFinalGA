@@ -71,6 +71,10 @@ public class editarMarcaController {
             GestorDeArchivos.editarLineasPorMarca(nombreAEditar, nuevaMarca);
             GestorDeArchivos.printLineas();
 
+            GestorDeArchivos.printMarcasDeVehiculos();
+            GestorDeArchivos.editarVehiculosPorMarca(nombreAEditar, nuevaMarca);
+            GestorDeArchivos.printMarcasDeVehiculos();
+
 
 
 

@@ -1,40 +1,9 @@
 {
-  "GRC123": {
-    "marca": {
-      "nombre": "GMC",
-      "anioDeCreacion": "1940",
-      "fundador": "John Mclister"
-    },
-    "linea": {
-      "nombreMarcaDeLinea": "GMC",
-      "nombreLinea": "Hummer",
-      "anioLinea": "2000",
-      "marca": {
-        "nombre": "GMC",
-        "anioDeCreacion": "1940",
-        "fundador": "John Mclister"
-      }
-    },
-    "tipo": {
-      "nombreTipo": "Pick Up",
-      "anioTipo": "1920"
-    },
-    "marcaNombreVehiculo": "GMC",
-    "lineaNombreVehiculo": "Hummer",
-    "tipoNombreVehiculo": "Pick Up",
-    "modelo": "2024",
-    "color": "Verde",
-    "numeroDeAsientos": "6",
-    "placa": "GRC123",
-    "chasis": "5",
-    "motor": "2.4V",
-    "vin": "1"
-  },
   "ABC456": {
     "marca": {
-      "nombre": "GMC",
-      "anioDeCreacion": "1940",
-      "fundador": "John Mclister"
+      "nombre": "Honda",
+      "anioDeCreacion": "1947",
+      "fundador": "Fujitsu Yakimoto"
     },
     "linea": {
       "nombreMarcaDeLinea": "Honda",
@@ -50,7 +19,7 @@
       "nombreTipo": "Camion",
       "anioTipo": "1950"
     },
-    "marcaNombreVehiculo": "GMC",
+    "marcaNombreVehiculo": "Honda",
     "lineaNombreVehiculo": "Hrv",
     "tipoNombreVehiculo": "Camion",
     "modelo": "2020",
