@@ -387,6 +387,16 @@ public class GestorDeArchivos {
         }
     }
 
+    public static void printLineasDeVehiculos(){
+        for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+            System.out.println(" ");
+            System.out.println("Nombre de la linea: " + vehiculo.getLinea().getNombreLinea());
+            System.out.println("Año de la linea: " + vehiculo.getLinea().getAnioLinea());
+            System.out.println(" ");
+        }
+    }
+
     //Prueba fin
 
      public static void editarVehiculosPorMarca(String nombreMarca, Marca nuevaMarca) {
@@ -432,22 +442,21 @@ public class GestorDeArchivos {
         for (Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()) {
             Vehiculo vehiculo = entry.getValue();
 
-            // Verificamos si el nombre de la marca en el vehiculo coincide con el que estamos editando
+            // Verificamos si el nombre de la línea en el vehículo coincide con el que estamos editando
             if (vehiculo.getLinea().getNombreLinea().equals(nombreLineaPasado)) {
-                // Actualizamos el nombre de la marca en el vehiculo
-                vehiculo.getLinea().setNombreLinea(nuevaLinea.getNombreLinea());
-                vehiculo.getLinea().setAnioLinea(nuevaLinea.getAnioLinea());
+                // Actualizamos solo si la nueva línea es diferente
+                if (!vehiculo.getLinea().getNombreLinea().equals(nuevaLinea.getNombreLinea()) ||
+                    vehiculo.getLinea().getAnioLinea() != nuevaLinea.getAnioLinea()) {
 
-                // También actualizamos los atributos adicionales de la marca en el vehiculo
-                Linea linea = vehiculo.getLinea();
-                if (linea != null && linea.getNombreLinea().equals(nuevaLinea.getNombreLinea())) {
-                    // Editar los valores de marca que fueron modificados
-                    linea.setAnioLinea(nuevaLinea.getAnioLinea());
+                    // Actualizamos los atributos de la línea
+                    Linea linea = vehiculo.getLinea();
                     linea.setNombreLinea(nuevaLinea.getNombreLinea());
+                    linea.setAnioLinea(nuevaLinea.getAnioLinea());
                 }
             }
         }
     }
+
 
 
 }
