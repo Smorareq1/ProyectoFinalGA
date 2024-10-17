@@ -397,6 +397,17 @@ public class GestorDeArchivos {
         }
     }
 
+    public static void printTiposDeVehiculos (){
+        for(Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()){
+            Vehiculo vehiculo = entry.getValue();
+
+            System.out.println(" ");
+            System.out.println("Nombre del tipo: " + vehiculo.getTipo().getNombreTipo());
+            System.out.println("Año del tipo: " + vehiculo.getTipo().getAnioTipo());
+            System.out.println(" ");
+        }
+    }
+
     //Prueba fin
 
      public static void editarVehiculosPorMarca(String nombreMarca, Marca nuevaMarca) {
@@ -455,6 +466,30 @@ public class GestorDeArchivos {
                 }
             }
         }
+    }
+
+    public static void editarVehiculosDadoTipos(String nombreTipoPasado, Tipo nuevoTipo){
+
+        for(Map.Entry<String, Vehiculo> entry : diccionarioNombreVehiculos.entrySet()){
+            Vehiculo vehiculo = entry.getValue();
+
+            //Se verifica si el nombre del tipo en el vehiculo coincide con el que se esta editando
+            if(vehiculo.getTipo().getNombreTipo().equals(nombreTipoPasado)){
+
+                vehiculo.getTipo().setNombreTipo(nuevoTipo.getNombreTipo());
+                vehiculo.setTipoNombreVehiculo(nuevoTipo.getNombreTipo());
+
+                //Actualizamos si es diferente
+                if(!vehiculo.getTipo().getNombreTipo().equals(nuevoTipo.getNombreTipo()) || vehiculo.getTipo().getAnioTipo() != nuevoTipo.getAnioTipo() ){
+                    Tipo tipo = vehiculo.getTipo();
+
+                    //Actualizar valores
+                    tipo.setNombreTipo(nuevoTipo.getNombreTipo());
+                    tipo.setAnioTipo(nuevoTipo.getAnioTipo());
+                }
+            }
+        }
+
     }
 
 

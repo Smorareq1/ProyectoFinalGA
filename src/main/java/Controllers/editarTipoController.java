@@ -55,6 +55,11 @@ public class editarTipoController {
         if(!nuevoNombre.isEmpty() && !nuevoAnio.isEmpty()) {
 
             Tipo nuevoTipo = new Tipo(nuevoNombre, nuevoAnio);
+
+            GestorDeArchivos.printTiposDeVehiculos();
+            GestorDeArchivos.editarVehiculosDadoTipos(nombreAEditar, nuevoTipo);
+            GestorDeArchivos.printTiposDeVehiculos();
+
             GestorDeArchivos.diccionarioNombreTipos.remove(nombreAEditar);
             GestorDeArchivos.diccionarioNombreTipos.put(nuevoNombre, nuevoTipo);
 
