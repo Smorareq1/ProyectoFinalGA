@@ -1,0 +1,10 @@
+{
+  "Pick Up": {
+    "nombreTipo": "Pick Up",
+    "anioTipo": "1920"
+  },
+  "Sedan": {
+    "nombreTipo": "Sedan",
+    "anioTipo": "1940"
+  }
+}

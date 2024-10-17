@@ -26,6 +26,7 @@ public class MenuController {
             //Guardar los datos en un archivo
             GestorDeArchivos.guardarMarcasDatosEnJson();
             GestorDeArchivos.guardarLineasEnJson();
+            GestorDeArchivos.guardarTiposEnJson();
 
 
         });

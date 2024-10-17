@@ -162,5 +162,51 @@ public class GestorDeArchivos {
         }
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////// TIPOS ///////////////////////////////////
+
+    public static void guardarTiposEnJson() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(diccionarioNombreTipos);
+
+        // Ruta del archivo JSON donde se guardarán los tipos
+        Path path = Paths.get("src/main/resources/datos/tipos.json");
+
+        try {
+            // Crear el directorio si no existe
+            Files.createDirectories(path.getParent());
+
+            // Escribir el JSON en el archivo
+            try (FileWriter writer = new FileWriter(path.toFile())) {
+                writer.write(json);
+                writer.flush();
+                System.out.println("Tipos guardados correctamente en el archivo JSON.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al guardar los tipos en JSON: " + e.getMessage());
+        }
+    }
+
+    public static void CargarTiposDesdeJson(){
+        Gson gson = new Gson();
+        Path path = Paths.get("src/main/resources/datos/tipos.json");
+
+        try {
+            // Leer todas las líneas del archivo JSON
+            String json = Files.readString(path);
+            System.out.println("Contenido del archivo JSON: " + json);  // Verifica el contenido
+
+            // Deserializar el JSON en un Map<String, Linea>
+            Map<String, Tipo> tiposMap = gson.fromJson(json, new com.google.gson.reflect.TypeToken<Map<String, Tipo>>() {}.getType());
+
+            // Inicializar el diccionario de líneas con los datos desde el JSON
+            if (tiposMap != null) {
+                diccionarioNombreTipos.putAll(tiposMap);
+                System.out.println("Líneas cargadas: " + tiposMap);  // Verifica los datos cargados
+            } else {
+                System.out.println("No se encontraron líneas en el archivo JSON.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al cargar las líneas desde JSON: " + e.getMessage());
+        }
+    }
 }

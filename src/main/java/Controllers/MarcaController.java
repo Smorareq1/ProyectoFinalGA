@@ -82,6 +82,9 @@ public class MarcaController {
 
         // Asignar acción de búsqueda a la imagen
         searchImg.setOnMouseClicked(event -> filtrarMarcasPorNombre());
+
+        // Refresh icon
+        refreshIcon.setOnMouseClicked(event -> actualizarTableView());
     }
 
     private void setTableCellAlignment(TableColumn<Marca, String> column) {
