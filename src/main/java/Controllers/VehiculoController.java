@@ -134,6 +134,39 @@ public class VehiculoController {
     }
 
     private void editarVehiculoSeleccionado() {
+
+        Vehiculo vehiculoSeleccionado = tableViewVehiculos.getSelectionModel().getSelectedItem();
+
+        if(vehiculoSeleccionado != null){
+            try{
+
+                editarVehiculoController.setVehiculoAEditar(vehiculoSeleccionado);
+                // Cargar el nuevo FXML
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editVehiculo.fxml"));
+                Parent root = loader.load();
+
+                // Crear un nuevo escenario (Stage)
+                Stage stage = new Stage();
+                stage.setTitle("Agregar Marca");
+                stage.initModality(Modality.APPLICATION_MODAL); // Hacer que esta ventana sea modal
+                stage.setScene(new Scene(root));
+
+                // Mostrar la ventana
+                stage.showAndWait();
+
+                // Después de cerrar la ventana, actualizar el TableView
+                actualizarTableView();
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Ningun Vehiculo Seleccionado");
+            alert.setContentText("Por favor, selecciona un vehiculo para editar.");
+            alert.showAndWait();
+        }
     }
 
     private void eliminarVehiculoSeleccionado() {

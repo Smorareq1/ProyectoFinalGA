@@ -30,33 +30,33 @@
     "motor": "2.4V",
     "vin": "1"
   },
-  "ABC132": {
+  "ABC456": {
     "marca": {
-      "nombre": "Honda",
-      "anioDeCreacion": "1947",
-      "fundador": "Fujitsu Yakimoto"
+      "nombre": "GMC",
+      "anioDeCreacion": "1940",
+      "fundador": "John Mclister"
     },
     "linea": {
-      "nombreMarcaDeLinea": "GMC",
-      "nombreLinea": "Hummer",
-      "anioLinea": "2000",
+      "nombreMarcaDeLinea": "Honda",
+      "nombreLinea": "Hrv",
+      "anioLinea": "2015",
       "marca": {
-        "nombre": "GMC",
-        "anioDeCreacion": "1940",
-        "fundador": "John Mclister"
+        "nombre": "Honda",
+        "anioDeCreacion": "1947",
+        "fundador": "Fujitsu Yakimoto"
       }
     },
     "tipo": {
-      "nombreTipo": "Camioneta",
-      "anioTipo": "1942"
+      "nombreTipo": "Camion",
+      "anioTipo": "1950"
     },
-    "marcaNombreVehiculo": "Honda",
-    "lineaNombreVehiculo": "Hummer",
-    "tipoNombreVehiculo": "Camioneta",
+    "marcaNombreVehiculo": "GMC",
+    "lineaNombreVehiculo": "Hrv",
+    "tipoNombreVehiculo": "Camion",
     "modelo": "2020",
     "color": "Negro",
     "numeroDeAsientos": "4",
-    "placa": "ABC132",
+    "placa": "ABC456",
     "chasis": "4",
     "motor": "3.2V",
     "vin": "3"
