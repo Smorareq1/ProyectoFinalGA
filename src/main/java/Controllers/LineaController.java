@@ -109,16 +109,25 @@ public class LineaController {
         // Crear una nueva instancia de Linea con la marca seleccionada
         Linea nuevaLinea = new Linea(marcaSeleccionada, nombreLineaTextField.getText(), anioLineaTextField.getText());
 
-        // Agregar la nueva línea al diccionario de líneas
-        GestorDeArchivos.diccionarioNombreLineas.put(nuevaLinea.getNombreLinea(), nuevaLinea);
+        if(GestorDeArchivos.diccionarioNombreLineas.containsKey(nuevaLinea.getNombreLinea())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Línea ya existe");
+            alert.setContentText("La línea que intentas agregar ya existe en el sistema.");
+            alert.showAndWait();
+            return;
+        }else {
+            // Agregar la nueva línea al diccionario de líneas
+            GestorDeArchivos.diccionarioNombreLineas.put(nuevaLinea.getNombreLinea(), nuevaLinea);
 
-        // Agregar la nueva línea a la lista observable para que aparezca en el TableView
-        lineasList.add(nuevaLinea);
+            // Agregar la nueva línea a la lista observable para que aparezca en el TableView
+            lineasList.add(nuevaLinea);
 
-        // Limpiar los campos después de agregar
-        nombreLineaTextField.clear();
-        anioLineaTextField.clear();
-        marcaComboBox.getSelectionModel().clearSelection();
+            // Limpiar los campos después de agregar
+            nombreLineaTextField.clear();
+            anioLineaTextField.clear();
+            marcaComboBox.getSelectionModel().clearSelection();
+        }
     }
 
     @FXML

@@ -1,15 +1,50 @@
-.table-view {
+/* Table view */
+#tableViewVehiculos {
+    -fx-background-color: #f5f5f5; /* Background color for the entire TableView */
+    -fx-border-color: #c0c0c0; /* Border color */
+    -fx-border-width: 1px;
+    -fx-border-radius: 15; /* Rounded corners for the border */
+    -fx-background-radius: 15; /* Rounded corners for the background */
+    -fx-table-cell-border-color: #d1d1d1; /* Border between cells */
     -fx-font-family: "Roboto"; /* Fuente general para la tabla */
 }
 
-.table-view .table-row-cell {
+#tableViewVehiculos .column-header-background {
+    -fx-background-color: #ff4d4d; /* Header background color */
+    -fx-background-radius: 15 15 0 0; /* Top corners rounded for header */
+    -fx-border-radius: 15 15 0 0; /* Rounded border for header */
+}
+
+#tableViewVehiculos .column-header,
+#tableViewVehiculos .column-header .label {
+    -fx-font-family: "Mulish";
+    -fx-font-weight: regular;
+    -fx-font-size: 14px;
+    -fx-text-fill: black; /* Text color for headers */
+    -fx-alignment: center; /* Center-align text in headers */
+    -fx-pref-height: 30px; /* Altura preferida para el encabezado */
+}
+
+#tableViewVehiculos .table-row-cell {
     -fx-alignment: CENTER; /* Centra verticalmente las filas */
 }
 
-.table-view .table-cell {
-    -fx-alignment: CENTER; /* Centra verticalmente y horizontalmente el contenido de las celdas */
+#tableViewVehiculos .table-cell {
+    -fx-alignment: CENTER; /* Centra vertical y horizontalmente el contenido de las celdas */
+    -fx-font-family: "Mulish"; /* Fuente para las celdas */
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555; /* Text color for table cells */
 }
 
-.table-view .table-column-header {
-    -fx-alignment: CENTER; /* Centra el encabezado de las columnas */
+#tableViewVehiculos .table-row-cell:odd {
+    -fx-background-color: #e8f5e9; /* Light background color for odd rows */
+}
+
+#tableViewVehiculos .table-row-cell:even {
+    -fx-background-color: #ffffff; /* White background color for even rows */
+}
+
+#tableViewVehiculos .table-row-cell:selected {
+    -fx-background-color: #ffcccb; /* Background color when a row is selected */
+    -fx-text-fill: #000000; /* Text color when a row is selected */
 }

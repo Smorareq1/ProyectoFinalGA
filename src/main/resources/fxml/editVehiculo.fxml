@@ -33,44 +33,44 @@
       <AnchorPane layoutX="50.0" layoutY="341.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
          <children>
             <Label layoutX="21.0" layoutY="6.0" text="Modelo" />
-            <TextField fx:id="modeloField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" styleClass="text_box" stylesheets="@../Css/addingVehicle.css" />
+            <TextField fx:id="modeloField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" styleClass="Text-Field" stylesheets="@../Css/addingVehicle.css" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="430.0" layoutY="341.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
          <children>
             <Label layoutX="21.0" layoutY="6.0" text="Color" />
-            <TextField fx:id="colorField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+            <TextField fx:id="colorField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" styleClass="Text-Field" stylesheets="@../Css/addingVehicle.css" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="50.0" layoutY="435.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
          <children>
             <Label layoutX="21.0" layoutY="6.0" text="Numero de Asientos" />
-            <TextField fx:id="numeroDeAsientosField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+            <TextField fx:id="numeroDeAsientosField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" styleClass="Text-Field" stylesheets="@../Css/addingVehicle.css" />
          </children>
       </AnchorPane>
       <Label layoutX="50.0" layoutY="513.0" styleClass="titles" stylesheets="@../Css/addingVehicle.css" text="Identificadores Unicos" />
       <AnchorPane layoutX="50.0" layoutY="556.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
          <children>
             <Label layoutX="21.0" layoutY="6.0" text="Placa" />
-            <TextField fx:id="placaField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+            <TextField fx:id="placaField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" styleClass="Text-Field" stylesheets="@../Css/addingVehicle.css" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="430.0" layoutY="556.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
          <children>
             <Label layoutX="21.0" layoutY="6.0" text="Chasis" />
-            <TextField fx:id="chasisField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+            <TextField fx:id="chasisField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" styleClass="Text-Field" stylesheets="@../Css/addingVehicle.css" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="50.0" layoutY="647.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
          <children>
             <Label layoutX="21.0" layoutY="6.0" text="Motor" />
-            <TextField fx:id="motorField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+            <TextField fx:id="motorField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" styleClass="Text-Field" stylesheets="@../Css/addingVehicle.css" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="430.0" layoutY="647.0" prefHeight="69.0" prefWidth="322.0" styleClass="fondos" stylesheets="@../Css/addingVehicle.css">
          <children>
             <Label layoutX="21.0" layoutY="6.0" text="Vin" />
-            <TextField fx:id="vinField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" />
+            <TextField fx:id="vinField" layoutX="17.0" layoutY="33.0" prefHeight="25.0" prefWidth="289.0" styleClass="Text-Field" stylesheets="@../Css/addingVehicle.css" />
          </children>
       </AnchorPane>
       <HBox prefHeight="100.0" prefWidth="780.0">
@@ -78,8 +78,8 @@
             <Pane prefHeight="66.0" prefWidth="780.0">
                <children>
                   <Label layoutX="45.0" layoutY="27.0" styleClass="titulo_principal" stylesheets="@../Css/addingVehicle.css" text="Editar Vehiculos" />
-                  <Button fx:id="editarBtn" layoutX="585.0" layoutY="38.0" mnemonicParsing="false" text="Grabar" />
-                  <Button fx:id="cancelarBtn" layoutX="694.0" layoutY="38.0" mnemonicParsing="false" text="Cancelar" />
+                  <Button fx:id="editarBtn" layoutX="464.0" layoutY="29.0" mnemonicParsing="false" styleClass="custom-button" stylesheets="@../Css/addingVehicle.css" text="Grabar" />
+                  <Button fx:id="cancelarBtn" layoutX="608.0" layoutY="29.0" mnemonicParsing="false" styleClass="cancelar-button" stylesheets="@../Css/addingVehicle.css" text="Cancelar" />
                </children>
             </Pane>
          </children>

@@ -36,19 +36,26 @@ public class addingMarcaController {
 
         if (!nombre.isEmpty() && !anioDeCreacion.isEmpty() && !fundador.isEmpty()) {
             Marca nuevaMarca = new Marca(nombre, anioDeCreacion, fundador);
-            GestorDeArchivos.diccionarioNombreMarcas.put(nombre, nuevaMarca); // Agregar la marca al Map
 
-            // Limpiar los campos después de añadir
-            nombreField.clear();
-            anioDeCreacionField.clear();
-            fundadorField.clear();
+            if(GestorDeArchivos.diccionarioNombreMarcas.containsKey(nombre)){
+                showAlert("Error", "La marca ya existe.");
 
-            // Mensaje de éxito
-            showAlert("Éxito", "Marca añadida correctamente.");
-            if (marcaController != null) {
-                marcaController.actualizarTableView(); // Actualizar el TableView
+            }else{
+                GestorDeArchivos.diccionarioNombreMarcas.put(nombre, nuevaMarca); // Agregar la marca al Map
+
+                // Limpiar los campos después de añadir
+                nombreField.clear();
+                anioDeCreacionField.clear();
+                fundadorField.clear();
+
+                // Mensaje de éxito
+                showAlert("Éxito", "Marca añadida correctamente.");
+                if (marcaController != null) {
+                    marcaController.actualizarTableView(); // Actualizar el TableView
+                }
+                cerrarVentana(); // Cerrar la ventana después de añadir
             }
-            cerrarVentana(); // Cerrar la ventana después de añadir
+
         } else {
             // Mensaje de error si algún campo está vacío
             showAlert("Error", "Por favor, completa todos los campos.");

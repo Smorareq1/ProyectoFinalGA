@@ -41,7 +41,7 @@
     -fx-border-color: #0A5745;
 }
 
-.text_box {
+.Text-Field {
     -fx-background-color: #ffffff; /* Fondo */
     -fx-background-radius: 24px; /* Bordes redondeados */
     -fx-border-color: transparent; /* Sin borde */
@@ -81,4 +81,33 @@
 
 .combo-box:hover {
     -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.5), 16, 0, 0, 4); /* Sombra más fuerte en hover */
+}
+
+/* Botón */
+.custom-button {
+    -fx-cursor: hand; /* Cambiar el cursor a pointer */
+    -fx-background-color: #0A5745; /* Color de fondo */
+    -fx-background-radius: 24px; /* Bordes redondeados */
+    -fx-text-fill: #ffffff; /* Color del texto */
+    -fx-font-size: 14px; /* Tamaño de la fuente */
+    -fx-font-family: "Roboto"; /* Tipo de letra */
+    -fx-padding: 0 8px; /* Relleno interno */
+    -fx-border-color: transparent; /* Sin borde */
+    -fx-min-width: 113px; /* Ancho mínimo */
+    -fx-min-height: 44px; /* Altura mínima */
+    -fx-line-height: 20px; /* Espaciado de línea */
+}
+
+.cancelar-button{
+    -fx-cursor: hand; /* Cambiar el cursor a pointer */
+    -fx-background-color: red; /* Color de fondo */
+    -fx-background-radius: 24px; /* Bordes redondeados */
+    -fx-text-fill: #ffffff; /* Color del texto */
+    -fx-font-size: 14px; /* Tamaño de la fuente */
+    -fx-font-family: "Roboto"; /* Tipo de letra */
+    -fx-padding: 0 8px; /* Relleno interno */
+    -fx-border-color: transparent; /* Sin borde */
+    -fx-min-width: 113px; /* Ancho mínimo */
+    -fx-min-height: 44px; /* Altura mínima */
+    -fx-line-height: 20px; /* Espaciado de línea */
 }

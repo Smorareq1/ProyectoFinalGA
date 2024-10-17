@@ -35,19 +35,26 @@ public class addingTipoController {
 
         if (!nombre.isEmpty() && !anio.isEmpty()) {
             Tipo nuevoTipo = new Tipo(nombre, anio);
-            GestorDeArchivos.diccionarioNombreTipos.put(nombre, nuevoTipo);
 
-            nombreTipoField.clear();
-            anioTipoField.clear();
+            if(GestorDeArchivos.diccionarioNombreTipos.containsKey(nombre)){
+                showAlert("Error", "El tipo ya existe.");
 
-            // Mensaje de éxito
-            showAlert("Éxito", "Tipo añadido correctamente.");
-            if (tipoController != null) {
-                tipoController.actualizarTableView();
+            }else{
+                GestorDeArchivos.diccionarioNombreTipos.put(nombre, nuevoTipo);
+
+                nombreTipoField.clear();
+                anioTipoField.clear();
+
+                // Mensaje de éxito
+                showAlert("Éxito", "Tipo añadido correctamente.");
+                if (tipoController != null) {
+                    tipoController.actualizarTableView();
+                }
+
+                // Cerrar ventana después de añadir
+                cerrarVentana();
             }
 
-            // Cerrar ventana después de añadir
-            cerrarVentana();
         } else {
             showAlert("Error", "Por favor, completa todos los campos.");
         }

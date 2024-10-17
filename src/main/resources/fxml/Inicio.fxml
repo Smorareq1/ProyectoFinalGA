@@ -83,6 +83,16 @@
                   </Pane>
                </children>
             </HBox>
+            <ImageView fitHeight="206.0" fitWidth="243.0" layoutX="970.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Inicio/tireIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="132.0" fitWidth="215.0" layoutX="34.0" layoutY="586.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Inicio/tire2Image-removebg-preview.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
