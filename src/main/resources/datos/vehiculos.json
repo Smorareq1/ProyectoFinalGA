@@ -1,4 +1,35 @@
 {
+  "ABC457": {
+    "marca": {
+      "nombre": "Honda",
+      "anioDeCreacion": "1947",
+      "fundador": "Fujitsu Yakimoto"
+    },
+    "linea": {
+      "nombreMarcaDeLinea": "Nissan",
+      "nombreLinea": "Hummer",
+      "anioLinea": "2005",
+      "marca": {
+        "nombre": "Nissan",
+        "anioDeCreacion": "1933",
+        "fundador": "Yoshisuke Aikawa"
+      }
+    },
+    "tipo": {
+      "nombreTipo": "Pick Up",
+      "anioTipo": "1920"
+    },
+    "marcaNombreVehiculo": "Honda",
+    "lineaNombreVehiculo": "Hummer",
+    "tipoNombreVehiculo": "Pick Up",
+    "modelo": "2024",
+    "color": "Negro",
+    "numeroDeAsientos": "5",
+    "placa": "ABC457",
+    "chasis": "56",
+    "motor": "2.4",
+    "vin": "5"
+  },
   "ABC456": {
     "marca": {
       "nombre": "Honda",

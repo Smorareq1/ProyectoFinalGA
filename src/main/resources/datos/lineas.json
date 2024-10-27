@@ -18,5 +18,15 @@
       "anioDeCreacion": "1933",
       "fundador": "Yoshisuke Aikawa"
     }
+  },
+  "Sentra": {
+    "nombreMarcaDeLinea": "Nissan",
+    "nombreLinea": "Sentra",
+    "anioLinea": "1982",
+    "marca": {
+      "nombre": "Nissan",
+      "anioDeCreacion": "1933",
+      "fundador": "Yoshisuke Aikawa"
+    }
   }
 }
