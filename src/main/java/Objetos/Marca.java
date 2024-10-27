@@ -34,4 +34,9 @@ public class Marca {
     public void setFundador(String fundador) {
         this.fundador = fundador;
     }
+
+    @Override
+        public String toString() {
+            return nombre + "," + anioDeCreacion + "," + fundador;
+        }
 }

@@ -18,11 +18,8 @@ public class GestorDeArchivos {
 
     // Diccionarios
     public static Map<String, Marca> diccionarioNombreMarcas = new HashMap<>();
-
     public static Map<String, Tipo> diccionarioNombreTipos = new HashMap<>();
-
     public static Map<String, Linea> diccionarioNombreLineas = new HashMap<>();
-
     public static Map<String, Vehiculo> diccionarioNombreVehiculos = new HashMap<>();
 
     //Sets para evitar duplicados en propiedades de vehiculo
@@ -30,6 +27,9 @@ public class GestorDeArchivos {
     public static Set<String> setChasis = new HashSet<>();
     public static Set<String> setMotores = new HashSet<>();
     public static Set<String> setVins = new HashSet<>();
+
+    //Listas para los ids
+    public static List<String> listaMarcas = new ArrayList<>();
 
     ///////////////////////////////////// MARCAS ///////////////////////////////////////////////////
 
@@ -102,6 +102,13 @@ public class GestorDeArchivos {
 
         alert.setContentText(marcas.toString());
         alert.showAndWait();
+    }
+
+    public static void llenarYOrdenarMarcas(){
+        for (Map.Entry<String, Marca> entry : diccionarioNombreMarcas.entrySet()) {
+            listaMarcas.add(entry.getKey());
+        }
+        Collections.sort(listaMarcas);
     }
 
     ///////////////////////////////////// LINEAS ///////////////////////////////////////////////////
