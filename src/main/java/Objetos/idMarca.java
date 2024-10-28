@@ -1,5 +1,7 @@
 package Objetos;
 
+import javafx.scene.control.Alert;
+
 import java.io.*;
 import java.util.*;
 
@@ -7,44 +9,6 @@ public class idMarca {
 
     private static final String DATA_FILE = "src/main/resources/datos/Marcas_txt/datosMarcas.txt";
     private static final String INDEX_FILE = "src/main/resources/datos/Marcas_txt/indiceMarcas.txt";
-
-    // Método para llenar los datos y generar los archivos de datos y de índices
-    public static void idLlenarDatos() {
-        try {
-            escribirDatosSecuenciales(GestorDeArchivos.diccionarioNombreMarcas);
-            escribirArchivoDeIndices(GestorDeArchivos.diccionarioNombreMarcas);
-            mostrarIndicesOrdenados();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Escribir datos de las marcas en el archivo de datos secuencialmente
-    public static void escribirDatosSecuenciales(Map<String, Marca> marcas) throws IOException {
-        try (RandomAccessFile datosFile = new RandomAccessFile(DATA_FILE, "rw")) {
-            datosFile.setLength(0); // Limpiar archivo
-            for (Marca marca : marcas.values()) {
-                datosFile.writeBytes(marca.toString() + "\n");
-            }
-        }
-    }
-
-    // Escribir el archivo de índices, con marcas en el mismo orden
-    public static void escribirArchivoDeIndices(Map<String, Marca> marcas) throws IOException {
-        try (RandomAccessFile datosFile = new RandomAccessFile(DATA_FILE, "r");
-             BufferedWriter indexWriter = new BufferedWriter(new FileWriter(INDEX_FILE))) {
-
-            long posicionInicial = 0;
-            for (Marca marca : marcas.values()) {
-                String linea = datosFile.readLine();
-                int longitud = linea.length();
-
-                // Escribir índice en el archivo
-                indexWriter.write(marca.getNombre() + "," + posicionInicial + "," + longitud + "\n");
-                posicionInicial += longitud + 1; // Avanzar al siguiente registro (incluye salto de línea)
-            }
-        }
-    }
 
     // Método para agregar una nueva marca sin alterar los índices existentes
     public static void agregarMarca(String nombre, Marca nuevaMarca) throws IOException {
@@ -101,27 +65,70 @@ public class idMarca {
                 sortedWriter.write(indice + "\n");
             }
         }
-
     }
 
     // Método para eliminar una marca por nombre y actualizar archivos
-    public static void eliminarMarca(Marca marcaAEliminar) throws IOException {
+    public static void eliminarMarca(String nombreMarca) throws IOException {
         // Verificar si la marca existe en el diccionario
-        marcaAEliminar = GestorDeArchivos.diccionarioNombreMarcas.remove(marcaAEliminar.getNombre());
+        Marca marcaAEliminar = GestorDeArchivos.diccionarioNombreMarcas.remove(nombreMarca);
         if (marcaAEliminar == null) {
             System.out.println("Marca no encontrada.");
             return;
         }
 
         // Regenerar el archivo de datos sin la marca eliminada
-        escribirDatosSecuenciales(GestorDeArchivos.diccionarioNombreMarcas);
+        regenerarArchivoDatosSinMarca(nombreMarca);
 
         // Regenerar el archivo de índices sin la marca eliminada
-        escribirArchivoDeIndices(GestorDeArchivos.diccionarioNombreMarcas);
+        regenerarArchivoIndicesSinMarca(nombreMarca);
 
-        // Mostrar los índices ordenados después de la eliminación (opcional)
+        // Mostrar los índices ordenados después de la eliminación
         mostrarIndicesOrdenados();
     }
+
+    // Regenerar el archivo de datos sin la marca eliminada
+    private static void regenerarArchivoDatosSinMarca(String nombreMarca) throws IOException {
+        List<Marca> marcasRestantes = new ArrayList<>();
+
+        try (BufferedReader datosReader = new BufferedReader(new FileReader(DATA_FILE))) {
+            String linea;
+            while ((linea = datosReader.readLine()) != null) {
+                Marca marca = new Marca(linea); // Asegúrate de que este constructor existe
+                if (!marca.getNombre().equalsIgnoreCase(nombreMarca)) {
+                    marcasRestantes.add(marca);
+                }
+            }
+        }
+
+        // Escribir las marcas restantes en el archivo de datos
+        try (BufferedWriter datosWriter = new BufferedWriter(new FileWriter(DATA_FILE))) {
+            for (Marca marca : marcasRestantes) {
+                datosWriter.write(marca.toString() + "\n");
+            }
+        }
+    }
+
+    // Regenerar el archivo de índices sin la marca eliminada
+    private static void regenerarArchivoIndicesSinMarca(String nombreMarca) throws IOException {
+        // Crear un nuevo archivo de índices
+        try (BufferedWriter indexWriter = new BufferedWriter(new FileWriter(INDEX_FILE))) {
+            // Leer el archivo de datos y agregar marcas restantes al índice
+            try (BufferedReader datosReader = new BufferedReader(new FileReader(DATA_FILE))) {
+                String linea;
+                long posicionActual = 0; // Para calcular la nueva posición
+                while ((linea = datosReader.readLine()) != null) {
+                    Marca marca = new Marca(linea); // Asegúrate de que este constructor existe
+                    if (!marca.getNombre().equalsIgnoreCase(nombreMarca)) {
+                        int longitud = linea.length();
+                        // Escribir el nuevo índice
+                        indexWriter.write(marca.getNombre() + "," + posicionActual + "," + longitud + "\n");
+                        posicionActual += longitud + 1; // Actualiza la posición actual (incluye salto de línea)
+                    }
+                }
+            }
+        }
+    }
+
 
 
     // Método para buscar por nombre de marca en el archivo de índices
@@ -140,12 +147,23 @@ public class idMarca {
                     datosFile.seek(posicionInicial);
                     byte[] registro = new byte[longitud];
                     datosFile.readFully(registro);
-                    System.out.println("Registro encontrado: " + new String(registro));
+
+                    //Alerta
+                    generarAlerta("Registro encontrado: " + new String(registro));
                     return;
                 }
             }
             System.out.println("Marca no encontrada.");
         }
+    }
+
+    private static void generarAlerta(String mensaje) {
+        Alert.AlertType alertType = Alert.AlertType.INFORMATION;
+        Alert alert = new Alert(alertType);
+        alert.setTitle("Alerta");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
     // Método para buscar por ID (posición inicial) en el archivo de índices

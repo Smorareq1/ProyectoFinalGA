@@ -104,12 +104,6 @@ public class GestorDeArchivos {
         alert.showAndWait();
     }
 
-    public static void llenarYOrdenarMarcas(){
-        for (Map.Entry<String, Marca> entry : diccionarioNombreMarcas.entrySet()) {
-            listaMarcas.add(entry.getKey());
-        }
-        Collections.sort(listaMarcas);
-    }
 
     ///////////////////////////////////// LINEAS ///////////////////////////////////////////////////
 

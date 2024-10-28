@@ -60,6 +60,11 @@ public class MenuController {
         loadFXML("/fxml/VehiculoWindow.fxml");
     }
 
+    @FXML
+    public void handleIdAction() {
+        loadFXML("/fxml/idMarcasWindow.fxml");
+    }
+
      @FXML
     // Método para cargar el FXML
     private void loadFXML(String fxmlFilePath) {

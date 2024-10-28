@@ -21,9 +21,6 @@ public class Main extends Application {
         GestorDeArchivos.cargarVehiculosDesdeJson();
 
 
-        //IDS
-        idMarca.idLlenarDatos();
-
         //Una vez cargados los vehiculos, cargar sets
         GestorDeArchivos.cargarSets();
 

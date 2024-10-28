@@ -198,7 +198,7 @@ public class MarcaController {
 
         if (marcaSeleccionada != null) {
             // Eliminar la marca del diccionario en GestorDeArchivos
-            idMarca.eliminarMarca(marcaSeleccionada);
+            idMarca.eliminarMarca(marcaSeleccionada.getNombre());
 
             // Actualizar el TableView
             actualizarTableView();

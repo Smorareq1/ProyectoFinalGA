@@ -11,6 +11,13 @@ public class Marca {
         this.fundador = fundador;
     }
 
+    public Marca(String linea) {
+        String[] partes = linea.split(",");
+        this.nombre = partes[0];
+        this.anioDeCreacion = partes[1];
+        this.fundador = partes[2];
+    }
+
     public String getNombre() {
         return nombre;
     }

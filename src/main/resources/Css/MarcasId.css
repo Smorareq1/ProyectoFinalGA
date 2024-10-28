@@ -1,0 +1,38 @@
+.Title{
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Century Gothic";
+}
+
+.hbox-btns{
+    -fx-spacing: 50px;
+    -fx-background-color: #EDE3D0;
+    -fx-border-color: White;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.hbox-search{
+    -fx-spacing: 50px;
+    -fx-background-color: #EDE3D0;
+    -fx-border-color: White;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.text-field{
+    -fx-padding: 0 8px;
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 24px;
+    -fx-background-radius: 24px;
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.24), 8, 0, 0, 2);
+    -fx-font-size: 14px;
+    -fx-font-family: "Roboto";
+    -fx-text-fill: #94a3b8;
+    -fx-line-spacing: 44px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-width: 0;
+}
