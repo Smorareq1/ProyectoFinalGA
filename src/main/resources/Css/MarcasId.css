@@ -35,4 +35,96 @@
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
     -fx-border-width: 0;
+    -fx-alignment: center;
+}
+
+/* Table view */
+#idsMarcasOrdenadosTableView {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #c0c0c0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-table-cell-border-color: #d1d1d1;
+}
+
+#idsMarcasOrdenadosTableView .column-header-background {
+    -fx-background-color: #ff4d4d;
+    -fx-background-radius: 15 15 0 0;
+    -fx-border-radius: 15 15 0 0;
+}
+
+#idsMarcasOrdenadosTableView .column-header,
+#idsMarcasOrdenadosTableView .column-header .label {
+    -fx-font-family: "Mulish";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-alignment: center; /* Center-align text in headers */
+}
+
+#idsMarcasOrdenadosTableView .table-row-cell:odd {
+    -fx-background-color: #e8f5e9;
+}
+
+#idsMarcasOrdenadosTableView .table-row-cell:even {
+    -fx-background-color: #ffffff;
+}
+
+#idsMarcasOrdenadosTableView .table-row-cell:selected {
+    -fx-background-color: #ffcccb;
+    -fx-text-fill: #000000;
+}
+
+#idsMarcasOrdenadosTableView .table-cell {
+    -fx-font-family: "Mulish";
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+    -fx-alignment: center; /* Center-align text in cells */
+}
+
+/* Otro tableView */
+
+#DatosMarcasTableView {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #c0c0c0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-table-cell-border-color: #d1d1d1;
+}
+
+#DatosMarcasTableView .column-header-background {
+    -fx-background-color: #ff4d4d;
+    -fx-background-radius: 15 15 0 0;
+    -fx-border-radius: 15 15 0 0;
+}
+
+#DatosMarcasTableView .column-header,
+#DatosMarcasTableView .column-header .label {
+    -fx-font-family: "Mulish";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-alignment: center; /* Center-align text in headers */
+}
+
+#DatosMarcasTableView .table-row-cell:odd {
+    -fx-background-color: #e8f5e9;
+}
+
+#DatosMarcasTableView .table-row-cell:even {
+    -fx-background-color: #ffffff;
+}
+
+#DatosMarcasTableView .table-row-cell:selected {
+    -fx-background-color: #ffcccb;
+    -fx-text-fill: #000000;
+}
+
+#DatosMarcasTableView .table-cell {
+    -fx-font-family: "Mulish";
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+    -fx-alignment: center; /* Center-align text in cells */
 }

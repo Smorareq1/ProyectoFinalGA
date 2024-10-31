@@ -132,23 +132,38 @@ public class idMarca {
 
 
     // Método para buscar por nombre de marca en el archivo de índices
-    public static void buscarPorNombre(String nombre) throws IOException {
+    public static void buscarPorNombre(IndiceMarca indice, String nombre) throws IOException {
         try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE));
              RandomAccessFile datosFile = new RandomAccessFile(DATA_FILE, "r")) {
 
             String linea;
             while ((linea = indexReader.readLine()) != null) {
                 String[] partes = linea.split(",");
-                if (partes[0].equalsIgnoreCase(nombre)) {
-                    long posicionInicial = Long.parseLong(partes[1]);
-                    int longitud = Integer.parseInt(partes[2]);
+                if (partes.length != 3) {
+                    System.out.println("Formato incorrecto en el índice.");
+                    continue;
+                }
 
-                    // Buscar y mostrar el registro en el archivo de datos
+                String nombreIndice = partes[0].trim();
+                long posicionInicial;
+                int longitud;
+
+                try {
+                    posicionInicial = indice.getIndice();
+                    longitud = indice.getLongitud();
+                } catch (NumberFormatException e) {
+                    System.out.println("Error en el formato de posición o longitud en el índice.");
+                    continue;
+                }
+
+                // Verifica si el nombre en el índice coincide con el nombre de búsqueda
+                if (nombreIndice.equalsIgnoreCase(nombre)) {
+                    // Lee el registro desde el archivo de datos usando posición y longitud del índice
                     datosFile.seek(posicionInicial);
                     byte[] registro = new byte[longitud];
                     datosFile.readFully(registro);
 
-                    //Alerta
+                    // Muestra el registro encontrado
                     generarAlerta("Registro encontrado: " + new String(registro));
                     return;
                 }
@@ -156,6 +171,7 @@ public class idMarca {
             System.out.println("Marca no encontrada.");
         }
     }
+
 
     private static void generarAlerta(String mensaje) {
         Alert.AlertType alertType = Alert.AlertType.INFORMATION;

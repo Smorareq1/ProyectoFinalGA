@@ -45,7 +45,7 @@ public class idWindowTemplateController {
 
         LineaId_button.setOnAction(e -> {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/lineaWindow.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/idLineasWindow.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);

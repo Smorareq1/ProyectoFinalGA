@@ -17,4 +17,8 @@ public class IndiceMarca {
     public long getIndice() { return indice; }
     public int getLongitud() { return longitud; }
 
+    @Override
+    public String toString() {
+        return marca + "," + indice + "," + longitud;
+    }
 }

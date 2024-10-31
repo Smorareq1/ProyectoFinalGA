@@ -16,6 +16,9 @@ import javafx.scene.image.ImageView;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
+
+import static Objetos.GestorDeArchivos.diccionarioNombreMarcas;
 
 public class idMarcasController {
 
@@ -47,8 +50,7 @@ public class idMarcasController {
 
     @FXML
     private TextField indexSearchTxt;
-    @FXML
-    private TextField nameSearchTxt;
+
 
 
     @FXML
@@ -77,20 +79,19 @@ public class idMarcasController {
         refreshImg.setOnMouseClicked(event -> actualizarTableViews());
         indexSearchImage.setOnMouseClicked(event -> {
             try {
-                buscarPorIndice();
+                buscarPorNombre();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-        nameSearchImage.setOnMouseClicked(event -> buscarPorNombre());
 
         //Prueba
-        imprimirIndicesMarcas();
-        imprimirDatosMarcas();
+        //imprimirIndicesMarcas();
+        //imprimirDatosMarcas();
 
     }
 
-    private void buscarPorIndice() throws IOException {
+    private void buscarPorNombre() throws IOException {
 
         String filtro = indexSearchTxt.getText();
 
@@ -98,37 +99,31 @@ public class idMarcasController {
             actualizarTableViews();
         }else{
             ObservableList<IndiceMarca> listaFiltrada = FXCollections.observableArrayList();
-            long indiceABuscar = Long.parseLong(filtro);
+            ObservableList<Marca> listaMarcaFiltrada = FXCollections.observableArrayList();
             for (IndiceMarca indice : indiceMarcasList) {
-                if (indice.getIndice() == indiceABuscar) {
+                if (Objects.equals(indice.getMarca(), filtro)) {
                     listaFiltrada.add(indice);
+
+
+                    Marca marca = diccionarioNombreMarcas.get(filtro);
+                    listaMarcaFiltrada.add(marca);
+
+                    //Prueba
+                    System.out.println(marca);
+                    //fin prueba
 
                     //Alerta de que se encontro el indice y se muestra la marca
                     String Nombremarca = indice.getMarca();
-                    idMarca.buscarPorNombre(Nombremarca);
+                    idMarca.buscarPorNombre(indice, Nombremarca);
                 }
             }
             idsMarcasOrdenadosTableView.setItems(listaFiltrada);
+            DatosMarcasTableView.setItems(listaMarcaFiltrada);
+
         }
 
     }
 
-    private void buscarPorNombre() {
-        String nombreABuscar = nameSearchTxt.getText();
-
-        if(nombreABuscar.isEmpty()) {
-            actualizarTableViews();
-        }else{
-            ObservableList<Marca> listaFiltrada = FXCollections.observableArrayList();
-            for (Marca marca : datosMarcasList) {
-                if (marca.getNombre().equalsIgnoreCase(nombreABuscar)) {
-                    listaFiltrada.add(marca);
-                }
-            }
-            DatosMarcasTableView.setItems(listaFiltrada);
-        }
-
-    }
 
     private void configurarColumnas() {
         // Configurar las columnas de los TableView

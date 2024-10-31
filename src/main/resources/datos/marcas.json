@@ -1,1 +1,17 @@
-{}
+{
+  "GMC": {
+    "nombre": "GMC",
+    "anioDeCreacion": "1940",
+    "fundador": "John Mclister"
+  },
+  "Audi": {
+    "nombre": "Audi",
+    "anioDeCreacion": "1948",
+    "fundador": "David Strugen"
+  },
+  "Honda": {
+    "nombre": "Honda",
+    "anioDeCreacion": "1947",
+    "fundador": "Fujitsu Yakimoto"
+  }
+}

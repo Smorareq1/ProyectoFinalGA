@@ -87,11 +87,6 @@
     -fx-text-fill: #000000; /* Text color when a row is selected */
 }
 
-#tableViewMarcas .table-row-cell:last-child {
-    -fx-background-radius: 0 0 15 15; /* Bottom corners rounded for the last row */
-    -fx-border-radius: 0 0 15 15; /* Rounded border for the last row */
-}
-
 #tableViewMarcas .table-cell {
     -fx-font-family: "Mulish";
     -fx-font-size: 14px;

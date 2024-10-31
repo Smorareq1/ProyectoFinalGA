@@ -28,9 +28,6 @@ public class GestorDeArchivos {
     public static Set<String> setMotores = new HashSet<>();
     public static Set<String> setVins = new HashSet<>();
 
-    //Listas para los ids
-    public static List<String> listaMarcas = new ArrayList<>();
-
     ///////////////////////////////////// MARCAS ///////////////////////////////////////////////////
 
 
