@@ -85,6 +85,7 @@ public class idMarca {
         mostrarIndicesOrdenados(INDEX_SORTED_FILE);
     }
 
+
     // Regenerar el archivo de datos sin la marca eliminada
     private static void regenerarArchivoDatosSinMarca(String nombreMarca) throws IOException {
         List<Marca> marcasRestantes = new ArrayList<>();

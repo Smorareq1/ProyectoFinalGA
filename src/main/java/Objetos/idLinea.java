@@ -9,6 +9,7 @@ public class idLinea {
 
     private static final String DATA_FILE = "src/main/resources/datos/Lineas_txt/datosLineas.txt";
     private static final String INDEX_FILE = "src/main/resources/datos/Lineas_txt/indiceLineas.txt";
+     private static final String INDEX_SORTED_FILE ="src/main/resources/datos/Lineas_txt/indiceLineasOrdenado.txt";
 
     public static void agregarLinea(String nombre, Linea nuevaLinea) throws IOException {
         GestorDeArchivos.diccionarioNombreLineas.put(nombre, nuevaLinea);
@@ -16,7 +17,7 @@ public class idLinea {
         escribirNuevaLineaDatos(nuevaLinea);
 
         agregarNuevoIndice(nombre, nuevaLinea);
-        //mostrarIndicesOrdenados();
+        idMarca.mostrarIndicesOrdenados(INDEX_SORTED_FILE);
     }
 
     private static void escribirNuevaLineaDatos(Linea nuevaLinea) throws IOException {
