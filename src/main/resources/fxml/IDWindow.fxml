@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="781.0" prefWidth="1470.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.idWindowTemplateController">
+    <children>
+        <fx:include source="lateralMenu.fxml" />
+      <HBox alignment="CENTER" layoutX="287.0" layoutY="14.0" prefHeight="91.0" prefWidth="1177.0" styleClass="hbox-Btns" stylesheets="@../Css/idWindowTemplate.css">
+         <children>
+            <Button fx:id="marcasId_button" mnemonicParsing="false" styleClass="buttons" stylesheets="@../Css/idWindowTemplate.css" text="Marca">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="LineaId_button" mnemonicParsing="false" styleClass="buttons" stylesheets="@../Css/idWindowTemplate.css" text="Linea">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="tipoId_button" mnemonicParsing="false" styleClass="buttons" stylesheets="@../Css/idWindowTemplate.css" text="Tipo">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="vehiculoId_button" mnemonicParsing="false" styleClass="buttons" stylesheets="@../Css/idWindowTemplate.css" text="Vehiculo">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>

@@ -18,11 +18,8 @@ public class GestorDeArchivos {
 
     // Diccionarios
     public static Map<String, Marca> diccionarioNombreMarcas = new HashMap<>();
-
     public static Map<String, Tipo> diccionarioNombreTipos = new HashMap<>();
-
     public static Map<String, Linea> diccionarioNombreLineas = new HashMap<>();
-
     public static Map<String, Vehiculo> diccionarioNombreVehiculos = new HashMap<>();
 
     //Sets para evitar duplicados en propiedades de vehiculo
@@ -103,6 +100,7 @@ public class GestorDeArchivos {
         alert.setContentText(marcas.toString());
         alert.showAndWait();
     }
+
 
     ///////////////////////////////////// LINEAS ///////////////////////////////////////////////////
 

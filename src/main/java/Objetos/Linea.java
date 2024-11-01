@@ -56,8 +56,6 @@ public class Linea {
         this.marca = marca;
     }
 
-
-
     @Override
     public String toString() {
         return "Linea{" +

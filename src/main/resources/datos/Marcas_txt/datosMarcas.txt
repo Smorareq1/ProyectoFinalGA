@@ -1,0 +1,3 @@
+Honda,1947,Fujitsu Yakimoto
+GMC,1940,John Mclister
+Audi,1948,David Strugen

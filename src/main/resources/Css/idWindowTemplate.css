@@ -1,0 +1,26 @@
+.hbox-Btns{
+    -fx-spacing: 100px;
+    -fx-background-color:  #0A5745;
+    -fx-border-color: white;
+    -fx-border-width: 2px 2px 2px 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.buttons{
+    -fx-border-color: #c0c0c0;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 24px;
+    -fx-background-radius: 24px;
+    -fx-background-color: #EDE3D0;
+    -fx-effect: dropshadow(gaussian, rgba(64,60,67,0.24), 8, 0, 0, 2);
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-font-family: "Mulish";
+    -fx-font-weight: 300;
+    -fx-alignment: center;
+    -fx-line-height: 32px;
+    -fx-pref-width: 75px;
+    -fx-cursor: hand;
+}

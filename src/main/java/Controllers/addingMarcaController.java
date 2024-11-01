@@ -2,12 +2,15 @@ package Controllers;
 
 import Objetos.GestorDeArchivos;
 import Objetos.Marca;
+import Objetos.idMarca;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class addingMarcaController {
     @FXML
@@ -25,11 +28,18 @@ public class addingMarcaController {
 
     @FXML
     public void initialize() {
-        añadirButton.setOnAction(event -> añadirMarca());
+
+        añadirButton.setOnAction(event -> {
+            try {
+                añadirMarca();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         cancelarButton.setOnAction(event -> cerrarVentana());
     }
 
-    private void añadirMarca() {
+    private void añadirMarca() throws IOException {
         String nombre = nombreField.getText();
         String anioDeCreacion = anioDeCreacionField.getText();
         String fundador = fundadorField.getText();
@@ -41,7 +51,8 @@ public class addingMarcaController {
                 showAlert("Error", "La marca ya existe.");
 
             }else{
-                GestorDeArchivos.diccionarioNombreMarcas.put(nombre, nuevaMarca); // Agregar la marca al Map
+
+                idMarca.agregarMarca(nombre, nuevaMarca); // Añadir la nueva marca
 
                 // Limpiar los campos después de añadir
                 nombreField.clear();
@@ -53,6 +64,7 @@ public class addingMarcaController {
                 if (marcaController != null) {
                     marcaController.actualizarTableView(); // Actualizar el TableView
                 }
+
                 cerrarVentana(); // Cerrar la ventana después de añadir
             }
 

@@ -2,6 +2,7 @@ package Controllers;
 
 import Objetos.GestorDeArchivos;
 import Objetos.Marca;
+import Objetos.idMarca;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.StageStyle;
+
+import java.io.IOException;
 
 public class MarcaController {
 
@@ -79,7 +82,13 @@ public class MarcaController {
 
         btn_AgregarMarca.setOnAction(event -> abrirVentanaAgregarMarca());
         btn_EditarMarca.setOnAction(event -> editarMarcaSeleccionada());
-        btn_EliminarMarca.setOnAction(event -> eliminarMarcaSeleccionada()); // Asignar acción de eliminación
+        btn_EliminarMarca.setOnAction(event -> {
+            try {
+                eliminarMarcaSeleccionada();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }); // Asignar acción de eliminación
 
         // Asignar acción de búsqueda a la imagen
         searchImg.setOnMouseClicked(event -> filtrarMarcasPorNombre());
@@ -183,13 +192,13 @@ public class MarcaController {
         }
     }
 
-    private void eliminarMarcaSeleccionada() {
+    private void eliminarMarcaSeleccionada() throws IOException {
         // Obtener la marca seleccionada
         Marca marcaSeleccionada = tableViewMarcas.getSelectionModel().getSelectedItem();
 
         if (marcaSeleccionada != null) {
             // Eliminar la marca del diccionario en GestorDeArchivos
-            GestorDeArchivos.diccionarioNombreMarcas.remove(marcaSeleccionada.getNombre());
+            idMarca.eliminarMarca(marcaSeleccionada.getNombre());
 
             // Actualizar el TableView
             actualizarTableView();
