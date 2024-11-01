@@ -9,6 +9,7 @@ public class idMarca {
 
     private static final String DATA_FILE = "src/main/resources/datos/Marcas_txt/datosMarcas.txt";
     private static final String INDEX_FILE = "src/main/resources/datos/Marcas_txt/indiceMarcas.txt";
+    private static final String INDEX_SORTED_FILE ="src/main/resources/datos/Marcas_txt/indiceMarcasOrdenado.txt";
 
     // Método para agregar una nueva marca sin alterar los índices existentes
     public static void agregarMarca(String nombre, Marca nuevaMarca) throws IOException {
@@ -20,7 +21,7 @@ public class idMarca {
 
         // Actualizar el archivo de índices con la nueva marca al final
         agregarNuevoIndice(nombre, nuevaMarca);
-        mostrarIndicesOrdenados();
+        mostrarIndicesOrdenados(INDEX_SORTED_FILE);
     }
 
     // Escribir solo la nueva marca al final del archivo de datos
@@ -45,7 +46,7 @@ public class idMarca {
     }
 
     // Leer y mostrar los índices en orden alfabético, guardando en un archivo temporal
-    public static void mostrarIndicesOrdenados() throws IOException {
+    public static void mostrarIndicesOrdenados(String sortedIndexPath) throws IOException {
         List<String> indices = new ArrayList<>();
 
         try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE))) {
@@ -58,9 +59,7 @@ public class idMarca {
         // Ordenar alfabéticamente por nombre de marca
         indices.sort(Comparator.comparing(linea -> linea.split(",")[0]));
 
-        // Escribir los índices ordenados en un archivo temporal sin modificar el original
-        String sortedIndexFile = "src/main/resources/datos/Marcas_txt/indiceMarcasOrdenado.txt";
-        try (BufferedWriter sortedWriter = new BufferedWriter(new FileWriter(sortedIndexFile))) {
+        try (BufferedWriter sortedWriter = new BufferedWriter(new FileWriter(INDEX_SORTED_FILE))) {
             for (String indice : indices) {
                 sortedWriter.write(indice + "\n");
             }
@@ -83,7 +82,7 @@ public class idMarca {
         regenerarArchivoIndicesSinMarca(nombreMarca);
 
         // Mostrar los índices ordenados después de la eliminación
-        mostrarIndicesOrdenados();
+        mostrarIndicesOrdenados(INDEX_SORTED_FILE);
     }
 
     // Regenerar el archivo de datos sin la marca eliminada
