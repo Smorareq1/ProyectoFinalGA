@@ -17,7 +17,7 @@ public class idLinea {
         escribirNuevaLineaDatos(nuevaLinea);
 
         agregarNuevoIndice(nombre, nuevaLinea);
-        idMarca.mostrarIndicesOrdenados(INDEX_SORTED_FILE);
+        idMarca.mostrarIndicesOrdenados(INDEX_SORTED_FILE); //Se le manda el archivo de índices ordenado
     }
 
     private static void escribirNuevaLineaDatos(Linea nuevaLinea) throws IOException {
