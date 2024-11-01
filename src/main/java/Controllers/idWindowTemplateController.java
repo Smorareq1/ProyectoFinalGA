@@ -58,7 +58,7 @@ public class idWindowTemplateController {
 
         tipoId_button.setOnAction(e -> {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/tipoWindow.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/idTipoWindow.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);

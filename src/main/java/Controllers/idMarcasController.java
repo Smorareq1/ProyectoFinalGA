@@ -45,8 +45,6 @@ public class idMarcasController {
     private ImageView refreshImg;
     @FXML
     private ImageView indexSearchImage;
-    @FXML
-    private ImageView nameSearchImage;
 
     @FXML
     private TextField indexSearchTxt;
