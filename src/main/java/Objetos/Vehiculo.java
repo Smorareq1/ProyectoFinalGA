@@ -43,6 +43,20 @@ public class Vehiculo {
         this.tipoNombreVehiculo = tipo.getNombreTipo();
     }
 
+    public Vehiculo(String linea){
+        String[] partes = linea.split(",");
+        this.marcaNombreVehiculo = partes[0];
+        this.tipoNombreVehiculo = partes[1];
+        this.lineaNombreVehiculo = partes[2];
+        this.modelo = partes[3];
+        this.color = partes[4];
+        this.numeroDeAsientos = partes[5];
+        this.placa = partes[6];
+        this.chasis = partes[7];
+        this.motor = partes[8];
+        this.vin = partes[9];
+    }
+
     // Getters y Setters
 
     public Marca getMarca() {return marca;}

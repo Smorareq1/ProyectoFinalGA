@@ -182,28 +182,4 @@ public class idMarca {
         alert.showAndWait();
     }
 
-    // Método para buscar por ID (posición inicial) en el archivo de índices
-    public static void buscarPorId(long id) throws IOException {
-        try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE));
-             RandomAccessFile datosFile = new RandomAccessFile(DATA_FILE, "r")) {
-
-            String linea;
-            while ((linea = indexReader.readLine()) != null) {
-                String[] partes = linea.split(",");
-                long posicionInicial = Long.parseLong(partes[1]);
-
-                if (posicionInicial == id) {
-                    int longitud = Integer.parseInt(partes[2]);
-
-                    // Buscar y mostrar el registro en el archivo de datos
-                    datosFile.seek(posicionInicial);
-                    byte[] registro = new byte[longitud];
-                    datosFile.readFully(registro);
-                    System.out.println("Registro encontrado: " + new String(registro));
-                    return;
-                }
-            }
-            System.out.println("ID no encontrado.");
-        }
-    }
 }

@@ -2,6 +2,7 @@ package Controllers;
 
 import Objetos.GestorDeArchivos;
 import Objetos.Vehiculo;
+import Objetos.idVehiculos;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+
+import java.io.IOException;
 
 public class VehiculoController {
 
@@ -103,7 +106,13 @@ public class VehiculoController {
         //Botones
         btn_AgregarVehiculo.setOnAction(event -> abrirVentanaAgregarVehiculo());
         btn_EditarVehiculo.setOnAction(event -> editarVehiculoSeleccionado());
-        btn_EliminarVehiculo.setOnAction(event -> eliminarVehiculoSeleccionado());
+        btn_EliminarVehiculo.setOnAction(event -> {
+            try {
+                eliminarVehiculoSeleccionado();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         //Imagenes
         searchImg.setOnMouseClicked(event -> filtrarPorMarca());
@@ -169,11 +178,11 @@ public class VehiculoController {
         }
     }
 
-    private void eliminarVehiculoSeleccionado() {
+    private void eliminarVehiculoSeleccionado() throws IOException {
         Vehiculo vehiculoSeleccionado = tableViewVehiculos.getSelectionModel().getSelectedItem();
 
         if (vehiculoSeleccionado != null) {
-            GestorDeArchivos.diccionarioNombreVehiculos.remove(vehiculoSeleccionado.getPlaca());
+            idVehiculos.eliminarVehiculo(vehiculoSeleccionado.getPlaca());
 
             actualizarTableView();
 
