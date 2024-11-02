@@ -83,7 +83,13 @@ public class LineaController {
         tableView.setItems(lineasList);
 
         btnEditar.setOnAction(event -> editarLineaSeleccionada());
-        btneliminar.setOnAction(event -> eliminarLineaSeleccionada()); // Asignar acción de eliminación
+        btneliminar.setOnAction(event -> {
+            try {
+                eliminarLineaSeleccionada();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }); // Asignar acción de eliminación
         searchImg.setOnMouseClicked(event -> filtrarlineaPorNombre());
     }
 
@@ -183,7 +189,7 @@ public class LineaController {
         tableView.setItems(lineasList);
     }
 
-    private void eliminarLineaSeleccionada() {
+    private void eliminarLineaSeleccionada() throws IOException {
         // Obtener la línea seleccionada
         Linea lineaSeleccionada = tableView.getSelectionModel().getSelectedItem();
 
@@ -194,7 +200,7 @@ public class LineaController {
             System.out.println("El tamaño del diccionario de líneas es: " + GestorDeArchivos.diccionarioNombreLineas.size());
 
             // Eliminar la línea del diccionario
-            GestorDeArchivos.diccionarioNombreLineas.remove(lineaSeleccionada.getNombreLinea());
+            idLinea.eliminarLinea(lineaSeleccionada.getNombreLinea());
 
             actualizarTableView();
 

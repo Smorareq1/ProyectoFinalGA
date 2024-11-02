@@ -17,6 +17,13 @@ public class Linea {
         this.anioLinea = anioLinea;
     }
 
+    public Linea(String linea) {
+        String[] partes = linea.split(",");
+        this.nombreMarcaDeLinea = partes[0];
+        this.nombreLinea = partes[1];
+        this.anioLinea = partes[2];
+    }
+
     // Getters
     public String getNombreMarcaDeLinea() {
         return this.nombreMarcaDeLinea;

@@ -1,2 +1,0 @@
-Honda,Hrv,2015
-GMC,Hummer,2000
