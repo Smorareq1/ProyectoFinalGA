@@ -1,16 +1,11 @@
 package Controllers;
 
-import Objetos.GestorDeArchivos;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -29,59 +24,24 @@ public class idWindowTemplateController {
     private Button vehiculoId_button;
 
     @FXML
-    public void initialize(){
-        marcasId_button.setOnAction(e -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/idMarcasWindow.fxml"));
-                Parent root = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
-        LineaId_button.setOnAction(e -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/idLineasWindow.fxml"));
-                Parent root = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
-        tipoId_button.setOnAction(e -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/idTipoWindow.fxml"));
-                Parent root = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
-
-        vehiculoId_button.setOnAction(e -> {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/VehiculoWindow.fxml"));
-                Parent root = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        });
+    public void initialize() {
+        marcasId_button.setOnAction(e -> cargarContenidoEnEscena("/fxml/idMarcasWindow.fxml"));
+        LineaId_button.setOnAction(e -> cargarContenidoEnEscena("/fxml/idLineasWindow.fxml"));
+        tipoId_button.setOnAction(e -> cargarContenidoEnEscena("/fxml/idTipoWindow.fxml"));
+        vehiculoId_button.setOnAction(e -> cargarContenidoEnEscena("/fxml/idVehiculosWindow.fxml"));
     }
 
+    private void cargarContenidoEnEscena(String fxmlPath) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = fxmlLoader.load();
 
+            // Obtén el Stage actual a partir de uno de los botones
+            Stage stage = (Stage) marcasId_button.getScene().getWindow();
+            // Reemplaza el contenido de la escena principal con el nuevo contenido
+            stage.getScene().setRoot(root);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
 }

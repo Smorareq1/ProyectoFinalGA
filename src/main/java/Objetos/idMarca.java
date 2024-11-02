@@ -21,7 +21,7 @@ public class idMarca {
 
         // Actualizar el archivo de índices con la nueva marca al final
         agregarNuevoIndice(nombre, nuevaMarca);
-        mostrarIndicesOrdenados(INDEX_SORTED_FILE);
+        mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE);
     }
 
     // Escribir solo la nueva marca al final del archivo de datos
@@ -46,10 +46,10 @@ public class idMarca {
     }
 
     // Leer y mostrar los índices en orden alfabético, guardando en un archivo temporal
-    public static void mostrarIndicesOrdenados(String sortedIndexPath) throws IOException {
+    public static void mostrarIndicesOrdenados(String indexFilePath,String sortedIndexPath) throws IOException {
         List<String> indices = new ArrayList<>();
 
-        try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE))) {
+        try (BufferedReader indexReader = new BufferedReader(new FileReader(indexFilePath))) {
             String linea;
             while ((linea = indexReader.readLine()) != null) {
                 indices.add(linea);
@@ -59,7 +59,7 @@ public class idMarca {
         // Ordenar alfabéticamente por nombre de marca
         indices.sort(Comparator.comparing(linea -> linea.split(",")[0]));
 
-        try (BufferedWriter sortedWriter = new BufferedWriter(new FileWriter(INDEX_SORTED_FILE))) {
+        try (BufferedWriter sortedWriter = new BufferedWriter(new FileWriter(sortedIndexPath))) {
             for (String indice : indices) {
                 sortedWriter.write(indice + "\n");
             }
@@ -82,7 +82,7 @@ public class idMarca {
         regenerarArchivoIndicesSinMarca(nombreMarca);
 
         // Mostrar los índices ordenados después de la eliminación
-        mostrarIndicesOrdenados(INDEX_SORTED_FILE);
+        mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE);
     }
 
 
@@ -173,7 +173,7 @@ public class idMarca {
     }
 
 
-    private static void generarAlerta(String mensaje) {
+    public static void generarAlerta(String mensaje) {
         Alert.AlertType alertType = Alert.AlertType.INFORMATION;
         Alert alert = new Alert(alertType);
         alert.setTitle("Alerta");

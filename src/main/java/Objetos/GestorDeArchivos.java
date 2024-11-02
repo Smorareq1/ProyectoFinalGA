@@ -3,16 +3,23 @@ package Objetos;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+import com.google.gson.JsonObject;
 import javafx.scene.SubScene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class GestorDeArchivos {
 
@@ -100,7 +107,6 @@ public class GestorDeArchivos {
         alert.setContentText(marcas.toString());
         alert.showAndWait();
     }
-
 
     ///////////////////////////////////// LINEAS ///////////////////////////////////////////////////
 
@@ -204,6 +210,7 @@ public class GestorDeArchivos {
         }
     }
 
+
     //////////////////////////////// TIPOS ///////////////////////////////////
 
     public static void guardarTiposEnJson() {
@@ -251,6 +258,7 @@ public class GestorDeArchivos {
             System.err.println("Error al cargar las líneas desde JSON: " + e.getMessage());
         }
     }
+
 
     //////////////////////////////// VEHICULOS ///////////////////////////////////
 
@@ -488,6 +496,36 @@ public class GestorDeArchivos {
             }
         }
 
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public static Map<String, Marca> cargarMarcas(String filePath) throws IOException {
+        try (Reader reader = new FileReader(filePath)) {
+            // Usar Gson para cargar el JSON como un Map de nombres a objetos Marca
+            return new Gson().fromJson(reader, new TypeToken<Map<String, Marca>>() {}.getType());
+        }
+    }
+
+    public static Map<String, Tipo> cargarTipos(String filePath) throws IOException {
+        try (Reader reader = new FileReader(filePath)) {
+            // Usar Gson para cargar el JSON como un Map de nombres a objetos Tipo
+            return new Gson().fromJson(reader, new TypeToken<Map<String, Tipo>>() {}.getType());
+        }
+    }
+
+    public static Map<String, Linea> cargarLineas(String filePath) throws IOException {
+        try (Reader reader = new FileReader(filePath)) {
+            // Usar Gson para cargar el JSON como una lista de objetos Linea
+            return new Gson().fromJson(reader, new TypeToken<Map<String, Linea>>() {}.getType());
+        }
+    }
+
+    public static Map<String, Vehiculo> cargarVehiculos(String filePath) throws IOException {
+        try (Reader reader = new FileReader(filePath)) {
+            // Usar Gson para cargar el JSON como una lista de objetos Vehiculo
+            return new Gson().fromJson(reader, new TypeToken<Map<String,Vehiculo>>() {}.getType());
+        }
     }
 
 

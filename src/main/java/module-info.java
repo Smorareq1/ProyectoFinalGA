@@ -6,6 +6,8 @@ module org.example.proyectofinalga {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires com.google.gson;
+    requires kernel;
+    requires layout;
 
 
     exports Controllers;
