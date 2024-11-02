@@ -10,6 +10,7 @@ public class IndiceTipo {
         this.nombreTipo = nombreTipo;
         this.indice = indice;
         this.longitud = longitud;
+
     }
 
     public String getNombreTipo() { return nombreTipo; }
