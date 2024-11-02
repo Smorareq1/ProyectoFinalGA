@@ -6,6 +6,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 
 public class idVehiculos {
 
@@ -79,4 +81,64 @@ public class idVehiculos {
             e.printStackTrace();
         }
     }
+
+    public static void eliminarVehiculo(String placa) throws IOException {
+        Vehiculo VehiculoAEliminar = GestorDeArchivos.diccionarioNombreVehiculos.get(placa);
+
+        if (VehiculoAEliminar == null) {
+            System.out.println("Vehiculo no encontrado.");
+            return;
+        }
+
+        GestorDeArchivos.diccionarioNombreVehiculos.remove(placa);
+
+        regenerarArchivoDatosSinVehiculo(placa);
+        regenerarArchivoIndiceSinVehiculo(placa);
+
+        idMarca.mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE); //Se le manda el archivo de índices ordenado
+
+    }
+
+    private static void regenerarArchivoDatosSinVehiculo(String placa) throws IOException{
+         List<Vehiculo> vehiculosRestantes = new ArrayList<>();
+
+        try (BufferedReader datosReader = new BufferedReader(new FileReader(DATA_FILE))) {
+            String linea;
+            while ((linea = datosReader.readLine()) != null) {
+                Vehiculo vehiculo = new Vehiculo(linea); // Asegúrate de que este constructor existe
+                if (!vehiculo.getPlaca().equalsIgnoreCase(placa)) {
+                    vehiculosRestantes.add(vehiculo);
+                }
+            }
+        }
+
+        // Escribir las marcas restantes en el archivo de datos
+        try (BufferedWriter datosWriter = new BufferedWriter(new FileWriter(DATA_FILE))) {
+            for (Vehiculo vehiculo : vehiculosRestantes) {
+                datosWriter.write(vehiculo.toString() + "\n");
+            }
+        }
+    }
+
+    private static void regenerarArchivoIndiceSinVehiculo(String placa) throws IOException{
+        // Crear un nuevo archivo de índices
+        try (BufferedWriter indexWriter = new BufferedWriter(new FileWriter(INDEX_FILE))) {
+            // Leer el archivo de datos y agregar marcas restantes al índice
+            try (BufferedReader datosReader = new BufferedReader(new FileReader(DATA_FILE))) {
+                String linea;
+                long posicionActual = 0; // Para calcular la nueva posición
+                while ((linea = datosReader.readLine()) != null) {
+                    Vehiculo vehiculo = new Vehiculo(linea);
+                    if (!vehiculo.getPlaca().equalsIgnoreCase(placa)) {
+                        int longitud = linea.length();
+                        // Escribir el nuevo índice
+                        indexWriter.write(vehiculo.getPlaca() + "," + posicionActual + "," + longitud + "\n");
+                        posicionActual += longitud + 1; // Actualiza la posición actual (incluye salto de línea)
+                    }
+                }
+            }
+        }
+    }
+
+
 }
