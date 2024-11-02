@@ -1,1 +1,64 @@
-{}
+{
+  "ABC123": {
+    "marca": {
+      "nombre": "Honda",
+      "anioDeCreacion": "1947",
+      "fundador": "Fujitsu Yakimoto"
+    },
+    "linea": {
+      "nombreMarcaDeLinea": "Honda",
+      "nombreLinea": "Hrv",
+      "anioLinea": "2015",
+      "marca": {
+        "nombre": "Honda",
+        "anioDeCreacion": "1947",
+        "fundador": "Fujitsu Yakimoto"
+      }
+    },
+    "tipo": {
+      "nombreTipo": "Pick up",
+      "anioTipo": "1920"
+    },
+    "marcaNombreVehiculo": "Honda",
+    "lineaNombreVehiculo": "Hrv",
+    "tipoNombreVehiculo": "Pick up",
+    "modelo": "2024",
+    "color": "Verde",
+    "numeroDeAsientos": "6",
+    "placa": "ABC123",
+    "chasis": "5",
+    "motor": "2.4",
+    "vin": "2"
+  },
+  "456DEF": {
+    "marca": {
+      "nombre": "Audi",
+      "anioDeCreacion": "1948",
+      "fundador": "David Strugen"
+    },
+    "linea": {
+      "nombreMarcaDeLinea": "GMC",
+      "nombreLinea": "Hummer",
+      "anioLinea": "2000",
+      "marca": {
+        "nombre": "GMC",
+        "anioDeCreacion": "1940",
+        "fundador": "John Mclister"
+      }
+    },
+    "tipo": {
+      "nombreTipo": "Sedan",
+      "anioTipo": "1940"
+    },
+    "marcaNombreVehiculo": "Audi",
+    "lineaNombreVehiculo": "Hummer",
+    "tipoNombreVehiculo": "Sedan",
+    "modelo": "2020",
+    "color": "Negro",
+    "numeroDeAsientos": "4",
+    "placa": "456DEF",
+    "chasis": "6",
+    "motor": "3.2",
+    "vin": "5"
+  }
+}

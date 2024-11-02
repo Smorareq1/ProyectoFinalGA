@@ -9,6 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class addingVehiculoController {
 
     //Jalaran el objeto
@@ -69,12 +71,18 @@ public class addingVehiculoController {
         tipoComboBox.getItems().clear();
         tipoComboBox.getItems().addAll(GestorDeArchivos.diccionarioNombreTipos.keySet());
 
-        agregarBtn.setOnAction(event -> agregarVehiculo());
+        agregarBtn.setOnAction(event -> {
+            try {
+                agregarVehiculo();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         cancelarBtn.setOnAction(event -> cerrarVentana());
     }
 
     //Agregar vehiculo
-    private void agregarVehiculo(){
+    private void agregarVehiculo() throws IOException {
 
         //Objeto de la clase
         String nombreMarcaSeleccionada = marcaComboBox.getValue();
@@ -106,7 +114,7 @@ public class addingVehiculoController {
 
             if (marca != null && linea!= null && tipo!= null && !modelo.isEmpty() && !color.isEmpty() && !numeroDeAsientos.isEmpty() && !placa.isEmpty() && !chasis.isEmpty() && !motor.isEmpty() && !vin.isEmpty()) {
             Vehiculo nuevoVehiculo = new Vehiculo(marca, linea, tipo, modelo, color, placa, chasis, motor, vin, numeroDeAsientos);
-            GestorDeArchivos.diccionarioNombreVehiculos.put(placa, nuevoVehiculo);
+            idVehiculos.agregarVehiculo(placa, nuevoVehiculo);
 
             //Meter los valores que no se pueden repetir a los sets
             GestorDeArchivos.setPlacas.add(placa);

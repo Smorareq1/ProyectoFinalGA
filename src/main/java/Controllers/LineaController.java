@@ -3,6 +3,7 @@ package Controllers;
 import Objetos.GestorDeArchivos;
 import Objetos.Linea;
 import Objetos.Marca;
+import Objetos.idLinea;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LineaController {
 
@@ -85,7 +88,7 @@ public class LineaController {
     }
 
     @FXML
-    public void agregarLinea() {
+    public void agregarLinea() throws IOException {
         // Validar que los campos no estén vacíos
         if (nombreLineaTextField.getText().isEmpty() || anioLineaTextField.getText().isEmpty() || marcaComboBox.getValue() == null) {
             System.out.println("Error: Campos vacíos.");
@@ -118,7 +121,7 @@ public class LineaController {
             return;
         }else {
             // Agregar la nueva línea al diccionario de líneas
-            GestorDeArchivos.diccionarioNombreLineas.put(nuevaLinea.getNombreLinea(), nuevaLinea);
+            idLinea.agregarLinea(nuevaLinea.getNombreLinea(), nuevaLinea);
 
             // Agregar la nueva línea a la lista observable para que aparezca en el TableView
             lineasList.add(nuevaLinea);

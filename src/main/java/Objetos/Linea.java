@@ -58,11 +58,7 @@ public class Linea {
 
     @Override
     public String toString() {
-        return "Linea{" +
-                "nombreMarcaDeLinea='" + nombreMarcaDeLinea + '\'' +
-                ", nombreLinea='" + nombreLinea + '\'' +
-                ", anioLinea='" + anioLinea + '\'' +
-                '}';
+        return nombreMarcaDeLinea + "," + nombreLinea + "," + anioLinea;
     }
 }
 
