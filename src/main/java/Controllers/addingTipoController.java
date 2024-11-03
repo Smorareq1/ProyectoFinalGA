@@ -1,14 +1,16 @@
 package Controllers;
 
-import Objetos.Tipo;
-import javafx.fxml.FXML;
 import Objetos.GestorDeArchivos;
+import Objetos.Tipo;
+import Objetos.idTipo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class addingTipoController {
 
@@ -25,11 +27,17 @@ public class addingTipoController {
 
     @FXML
     public void initialize() {
-        añadirButton.setOnAction(event -> añadirTipo());
+        añadirButton.setOnAction(event -> {
+            try {
+                añadirTipo();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            });
         cancelarButton.setOnAction(event -> cerrarVentana());
     }
 
-    private void añadirTipo() {
+    private void añadirTipo() throws IOException {
         String nombre = nombreTipoField.getText();
         String anio = anioTipoField.getText();
 
@@ -39,8 +47,9 @@ public class addingTipoController {
             if(GestorDeArchivos.diccionarioNombreTipos.containsKey(nombre)){
                 showAlert("Error", "El tipo ya existe.");
 
-            }else{
-                GestorDeArchivos.diccionarioNombreTipos.put(nombre, nuevoTipo);
+            }
+            else{
+                idTipo.agregarTipo(nombre, nuevoTipo);
 
                 nombreTipoField.clear();
                 anioTipoField.clear();

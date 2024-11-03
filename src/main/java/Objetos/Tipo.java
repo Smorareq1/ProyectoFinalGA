@@ -10,6 +10,12 @@ public class Tipo {
         this.anioTipo = anioTipo;
     }
 
+    public Tipo(String linea) {
+       String[] partes = linea.split(",");
+        this.nombreTipo = partes[0];
+        this.anioTipo = partes[1];
+    }
+
     // Getters y Setters
     public String getNombreTipo() {
         return nombreTipo;
@@ -29,9 +35,6 @@ public class Tipo {
 
     @Override
     public String toString() {
-        return "Tipo{" +
-                "nombreTipo='" + nombreTipo + '\'' +
-                ", anioTipo='" + anioTipo + '\'' +
-                '}';
+        return nombreTipo + "," + anioTipo;
     }
 }

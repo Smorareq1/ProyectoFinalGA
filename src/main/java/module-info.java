@@ -8,6 +8,7 @@ module org.example.proyectofinalga {
     requires com.google.gson;
     requires kernel;
     requires layout;
+    requires io;
 
 
     exports Controllers;

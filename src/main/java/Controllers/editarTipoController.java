@@ -54,7 +54,7 @@ public class editarTipoController {
 
         if(!nuevoNombre.isEmpty() && !nuevoAnio.isEmpty()) {
 
-            Tipo nuevoTipo = new Tipo(nuevoNombre, nuevoAnio);
+            Tipo nuevoTipo = new Tipo(nuevoNombre);
 
             GestorDeArchivos.printTiposDeVehiculos();
             GestorDeArchivos.editarVehiculosDadoTipos(nombreAEditar, nuevoTipo);
