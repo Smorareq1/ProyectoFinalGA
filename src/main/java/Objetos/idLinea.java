@@ -78,18 +78,31 @@ public class idLinea {
        }
    }
 
-   public static void eliminarLinea(String nombreLinea) throws IOException{
-        Linea lineaAEliminar = GestorDeArchivos.diccionarioNombreLineas.get(nombreLinea);
-        if(lineaAEliminar == null){
-            System.out.println("La linea no existe");
-            return;
-        }
-        GestorDeArchivos.diccionarioNombreLineas.remove(nombreLinea);
+   public static void eliminarLinea(String nombreLinea) throws IOException {
+       Linea lineaAEliminar = GestorDeArchivos.diccionarioNombreLineas.get(nombreLinea);
+       if (lineaAEliminar == null) {
+           System.out.println("La linea no existe");
+           return;
+       }
+       GestorDeArchivos.diccionarioNombreLineas.remove(nombreLinea);
 
-        regenerarArchivoDatosSinLinea(nombreLinea);
-        regenerarArchivoIndiceSinLinea(nombreLinea);
+       regenerarArchivoDatosSinLinea(nombreLinea);
+       regenerarArchivoIndiceSinLinea(nombreLinea);
 
-        idMarca.mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE); //Se le manda el archivo de índices ordenado
+       idMarca.mostrarIndicesOrdenados(INDEX_FILE, INDEX_SORTED_FILE); //Se le manda el archivo de índices ordenado
+
+       //Verificar si hay vehiculos con la linea a eliminar
+       List<String> vehiculosAEliminar = new ArrayList<>();
+       for (Vehiculo vehiculo : GestorDeArchivos.diccionarioNombreVehiculos.values()) {
+           if (vehiculo.getLinea().getNombreLinea().equalsIgnoreCase(nombreLinea)) {
+               vehiculosAEliminar.add(vehiculo.getPlaca());
+           }
+       }
+
+       //Eliminar los vehiculos
+       for (String placa : vehiculosAEliminar) {
+           idVehiculos.eliminarVehiculo(placa);
+       }
 
    }
 

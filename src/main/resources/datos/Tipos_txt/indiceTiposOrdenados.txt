@@ -1,5 +1,5 @@
-Camion,54,11
-Camioneta,39,14
+Camion,39,11
+Camioneta,51,14
 Hash Back,0,14
 Pick Up,15,12
 Sedan,28,10

@@ -11,6 +11,8 @@ public class idMarca {
     private static final String INDEX_FILE = "src/main/resources/datos/Marcas_txt/indiceMarcas.txt";
     private static final String INDEX_SORTED_FILE ="src/main/resources/datos/Marcas_txt/indiceMarcasOrdenado.txt";
 
+    ////////////////////////////////////////// AGREGAR  ////////////////////////////////////////////////////
+
     // Método para agregar una nueva marca sin alterar los índices existentes
     public static void agregarMarca(String nombre, Marca nuevaMarca) throws IOException {
         // Añadir la nueva marca al diccionario
@@ -45,6 +47,8 @@ public class idMarca {
         }
     }
 
+    ////////////////////////////////////////// INDICES ORDENADOS  ////////////////////////////////////////////////////
+
     // Leer y mostrar los índices en orden alfabético, guardando en un archivo temporal
     public static void mostrarIndicesOrdenados(String indexFilePath,String sortedIndexPath) throws IOException {
         List<String> indices = new ArrayList<>();
@@ -66,6 +70,8 @@ public class idMarca {
         }
     }
 
+    ////////////////////////////////////////// ELIMINAR  ////////////////////////////////////////////////////
+
     // Método para eliminar una marca por nombre y actualizar archivos
     public static void eliminarMarca(String nombreMarca) throws IOException {
         // Verificar si la marca existe en el diccionario
@@ -83,6 +89,31 @@ public class idMarca {
 
         // Mostrar los índices ordenados después de la eliminación
         mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE);
+
+        // Guardar las claves de las líneas que se deben eliminar
+        List<String> lineasAEliminar = new ArrayList<>();
+        for (Linea linea : GestorDeArchivos.diccionarioNombreLineas.values()) {
+            if (linea.getMarca().getNombre().equalsIgnoreCase(nombreMarca)) {
+                lineasAEliminar.add(linea.getNombreLinea());
+            }
+        }
+        // Eliminar las líneas después de la iteración
+        for (String nombreLinea : lineasAEliminar) {
+            idLinea.eliminarLinea(nombreLinea);
+        }
+
+        // Guardar las claves de los vehículos que se deben eliminar
+        List<String> vehiculosAEliminar = new ArrayList<>();
+        for (Vehiculo vehiculo : GestorDeArchivos.diccionarioNombreVehiculos.values()) {
+            if (vehiculo.getMarca().getNombre().equalsIgnoreCase(nombreMarca)) {
+                vehiculosAEliminar.add(vehiculo.getPlaca());
+            }
+        }
+        // Eliminar los vehículos después de la iteración
+        for (String placa : vehiculosAEliminar) {
+            idVehiculos.eliminarVehiculo(placa);
+        }
+
     }
 
 
@@ -129,7 +160,82 @@ public class idMarca {
         }
     }
 
+    ////////////////////////////////////////// EDITAR  ////////////////////////////////////////////////////
 
+    public static void editarMarcaEnDatos(String nombreAntiguo, Marca nuevaMarca, Marca marcaAnterior) throws IOException {
+        // Lista para almacenar las marcas actualizadas
+        List<Marca> marcasActualizadas = new ArrayList<>();
+        int marcaAnteriorLongitud = marcaAnterior.toString().length();
+
+        // Leer el archivo de datos y actualizar la marca correspondiente
+        try (BufferedReader datosReader = new BufferedReader(new FileReader(DATA_FILE))) {
+            String linea;
+            while ((linea = datosReader.readLine()) != null) {
+                Marca marca = new Marca(linea); // Asegúrate de tener un constructor que convierta la línea en Marca
+                if (marca.getNombre().equalsIgnoreCase(nombreAntiguo)) {
+                    marcasActualizadas.add(nuevaMarca); // Reemplaza con la nueva marca
+                } else {
+                    marcasActualizadas.add(marca);
+                }
+            }
+        }
+
+        // Escribir las marcas actualizadas en el archivo de datos
+        try (BufferedWriter datosWriter = new BufferedWriter(new FileWriter(DATA_FILE))) {
+            for (Marca marca : marcasActualizadas) {
+                datosWriter.write(marca.toString() + "\n");
+            }
+        }
+
+        // Regenerar el archivo de índices con los cambios en la marca
+        regenerarArchivoIndicesConMarcaEditada(nombreAntiguo, nuevaMarca, marcaAnteriorLongitud);
+    }
+
+    private static void regenerarArchivoIndicesConMarcaEditada(String nombreAntiguo, Marca nuevaMarca, int marcaAnteriorLongitud) throws IOException {
+        List<String> indicesActualizados = new ArrayList<>();
+        int desplazamiento = nuevaMarca.toString().length() - marcaAnteriorLongitud;
+        boolean actualizarSiguientes = false;
+
+        try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE))) {
+            String linea;
+
+            while ((linea = indexReader.readLine()) != null) {
+                String[] partes = linea.split(",");
+                String nombreIndice = partes[0].trim();
+                int posicionInicio = Integer.parseInt(partes[1].trim());
+                int longitud = Integer.parseInt(partes[2].trim());
+
+                if (nombreIndice.equalsIgnoreCase(nombreAntiguo)) {
+                    // Actualiza la marca editada con la nueva longitud y posición
+                    indicesActualizados.add(nuevaMarca.getNombre() + "," + posicionInicio + "," + nuevaMarca.toString().length());
+                    actualizarSiguientes = true; // Activa la actualización para los siguientes índices
+                } else {
+                    // Si es un registro posterior y se requiere ajuste, aplica el desplazamiento
+                    if (actualizarSiguientes) {
+                        posicionInicio += desplazamiento;
+                    }
+                    indicesActualizados.add(nombreIndice + "," + posicionInicio + "," + longitud);
+                }
+            }
+        }
+
+        // Escribir los índices actualizados en el archivo de índice
+        try (BufferedWriter indexWriter = new BufferedWriter(new FileWriter(INDEX_FILE))) {
+            for (String indice : indicesActualizados) {
+                indexWriter.write(indice + "\n");
+            }
+        }
+
+        // Mostrar los índices ordenados después de la edición
+        idMarca.mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE);
+    }
+
+
+
+
+
+
+    ////////////////////////////////////////// BUSQUEDAS  ////////////////////////////////////////////////////
 
     // Método para buscar por nombre de marca en el archivo de índices
     public static void buscarPorNombre(IndiceMarca indice, String nombre) throws IOException {
