@@ -1,5 +1,5 @@
 Hash Back,1952
 Pick Up,1920
 Sedan,1940
-Camioneta,1942
 Camion,1950
+Camioneta,1950

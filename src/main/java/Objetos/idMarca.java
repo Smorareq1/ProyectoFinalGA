@@ -83,6 +83,31 @@ public class idMarca {
 
         // Mostrar los índices ordenados después de la eliminación
         mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE);
+
+        // Guardar las claves de las líneas que se deben eliminar
+        List<String> lineasAEliminar = new ArrayList<>();
+        for (Linea linea : GestorDeArchivos.diccionarioNombreLineas.values()) {
+            if (linea.getMarca().getNombre().equalsIgnoreCase(nombreMarca)) {
+                lineasAEliminar.add(linea.getNombreLinea());
+            }
+        }
+        // Eliminar las líneas después de la iteración
+        for (String nombreLinea : lineasAEliminar) {
+            idLinea.eliminarLinea(nombreLinea);
+        }
+
+        // Guardar las claves de los vehículos que se deben eliminar
+        List<String> vehiculosAEliminar = new ArrayList<>();
+        for (Vehiculo vehiculo : GestorDeArchivos.diccionarioNombreVehiculos.values()) {
+            if (vehiculo.getMarca().getNombre().equalsIgnoreCase(nombreMarca)) {
+                vehiculosAEliminar.add(vehiculo.getPlaca());
+            }
+        }
+        // Eliminar los vehículos después de la iteración
+        for (String placa : vehiculosAEliminar) {
+            idVehiculos.eliminarVehiculo(placa);
+        }
+
     }
 
 

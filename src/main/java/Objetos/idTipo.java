@@ -64,6 +64,19 @@ public class idTipo {
 
         // Mostrar los índices ordenados después de la eliminación
         idMarca.mostrarIndicesOrdenados(INDEX_FILE, INDEX_SORTED_FILE);
+
+        //Verificar si hay vehículos con el tipo eliminado
+        List<String> vehiculosConTipoEliminado = new ArrayList<>();
+        for (Vehiculo vehiculo : GestorDeArchivos.diccionarioNombreVehiculos.values()) {
+            if (vehiculo.getTipo().getNombreTipo().equalsIgnoreCase(nombreTipo)) {
+                vehiculosConTipoEliminado.add(vehiculo.getPlaca());
+            }
+        }
+
+        //Eliminar los vehículos con el tipo eliminado
+        for (String placa : vehiculosConTipoEliminado) {
+            idVehiculos.eliminarVehiculo(placa);
+        }
     }
 
     // Regenerar el archivo de datos sin el tipo eliminado
