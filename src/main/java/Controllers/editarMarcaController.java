@@ -80,12 +80,15 @@ public class editarMarcaController {
             GestorDeArchivos.editarVehiculosPorMarca(nombreAEditar, nuevaMarca);
 
             // Quita la marca anterior y agrega la nueva
+
+            Marca marcaAnterior = GestorDeArchivos.diccionarioNombreMarcas.get(nombreAEditar);
+
             GestorDeArchivos.diccionarioNombreMarcas.remove(nombreAEditar);
             GestorDeArchivos.diccionarioNombreMarcas.put(nuevoNombre, nuevaMarca);
 
 
             // Editar la marca en los datos
-            idMarca.editarMarcaEnDatos(nombreAEditar, nuevaMarca);
+            idMarca.editarMarcaEnDatos(nombreAEditar, nuevaMarca, marcaAnterior);
 
             // Show a success message
             showAlert("Éxito", "Marca editada correctamente.");
