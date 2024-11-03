@@ -21,14 +21,14 @@ public class idTipo {
 
         // Actualizar el archivo de índices con el nuevo tipo al final
         agregarNuevoIndice(nombre, nuevoTipo);
-        mostrarIndicesOrdenados(INDEX_FILE, INDEX_SORTED_FILE);
+        idMarca.mostrarIndicesOrdenados(INDEX_FILE, INDEX_SORTED_FILE);
     }
 
     // Escribir solo el nuevo tipo al final del archivo de datos
     public static void escribirNuevoTipoDatos(Tipo nuevoTipo) throws IOException {
         try (RandomAccessFile datosFile = new RandomAccessFile(DATA_FILE, "rw")) {
-            datosFile.seek(datosFile.length()); // Ir al final del archivo
-            datosFile.writeBytes(nuevoTipo.toString() + "\n"); // Añadir nuevo tipo
+            datosFile.seek(datosFile.length());
+            datosFile.writeBytes(nuevoTipo.toString() + "\n");
         }
     }
 
@@ -45,26 +45,7 @@ public class idTipo {
         }
     }
 
-    // Leer y mostrar los índices en orden alfabético, guardando en un archivo temporal
-    public static void mostrarIndicesOrdenados(String indexFilePath, String sortedIndexPath) throws IOException {
-        List<String> indices = new ArrayList<>();
 
-        try (BufferedReader indexReader = new BufferedReader(new FileReader(indexFilePath))) {
-            String linea;
-            while ((linea = indexReader.readLine()) != null) {
-                indices.add(linea);
-            }
-        }
-
-        // Ordenar alfabéticamente por nombre de tipo
-        indices.sort(Comparator.comparing(linea -> linea.split(",")[0]));
-
-        try (BufferedWriter sortedWriter = new BufferedWriter(new FileWriter(sortedIndexPath))) {
-            for (String indice : indices) {
-                sortedWriter.write(indice + "\n");
-            }
-        }
-    }
 
     // Método para eliminar un tipo por nombre y actualizar archivos
     public static void eliminarTipo(String nombreTipo) throws IOException {
@@ -82,7 +63,7 @@ public class idTipo {
         regenerarArchivoIndicesSinTipo(nombreTipo);
 
         // Mostrar los índices ordenados después de la eliminación
-        mostrarIndicesOrdenados(INDEX_FILE, INDEX_SORTED_FILE);
+        idMarca.mostrarIndicesOrdenados(INDEX_FILE, INDEX_SORTED_FILE);
     }
 
     // Regenerar el archivo de datos sin el tipo eliminado
@@ -133,7 +114,7 @@ public class idTipo {
                 String linea;
                 while ((linea = indexReader.readLine()) != null) {
                     String[] partes = linea.split(",");
-                    if (partes.length == 3) {
+                    if (partes.length != 3) {
                         System.out.println("Formato Incorrecto.");
                         continue;
                     }

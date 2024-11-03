@@ -23,7 +23,6 @@ public class idLinea {
             try (RandomAccessFile datosFile = new RandomAccessFile(DATA_FILE, "rw")) {
                 datosFile.seek(datosFile.length());
                 datosFile.writeBytes(nuevaLinea.toString() + "\n");
-
             }
     }
 

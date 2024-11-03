@@ -109,12 +109,12 @@ public class idTipoController {
     }
 
     private void configurarColumnas() {
-        tipoIdColumn.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        tipoIdColumn.setCellValueFactory(new PropertyValueFactory<>("nombreTipo"));
         indiceIdColumn.setCellValueFactory(new PropertyValueFactory<>("indice"));
         longitudIdColumn.setCellValueFactory(new PropertyValueFactory<>("longitud"));
 
         nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombreTipo"));
-        anioColumn.setCellValueFactory(new PropertyValueFactory<>("anio"));
+        anioColumn.setCellValueFactory(new PropertyValueFactory<>("anioTipo"));
     }
 
     private void cargarIndicesTipos(String rutaArchivo) {

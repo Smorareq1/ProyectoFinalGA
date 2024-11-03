@@ -11,7 +11,7 @@ public class Tipo {
     }
 
     public Tipo(String linea) {
-        String[] partes = linea.split(",");
+       String[] partes = linea.split(",");
         this.nombreTipo = partes[0];
         this.anioTipo = partes[1];
     }
@@ -35,9 +35,6 @@ public class Tipo {
 
     @Override
     public String toString() {
-        return "Tipo {" +
-                "nombreTipo='" + nombreTipo + '\'' +
-                ", anioTipo='" + anioTipo + '\'' +
-                '}';
+        return nombreTipo + "," + anioTipo;
     }
 }

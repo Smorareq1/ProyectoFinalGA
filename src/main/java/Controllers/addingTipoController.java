@@ -42,7 +42,7 @@ public class addingTipoController {
         String anio = anioTipoField.getText();
 
         if (!nombre.isEmpty() && !anio.isEmpty()) {
-            Tipo nuevoTipo = new Tipo(nombre);
+            Tipo nuevoTipo = new Tipo(nombre, anio);
 
             if(GestorDeArchivos.diccionarioNombreTipos.containsKey(nombre)){
                 showAlert("Error", "El tipo ya existe.");
