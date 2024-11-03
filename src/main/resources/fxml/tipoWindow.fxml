@@ -33,7 +33,7 @@
                   <Font name="Century Gothic Bold" size="24.0" />
                </font>
             </Label>
-            <TableView fx:id="tableViewTipos" layoutX="28.0" layoutY="136.0" prefHeight="550.0" prefWidth="1115.0" stylesheets="@../Css/marcas.css">
+            <TableView fx:id="tableViewTipos" layoutX="28.0" layoutY="136.0" prefHeight="550.0" prefWidth="1115.0" stylesheets="@../Css/MarcasId.css">
               <columns>
                 <TableColumn fx:id="colNombreTipo" prefWidth="567.0" text="Nombre" />
                 <TableColumn fx:id="colAnioTipo" prefWidth="546.0" text="Fundador" />
