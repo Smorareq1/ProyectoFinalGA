@@ -2,6 +2,7 @@ package Controllers;
 
 import Objetos.GestorDeArchivos;
 import Objetos.Tipo;
+import Objetos.idTipo;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
 
 public class TipoController {
 
@@ -116,7 +120,13 @@ public class TipoController {
         btn_EditarTipo.setOnAction(event -> editarTipoSeleccionado());
 
         // Configurar la acción de eliminar un tipo
-        btn_EliminarTipo.setOnAction(event -> eliminarTipoSeleccionado());
+        btn_EliminarTipo.setOnAction(event -> {
+            try {
+                eliminarTipoSeleccionado();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         // Configurar la acción de buscar (enfocar campo de búsqueda)
         searchImg.setOnMouseClicked(event -> filtrarTiposPorNombre());
@@ -139,6 +149,7 @@ public class TipoController {
             }
             tableViewTipos.setItems(tiposFiltrados);
         }
+        searchFieldNombre.clear();
     }
 
     // Método para agregar un nuevo tipo
@@ -153,6 +164,9 @@ public class TipoController {
             stage.setTitle("Agregar Tipo");
             stage.initModality(Modality.APPLICATION_MODAL); // Hacer que esta ventana sea modal
             stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.setMaximized(false);
+            stage.initStyle(StageStyle.UNDECORATED);
 
             // Mostrar la ventana
             stage.showAndWait();
@@ -169,9 +183,11 @@ public class TipoController {
         Tipo selectedTipo = tableViewTipos.getSelectionModel().getSelectedItem();
 
         if (selectedTipo != null) {
+            String nombre = selectedTipo.getNombreTipo();
+            String anio = selectedTipo.getAnioTipo();
 
             try{
-                editarTipoController.InformacionAEditar(selectedTipo.getNombreTipo(), selectedTipo.getAnioTipo());
+                editarTipoController.InformacionAEditar(nombre, anio);
                 // Cargar el nuevo FXML
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/editarTipo.fxml"));
                 Parent root = loader.load();
@@ -196,27 +212,32 @@ public class TipoController {
            // Mostrar un mensaje de alerta si no se seleccionó ninguna marca
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
-            alert.setHeaderText("Ninguna Marca Seleccionada");
-            alert.setContentText("Por favor, selecciona una marca para editar.");
+            alert.setHeaderText("Ningun Tipo Seleccionada");
+            alert.setContentText("Por favor, selecciona un tipo para editar.");
             alert.showAndWait();
         }
     }
 
     // Método para eliminar un tipo seleccionado
-    private void eliminarTipoSeleccionado() {
+    private void eliminarTipoSeleccionado() throws IOException {
         Tipo selectedTipo = tableViewTipos.getSelectionModel().getSelectedItem();
         if (selectedTipo != null) {
-
-            GestorDeArchivos.diccionarioNombreTipos.remove(selectedTipo.getNombreTipo());
-
+            idTipo.eliminarTipo(selectedTipo.getNombreTipo());
             actualizarTableView();
 
             //Eliminar vehiculos con el tipo seleccionado
             GestorDeArchivos.busarYEliminarVehiculoPorTipo(selectedTipo.getNombreTipo());
 
-            mostrarAlerta("Tipo eliminado correctamente.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("El tipo ha sido eliminada exitosamente.");
+            alert.showAndWait();
         } else {
-            mostrarAlerta("No se ha seleccionado ningún tipo para eliminar.");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Ningun Tipo Seleccionada");
+            alert.setContentText("Por favor, selecciona un tipo para eliminar.");
+            alert.showAndWait();
         }
     }
 
