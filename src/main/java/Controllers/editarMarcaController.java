@@ -2,11 +2,14 @@ package Controllers;
 
 import Objetos.GestorDeArchivos;
 import Objetos.Marca;
+import Objetos.idMarca;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class editarMarcaController {
 
@@ -49,11 +52,17 @@ public class editarMarcaController {
         fundadorField.setText(fundadorAEditar);
 
         // Set the action of the button
-        editarButton.setOnAction(event -> editarMarca());
+        editarButton.setOnAction(event -> {
+            try {
+                editarMarca();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         cancelarButton.setOnAction(event -> cerrarVentana());
     }
 
-    private void editarMarca() {
+    private void editarMarca() throws IOException {
         // Get the new values from the text fields
         String nuevoNombre = nombreField.getText();
         String nuevoAnioDeCreacion = anioDeCreacionField.getText();
@@ -64,35 +73,30 @@ public class editarMarcaController {
             // Create a new Marca object with updated values
             Marca nuevaMarca = new Marca(nuevoNombre, nuevoAnioDeCreacion, nuevoFundador);
 
-
-
             //Editar las lineas que tengan esta marca
-            GestorDeArchivos.printLineas();
             GestorDeArchivos.editarLineasPorMarca(nombreAEditar, nuevaMarca);
-            GestorDeArchivos.printLineas();
 
-            GestorDeArchivos.printMarcasDeVehiculos();
+            //Editar los vehiculos que tengan esta marca
             GestorDeArchivos.editarVehiculosPorMarca(nombreAEditar, nuevaMarca);
-            GestorDeArchivos.printMarcasDeVehiculos();
 
-
-
-
-            // Remove the old entry and add the updated Marca to the dictionary
+            // Quita la marca anterior y agrega la nueva
             GestorDeArchivos.diccionarioNombreMarcas.remove(nombreAEditar);
             GestorDeArchivos.diccionarioNombreMarcas.put(nuevoNombre, nuevaMarca);
 
+
+            // Editar la marca en los datos
+            idMarca.editarMarcaEnDatos(nombreAEditar, nuevaMarca);
+
             // Show a success message
-            //showAlert("Éxito", "Marca editada correctamente.");
+            showAlert("Éxito", "Marca editada correctamente.");
 
             if (marcaController != null) {
-                marcaController.actualizarTableView(); // Actualizar el TableView
+                marcaController.actualizarTableView();
             }
 
-            cerrarVentana(); // Close the window after editing
+            cerrarVentana();
 
         } else {
-            // Show an error message if any field is empty
             showAlert("Error", "Por favor, completa todos los campos.");
         }
     }
