@@ -74,6 +74,7 @@ public class editarMarcaController {
             // Create a new Marca object with updated values
             Marca nuevaMarca = new Marca(nuevoNombre, nuevoAnioDeCreacion, nuevoFundador);
 
+
             //Editar datos de las lineas que tengan esta marca
             List<Linea> lineasAEditarAntiguas = new ArrayList<>();
             for (Linea linea : GestorDeArchivos.diccionarioNombreLineas.values()) {
@@ -85,13 +86,24 @@ public class editarMarcaController {
 
             GestorDeArchivos.editarLineasPorMarca(nombreAEditar, nuevaMarca);
 
-            //Editar los vehiculos que tengan esta marca
+            //Fin de edicion de lineas por marca
+
+            //Editar datos de vehiculo que tengan esta marca
+            List<Vehiculo> vehiculosAEditar = new ArrayList<>();
+            for (Vehiculo vehiculo : GestorDeArchivos.diccionarioNombreVehiculos.values()) {
+                if (vehiculo.getMarca().getNombre().equals(nombreAEditar)) {
+                    vehiculosAEditar.add(vehiculo);
+                }
+            }
+
+            List<Vehiculo> vehiculosAfectados = vehiculosAfectados(nombreAEditar);
+
             GestorDeArchivos.editarVehiculosPorMarca(nombreAEditar, nuevaMarca);
 
+            //Fin de edicion de vehiculos por marca
+
             // Quita la marca anterior y agrega la nueva
-
             Marca marcaAnterior = GestorDeArchivos.diccionarioNombreMarcas.get(nombreAEditar);
-
             GestorDeArchivos.diccionarioNombreMarcas.remove(nombreAEditar);
             GestorDeArchivos.diccionarioNombreMarcas.put(nuevoNombre, nuevaMarca);
 
@@ -99,11 +111,20 @@ public class editarMarcaController {
             // Editar la marca en los datos
             idMarca.editarMarcaEnDatos(nombreAEditar, nuevaMarca, marcaAnterior);
 
+            // Editar las líneas en los datos
            int i = 0; // Contador manual
             for (Linea linea : lineasAEditarNuevas) {
                 // Editamos cada línea en datos usando los valores correspondientes de ambas listas
                 idLinea.editarLineaEnDatos(linea.getNombreLinea(), linea, lineasAEditarAntiguas.get(i));
                 i++; // Incrementamos el contador
+            }
+
+            // Editar los vehículos en los datos
+            int j = 0;
+            for (Vehiculo vehiculo : vehiculosAfectados) {
+                // Editamos cada vehículo en datos usando los valores correspondientes de ambas listas
+                idVehiculos.editarVehiculosEnDatos(vehiculo.getPlaca(), vehiculo, vehiculosAEditar.get(j));
+                j++;
             }
 
 
@@ -133,6 +154,20 @@ public class editarMarcaController {
             }
         }
         return lineasAfectadas;
+    }
+
+    private static List<Vehiculo> vehiculosAfectados(String nombreMarca){
+        List<Vehiculo> vehiculosAfectados = new ArrayList<>();
+        for (Map.Entry<String, Vehiculo> entry : GestorDeArchivos.diccionarioNombreVehiculos.entrySet()) {
+            Vehiculo vehiculo = entry.getValue();
+
+            // Verificamos si el nombre de la marca en el vehículo coincide con el que estamos buscando
+            if (vehiculo.getMarca().getNombre().equals(nombreMarca)) {
+                // Agregamos el vehículo a la lista de vehículos afectados sin modificarlo
+                vehiculosAfectados.add(vehiculo);
+            }
+        }
+        return vehiculosAfectados;
     }
 
 
