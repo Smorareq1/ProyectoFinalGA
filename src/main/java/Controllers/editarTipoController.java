@@ -2,11 +2,14 @@ package Controllers;
 
 import Objetos.GestorDeArchivos;
 import Objetos.Tipo;
+import Objetos.idTipo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class editarTipoController {
 
@@ -39,7 +42,13 @@ public class editarTipoController {
         editarNombreTipo.setText(nombreAEditar);
         editarAnioTipo.setText(anioAEditar);
 
-        editarButton.setOnAction(event -> editarTipo());
+        editarButton.setOnAction(event -> {
+            try {
+                editarTipo();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         cancelarButton.setOnAction(event -> cerrarVentana());
     }
 
@@ -48,13 +57,14 @@ public class editarTipoController {
         stage.close();
     }
 
-    private void editarTipo() {
+    private void editarTipo() throws IOException {
         String nuevoNombre = editarNombreTipo.getText();
         String nuevoAnio = editarAnioTipo.getText();
 
         if(!nuevoNombre.isEmpty() && !nuevoAnio.isEmpty()) {
 
-            Tipo nuevoTipo = new Tipo(nuevoNombre);
+            Tipo tipoAnterior = GestorDeArchivos.diccionarioNombreTipos.get(nombreAEditar);
+            Tipo nuevoTipo = new Tipo(nuevoNombre, nuevoAnio);
 
             GestorDeArchivos.printTiposDeVehiculos();
             GestorDeArchivos.editarVehiculosDadoTipos(nombreAEditar, nuevoTipo);
@@ -62,6 +72,9 @@ public class editarTipoController {
 
             GestorDeArchivos.diccionarioNombreTipos.remove(nombreAEditar);
             GestorDeArchivos.diccionarioNombreTipos.put(nuevoNombre, nuevoTipo);
+
+            //Editar tipo en datos
+            idTipo.editarTipoEnDatos(nombreAEditar, nuevoTipo, tipoAnterior);
 
             if(tipoController != null) {
                 tipoController.actualizarTableView();

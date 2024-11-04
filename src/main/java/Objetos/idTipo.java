@@ -173,7 +173,7 @@ public class idTipo {
     }
 
     //////////////////////////////////////////////////////// EDITAR //////////////////////////////////////////////////////////
-    public static void editarMarcaEnDatos(String nombreAntiguo, Tipo nuevoTipo, Tipo tipoAnterior) throws IOException {
+    public static void editarTipoEnDatos(String nombreAntiguo, Tipo nuevoTipo, Tipo tipoAnterior) throws IOException {
         // Lista para almacenar las marcas actualizadas
         List<Tipo> tiposActualizados = new ArrayList<>();
         int marcaAnteriorLongitud = tipoAnterior.toString().length();

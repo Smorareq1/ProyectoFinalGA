@@ -11,12 +11,12 @@
     "nombreTipo": "Sedan",
     "anioTipo": "1940"
   },
-  "Camion": {
-    "nombreTipo": "Camion",
-    "anioTipo": "1950"
-  },
   "Camioneta": {
     "nombreTipo": "Camioneta",
+    "anioTipo": "1950"
+  },
+  "Camion": {
+    "nombreTipo": "Camion",
     "anioTipo": "1950"
   }
 }
