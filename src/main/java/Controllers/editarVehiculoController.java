@@ -1,16 +1,14 @@
 package Controllers;
 
-import Objetos.GestorDeArchivos;
-import Objetos.Vehiculo;
-import Objetos.Marca;
-import Objetos.Linea;
-import Objetos.Tipo;
+import Objetos.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class editarVehiculoController {
 
@@ -85,12 +83,19 @@ public class editarVehiculoController {
         vinField.setText(vehiculoAEditar.getVin());
 
         //Boton de editar
-        editarBtn.setOnAction(event -> editarVehiculo());
+        editarBtn.setOnAction(event -> {
+            try {
+                editarVehiculo();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         //Boton de cancelar
         cancelarBtn.setOnAction(event -> cerrarVentana());
     }
 
-    private void editarVehiculo(){
+    private void editarVehiculo() throws IOException {
+
         //Objeto de la clase
         String nombreMarcaSeleccionada = marcaComboBox.getValue();
         Marca marcaNueva = GestorDeArchivos.diccionarioNombreMarcas.get(nombreMarcaSeleccionada);
@@ -133,6 +138,9 @@ public class editarVehiculoController {
 
             //Agregar el nuevo
             GestorDeArchivos.diccionarioNombreVehiculos.put(placaNuevo, nuevoVehiculo);
+
+            //Editar en datos
+                idVehiculos.editarVehiculosEnDatos(vehiculoAEditar.getPlaca(), nuevoVehiculo, vehiculoAEditar);
 
             //Meter los valores que no se pueden repetir a los sets
             GestorDeArchivos.setPlacas.add(placaNuevo);

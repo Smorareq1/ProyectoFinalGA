@@ -1,8 +1,6 @@
 package Controllers;
 
-import Objetos.GestorDeArchivos;
-import Objetos.Marca;
-import Objetos.idMarca;
+import Objetos.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,6 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class editarMarcaController {
 
@@ -73,7 +74,15 @@ public class editarMarcaController {
             // Create a new Marca object with updated values
             Marca nuevaMarca = new Marca(nuevoNombre, nuevoAnioDeCreacion, nuevoFundador);
 
-            //Editar las lineas que tengan esta marca
+            //Editar datos de las lineas que tengan esta marca
+            List<Linea> lineasAEditarAntiguas = new ArrayList<>();
+            for (Linea linea : GestorDeArchivos.diccionarioNombreLineas.values()) {
+                if (linea.getMarca().getNombre().equals(nombreAEditar)) {
+                    lineasAEditarAntiguas.add(linea);
+                }
+            }
+            List<Linea> lineasAEditarNuevas = lineasAfectadas(nombreAEditar);
+
             GestorDeArchivos.editarLineasPorMarca(nombreAEditar, nuevaMarca);
 
             //Editar los vehiculos que tengan esta marca
@@ -90,6 +99,14 @@ public class editarMarcaController {
             // Editar la marca en los datos
             idMarca.editarMarcaEnDatos(nombreAEditar, nuevaMarca, marcaAnterior);
 
+           int i = 0; // Contador manual
+            for (Linea linea : lineasAEditarNuevas) {
+                // Editamos cada línea en datos usando los valores correspondientes de ambas listas
+                idLinea.editarLineaEnDatos(linea.getNombreLinea(), linea, lineasAEditarAntiguas.get(i));
+                i++; // Incrementamos el contador
+            }
+
+
             // Show a success message
             showAlert("Éxito", "Marca editada correctamente.");
 
@@ -103,6 +120,21 @@ public class editarMarcaController {
             showAlert("Error", "Por favor, completa todos los campos.");
         }
     }
+
+    private static List<Linea> lineasAfectadas(String nombreMarca) {
+        List<Linea> lineasAfectadas = new ArrayList<>();
+        for (Map.Entry<String, Linea> entry : GestorDeArchivos.diccionarioNombreLineas.entrySet()) {
+            Linea linea = entry.getValue();
+
+            // Verificamos si el nombre de la marca en la línea coincide con el que estamos buscando
+            if (linea.getNombreMarcaDeLinea().equals(nombreMarca)) {
+                // Agregamos la línea a la lista de líneas afectadas sin modificarla
+                lineasAfectadas.add(linea);
+            }
+        }
+        return lineasAfectadas;
+    }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
