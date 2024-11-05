@@ -15,6 +15,8 @@ public class idVehiculos {
     private static final String INDEX_FILE = "src/main/resources/datos/Vehiculos_txt/indiceVehiculos.txt";
     private static final String INDEX_SORTED_FILE ="src/main/resources/datos/Vehiculos_txt/indiceVehiculosOrdenado.txt";
 
+    ////////////////////////////////////////////// AGREGAR ///////////////////////////////////////////////
+
     public static void agregarVehiculo(String nombre, Vehiculo nuevoVehiculo) throws IOException {
         GestorDeArchivos.diccionarioNombreVehiculos.put(nombre, nuevoVehiculo);
 
@@ -43,6 +45,8 @@ public class idVehiculos {
             indexWriter.write(nombre + "," + posicionInicial + "," + longitud + "\n");
         }
     }
+
+    ////////////////////////////////////////////// BUSQUEDA ///////////////////////////////////////////////
 
     public static void buscarPorNombre(IndiceVehiculo indice, String placa){
         try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE));
@@ -81,6 +85,8 @@ public class idVehiculos {
             e.printStackTrace();
         }
     }
+
+    ////////////////////////////////////////////// ELIMINAR ///////////////////////////////////////////////
 
     public static void eliminarVehiculo(String placa) throws IOException {
         Vehiculo VehiculoAEliminar = GestorDeArchivos.diccionarioNombreVehiculos.get(placa);
@@ -138,6 +144,76 @@ public class idVehiculos {
                 }
             }
         }
+    }
+
+    ////////////////////////////////////////////// EDITAR ///////////////////////////////////////////////
+
+    public static void editarVehiculosEnDatos(String placaAntigua, Vehiculo nuevoVehiculo, Vehiculo vehiculoAnterior) throws IOException {
+        // Lista para almacenar las marcas actualizadas
+        List<Vehiculo> vehiculosActializados = new ArrayList<>();
+        int marcaAnteriorLongitud = vehiculoAnterior.toString().length();
+
+        // Leer el archivo de datos y actualizar la marca correspondiente
+        try (BufferedReader datosReader = new BufferedReader(new FileReader(DATA_FILE))) {
+            String linea;
+            while ((linea = datosReader.readLine()) != null) {
+                Vehiculo vehiculo = new Vehiculo(linea);
+                if (vehiculo.getPlaca().equalsIgnoreCase(placaAntigua)) { //placa antigua se manda ya que es el que estoy editando
+                    vehiculosActializados.add(nuevoVehiculo); // Reemplaza con la nueva marca
+                } else {
+                    vehiculosActializados.add(vehiculo);
+                }
+            }
+        }
+
+        // Escribir las marcas actualizadas en el archivo de datos
+        try (BufferedWriter datosWriter = new BufferedWriter(new FileWriter(DATA_FILE))) {
+            for (Vehiculo vehiculo : vehiculosActializados) {
+                datosWriter.write(vehiculo.toString() + "\n");
+            }
+        }
+
+        // Regenerar el archivo de índices con los cambios en la marca
+        regenerarArchivoIndicesConMarcaEditada(placaAntigua, nuevoVehiculo, marcaAnteriorLongitud);
+    }
+
+    private static void regenerarArchivoIndicesConMarcaEditada(String placaAntigua, Vehiculo nuevoVehiculo, int marcaAnteriorLongitud) throws IOException {
+        List<String> indicesActualizados = new ArrayList<>();
+        int desplazamiento = nuevoVehiculo.toString().length() - marcaAnteriorLongitud;
+        boolean actualizarSiguientes = false;
+
+        try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE))) {
+            String linea;
+
+            while ((linea = indexReader.readLine()) != null) {
+                String[] partes = linea.split(",");
+                String nombreIndice = partes[0].trim();
+                int posicionInicio = Integer.parseInt(partes[1].trim());
+                int longitud = Integer.parseInt(partes[2].trim());
+
+                if (nombreIndice.equalsIgnoreCase(placaAntigua)) {
+                    // Actualiza la marca editada con la nueva longitud y posición
+                    indicesActualizados.add(nuevoVehiculo.getPlaca() + "," + posicionInicio + "," + nuevoVehiculo.toString().length());
+                    actualizarSiguientes = true; // Activa la actualización para los siguientes índices
+                } else {
+                    // Si es un registro posterior y se requiere ajuste, aplica el desplazamiento
+                    if (actualizarSiguientes) {
+                        posicionInicio += desplazamiento;
+                    }
+                    indicesActualizados.add(nombreIndice + "," + posicionInicio + "," + longitud);
+                }
+            }
+        }
+
+        // Escribir los índices actualizados en el archivo de índice
+        try (BufferedWriter indexWriter = new BufferedWriter(new FileWriter(INDEX_FILE))) {
+            for (String indice : indicesActualizados) {
+                indexWriter.write(indice + "\n");
+            }
+        }
+
+        // Mostrar los índices ordenados después de la edición
+        idMarca.mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE);
     }
 
 

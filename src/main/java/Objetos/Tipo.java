@@ -11,7 +11,7 @@ public class Tipo {
     }
 
     public Tipo(String linea) {
-       String[] partes = linea.split(",");
+        String[] partes = linea.split(",");
         this.nombreTipo = partes[0];
         this.anioTipo = partes[1];
     }

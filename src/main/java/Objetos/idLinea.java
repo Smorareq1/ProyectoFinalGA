@@ -10,6 +10,8 @@ public class idLinea {
     private static final String INDEX_FILE = "src/main/resources/datos/Lineas_txt/indiceLineas.txt";
     private static final String INDEX_SORTED_FILE ="src/main/resources/datos/Lineas_txt/indiceLineasOrdenado.txt";
 
+    ////////////////////////////////////////// AGREGAR ///////////////////////////////////////////////////
+
     public static void agregarLinea(String nombre, Linea nuevaLinea) throws IOException {
         GestorDeArchivos.diccionarioNombreLineas.put(nombre, nuevaLinea);
 
@@ -37,6 +39,8 @@ public class idLinea {
             indexWriter.write(nombre + "," + posicionInicial + "," + longitud + "\n");
         }
     }
+
+    ////////////////////////////////////////// BUSQUEDA ///////////////////////////////////////////////////
 
    public static void buscarPorNombre(IndiceLinea indice ,String nombre) throws IOException {
        try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE));
@@ -77,6 +81,8 @@ public class idLinea {
            System.out.println("Linea no encontrada.");
        }
    }
+
+   ////////////////////////////////////////// ELIMINAR ///////////////////////////////////////////////////
 
    public static void eliminarLinea(String nombreLinea) throws IOException {
        Linea lineaAEliminar = GestorDeArchivos.diccionarioNombreLineas.get(nombreLinea);
@@ -145,6 +151,75 @@ public class idLinea {
                 }
             }
         }
+    }
+
+    ////////////////////////////////////////// EDITAR ///////////////////////////////////////////////////
+    public static void editarLineaEnDatos(String nombreAntiguo, Linea nuevaLinea, Linea lineaAnterior) throws IOException {
+        // Lista para almacenar las marcas actualizadas
+        List<Linea> lineasActualizadas = new ArrayList<>();
+        int lineaLongitudAnterior = lineaAnterior.toString().length();
+
+        // Leer el archivo de datos y actualizar la marca correspondiente
+        try (BufferedReader datosReader = new BufferedReader(new FileReader(DATA_FILE))) {
+            String linea;
+            while ((linea = datosReader.readLine()) != null) {
+                Linea LineaObj = new Linea(linea);
+                if (LineaObj.getNombreLinea().equalsIgnoreCase(nombreAntiguo)) {
+                    lineasActualizadas.add(nuevaLinea);
+                } else {
+                    lineasActualizadas.add(LineaObj);
+                }
+            }
+        }
+
+        // Escribir las marcas actualizadas en el archivo de datos
+        try (BufferedWriter datosWriter = new BufferedWriter(new FileWriter(DATA_FILE))) {
+            for (Linea LineaObj : lineasActualizadas) {
+                datosWriter.write(LineaObj.toString() + "\n");
+            }
+        }
+
+        // Regenerar el archivo de índices con los cambios en la marca
+        regenerarArchivoIndicesConMarcaEditada(nombreAntiguo, nuevaLinea, lineaLongitudAnterior);
+    }
+
+    private static void regenerarArchivoIndicesConMarcaEditada(String nombreAntiguo, Linea nuevaLinea, int lineaLongitudAnterior) throws IOException {
+        List<String> indicesActualizados = new ArrayList<>();
+        int desplazamiento = nuevaLinea.toString().length() - lineaLongitudAnterior;
+        boolean actualizarSiguientes = false;
+
+        try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE))) {
+            String linea;
+
+            while ((linea = indexReader.readLine()) != null) {
+                String[] partes = linea.split(",");
+                String nombreIndice = partes[0].trim();
+                int posicionInicio = Integer.parseInt(partes[1].trim());
+                int longitud = Integer.parseInt(partes[2].trim());
+
+                if (nombreIndice.equalsIgnoreCase(nombreAntiguo)) {
+                    // Actualiza la marca editada con la nueva longitud y posición
+                    indicesActualizados.add(nuevaLinea.getNombreLinea() + "," + posicionInicio + "," + nuevaLinea.toString().length());
+                    actualizarSiguientes = true; // Activa la actualización para los siguientes índices
+                } else {
+                    // Si es un registro posterior y se requiere ajuste, aplica el desplazamiento
+                    if (actualizarSiguientes) {
+                        posicionInicio += desplazamiento;
+                    }
+                    indicesActualizados.add(nombreIndice + "," + posicionInicio + "," + longitud);
+                }
+            }
+        }
+
+        // Escribir los índices actualizados en el archivo de índice
+        try (BufferedWriter indexWriter = new BufferedWriter(new FileWriter(INDEX_FILE))) {
+            for (String indice : indicesActualizados) {
+                indexWriter.write(indice + "\n");
+            }
+        }
+
+        // Mostrar los índices ordenados después de la edición
+        idMarca.mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE);
     }
 
 

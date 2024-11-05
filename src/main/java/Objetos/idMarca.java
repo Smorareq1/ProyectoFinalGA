@@ -171,7 +171,7 @@ public class idMarca {
         try (BufferedReader datosReader = new BufferedReader(new FileReader(DATA_FILE))) {
             String linea;
             while ((linea = datosReader.readLine()) != null) {
-                Marca marca = new Marca(linea); // Asegúrate de tener un constructor que convierta la línea en Marca
+                Marca marca = new Marca(linea);
                 if (marca.getNombre().equalsIgnoreCase(nombreAntiguo)) {
                     marcasActualizadas.add(nuevaMarca); // Reemplaza con la nueva marca
                 } else {
@@ -229,12 +229,6 @@ public class idMarca {
         // Mostrar los índices ordenados después de la edición
         idMarca.mostrarIndicesOrdenados(INDEX_FILE,INDEX_SORTED_FILE);
     }
-
-
-
-
-
-
     ////////////////////////////////////////// BUSQUEDAS  ////////////////////////////////////////////////////
 
     // Método para buscar por nombre de marca en el archivo de índices
