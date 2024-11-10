@@ -19,8 +19,7 @@ public class Main extends Application {
         GestorDeArchivos.cargarLineasDesdeJson();
         GestorDeArchivos.CargarTiposDesdeJson();
         GestorDeArchivos.cargarVehiculosDesdeJson();
-
-
+        
 
         //Una vez cargados los vehiculos, cargar sets
         GestorDeArchivos.cargarSets();
