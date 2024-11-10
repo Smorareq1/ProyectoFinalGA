@@ -32,9 +32,13 @@ public class idVinController
     @FXML
     private TableView DatosVinTableView;
     @FXML
-    private TableColumn  nombreColumn;
+    private TableColumn  MarcaColumn;
     @FXML
-    private TableColumn  anioColumn;
+    private TableColumn  LineaColumn;
+    @FXML
+    private TableColumn  PlacaColumn;
+    @FXML
+    private TableColumn  VinColumn;
 
     @FXML
     private ImageView refreshImg;
