@@ -27,6 +27,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button fx:id="VinId_button" mnemonicParsing="false" styleClass="buttons" stylesheets="@../Css/idWindowTemplate.css" text="Vin" />
          </children>
       </HBox>
     </children>

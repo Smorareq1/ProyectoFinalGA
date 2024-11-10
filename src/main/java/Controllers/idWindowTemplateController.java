@@ -24,11 +24,16 @@ public class idWindowTemplateController {
     private Button vehiculoId_button;
 
     @FXML
+    private Button VinId_button;
+
+
+    @FXML
     public void initialize() {
         marcasId_button.setOnAction(e -> cargarContenidoEnEscena("/fxml/idMarcasWindow.fxml"));
         LineaId_button.setOnAction(e -> cargarContenidoEnEscena("/fxml/idLineasWindow.fxml"));
         tipoId_button.setOnAction(e -> cargarContenidoEnEscena("/fxml/idTipoWindow.fxml"));
         vehiculoId_button.setOnAction(e -> cargarContenidoEnEscena("/fxml/idVehiculosWindow.fxml"));
+        VinId_button.setOnAction(e -> cargarContenidoEnEscena("/fxml/idVinWindow.fxml"));
     }
 
     private void cargarContenidoEnEscena(String fxmlPath) {
