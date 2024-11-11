@@ -5,7 +5,7 @@ import java.io.*;
 
 public class IdVines {
 
-private static final String DATA_FILE = "src/main/resources/datos/VIN_txt/datosVIN.txt";
+    private static final String DATA_FILE = "src/main/resources/datos/VIN_txt/datosVIN.txt";
     private static final String INDEX_FILE = "src/main/resources/datos/VIN_txt/indiceVIN.txt";
     private static int primeraPosicion = -1;
 
@@ -16,30 +16,28 @@ private static final String DATA_FILE = "src/main/resources/datos/VIN_txt/datosV
         try {
             cargarIndice();
 
-            // Se prepara el archivo para agregar nuevos VINs
+            // Prepara el archivo para agregar nuevos VINs
             FileWriter dataWriter = new FileWriter(DATA_FILE, true);
-            long posicionInicial = new File(DATA_FILE).length(); // Calcular la posición inicial
+            long posicionInicial = new File(DATA_FILE).length();
 
-            // Agregar cada VIN nuevo
             for (DatosVines vin : vins) {
                 if (!vinUnicos.contains(vin.getVin())) {
                     vinUnicos.add(vin.getVin());
 
-                    // Escribimos el VIN en el archivo de datos con sus detalles
+                    // Escribe el VIN en el archivo de datos
                     String entradaDatos = vin.getNombreMarca() + "," + vin.getNombreLinea() + "," + vin.getPlaca() + "," + vin.getVin();
                     dataWriter.write(entradaDatos + "\n");
 
-                    // Almacenamos la posición inicial y longitud de cada registro
                     int longitudRegistro = entradaDatos.length();
-                    listaIndiceVines.add(new IndiceVIN(vin.getVin(), (int) posicionInicial, longitudRegistro, -1)); // Inicializamos siguiente como -1
-                    posicionInicial += longitudRegistro + 1; // Sumamos longitud del registro y el salto de línea
+                    listaIndiceVines.add(new IndiceVIN(vin.getVin(), (int) posicionInicial, longitudRegistro, -1));
+                    posicionInicial += longitudRegistro + 1;
                 } else {
                     System.out.println("El VIN " + vin.getVin() + " ya existe en el índice. No se agregará duplicado.");
                 }
             }
             dataWriter.close();
 
-            ajustarPosicionesSiguientes(); // Ajustamos las posiciones "siguiente"
+            ajustarPosicionesSiguientes();
             guardarIndice();
 
         } catch (IOException e) {
@@ -56,7 +54,7 @@ private static final String DATA_FILE = "src/main/resources/datos/VIN_txt/datosV
                     int lineCount = 0;
                     while ((line = reader.readLine()) != null) {
                         if (lineCount == 0) {
-                            primeraPosicion = Integer.parseInt(line); // Primera posición (aunque no se usa directamente)
+                            primeraPosicion = Integer.parseInt(line);
                         } else {
                             String[] data = line.split(",");
                             String vin = data[0];
@@ -78,33 +76,31 @@ private static final String DATA_FILE = "src/main/resources/datos/VIN_txt/datosV
     }
 
     private static void ajustarPosicionesSiguientes() {
-        // Primero, ordenamos los VINs alfabéticamente
         List<String> vinOrdenados = new ArrayList<>(vinUnicos);
         Collections.sort(vinOrdenados);
 
-        // Ahora, ajustamos el campo "siguiente" basado en la posición de cada VIN en el archivo de datos
+        Map<String, Integer> vinToBytePosition = new HashMap<>();
+        int bytePosition = 0;
+
+        for (IndiceVIN indice : listaIndiceVines) {
+            vinToBytePosition.put(indice.getVin(), bytePosition);
+            bytePosition += indice.toString().length() + 1;
+        }
+
         for (int i = 0; i < vinOrdenados.size(); i++) {
             String vinActual = vinOrdenados.get(i);
-
-            // Obtenemos el índice en listaIndiceVines del VIN actual
             IndiceVIN currentIndice = obtenerIndicePorVin(vinActual);
 
-            // Si no es el último VIN, calculamos el siguiente VIN
             if (i < vinOrdenados.size() - 1) {
                 String vinSiguiente = vinOrdenados.get(i + 1);
-                IndiceVIN siguienteIndice = obtenerIndicePorVin(vinSiguiente);
-
-                // Actualizamos el "siguiente" con la posición del siguiente VIN
-                currentIndice.siguiente = siguienteIndice.posicionInicial;
+                currentIndice.setSiguiente(vinToBytePosition.get(vinSiguiente));
             } else {
-                // Si es el último VIN, asignamos -1
-                currentIndice.siguiente = -1;
+                currentIndice.setSiguiente(-1);
             }
         }
     }
 
     private static IndiceVIN obtenerIndicePorVin(String vin) {
-        // Obtenemos el índice de un VIN en la lista de índices
         for (IndiceVIN indice : listaIndiceVines) {
             if (indice.getVin().equals(vin)) {
                 return indice;
@@ -115,70 +111,42 @@ private static final String DATA_FILE = "src/main/resources/datos/VIN_txt/datosV
 
     public static void guardarIndice() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(INDEX_FILE))) {
-            writer.println("0"); // Temporalmente escribe "0" como posición inicial (ajustaremos esto más tarde)
+            writer.println("0");
 
-            // Escribir todos los registros en el archivo
             for (IndiceVIN indice : listaIndiceVines) {
-                writer.println(indice.toString()); // Guardamos los registros en el formato adecuado
+                writer.println(indice.toString());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Ahora, después de haber escrito todos los registros, encontrar la posición del VIN más pequeño
         int posicionInicial = encontrarPosicionMasPequenaEnArchivo();
-
-        // Reescribir la primera línea del archivo con la posición correcta
         actualizarPosicionInicialEnArchivo(posicionInicial);
     }
 
     private static void actualizarPosicionInicialEnArchivo(int posicionInicial) {
-        try {
-            List<String> lineas = new ArrayList<>();
-
-            // Leer el archivo y almacenar todas las líneas en una lista
-            try (BufferedReader reader = new BufferedReader(new FileReader(INDEX_FILE))) {
-                String linea;
-                boolean primeraLinea = true;
-                while ((linea = reader.readLine()) != null) {
-                    if (primeraLinea) {
-                        lineas.add(String.valueOf(posicionInicial)); // Agregar la posición inicial en la primera línea
-                        primeraLinea = false;
-                    } else {
-                        lineas.add(linea); // Agregar el resto de las líneas sin cambios
-                    }
-                }
-            }
-
-            // Escribir todas las líneas de nuevo al archivo con la primera línea actualizada
-            try (PrintWriter writer = new PrintWriter(new FileWriter(INDEX_FILE))) {
-                for (String linea : lineas) {
-                    writer.println(linea);
-                }
-            }
-
+        try (RandomAccessFile raf = new RandomAccessFile(INDEX_FILE, "rw")) {
+            raf.writeBytes(String.valueOf(posicionInicial) + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
     public static int encontrarPosicionMasPequenaEnArchivo() {
         List<String> vinOrdenados = new ArrayList<>(vinUnicos);
-        Collections.sort(vinOrdenados); // Ordena los VINs alfabéticamente
-        String vinMasPequeno = vinOrdenados.get(0); // Obtiene el VIN más pequeño
+        Collections.sort(vinOrdenados);
+        String vinMasPequeno = vinOrdenados.get(0);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(INDEX_FILE))) {
             String line;
-            int posicionCaracter = 0; // Posición acumulada en caracteres
+            int posicionCaracter = 0;
 
             while ((line = reader.readLine()) != null) {
-                String[] datos = line.split(","); // Asumiendo que los datos están separados por comas
-                if (datos[0].equals(vinMasPequeno)) { // Compara el VIN de la línea actual con el más pequeño
-                    return posicionCaracter; // Retorna la posición en caracteres del inicio del VIN más pequeño
+                String[] datos = line.split(",");
+                if (datos[0].equals(vinMasPequeno)) {
+                    return posicionCaracter;
                 }
-                // Sumar la longitud de la línea y el salto de línea al contador de posición
-                posicionCaracter += line.length();
+                posicionCaracter += line.length() + 1;
             }
 
             System.out.println("El VIN más pequeño no se encontró en el archivo.");
@@ -186,17 +154,59 @@ private static final String DATA_FILE = "src/main/resources/datos/VIN_txt/datosV
             e.printStackTrace();
         }
 
-        return -1; // Si no se encontró el VIN más pequeño, retorna -1
+        return -1;
     }
 
+    public static List<String> buscarVin(String vinBuscado) {
+        try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE))) {
+            String line;
 
+            // Recorre el archivo de índice para encontrar el VIN buscado
+            while ((line = indexReader.readLine()) != null) {
+                String[] datos = line.split(",");
+
+                if (datos.length >= 4 && datos[0].equals(vinBuscado)) {
+                    // VIN encontrado, obtiene posición y longitud
+                    int posicionInicial = Integer.parseInt(datos[1]);
+                    int longitud = Integer.parseInt(datos[2]);
+                    int siguiente = Integer.parseInt(datos[3]);
+
+                    IndiceVIN indiceEnontrado = new IndiceVIN(datos[0], posicionInicial, longitud, siguiente);
+
+                    // Abre el archivo de datos y utiliza seek para acceder a la posición
+                    try (RandomAccessFile dataFile = new RandomAccessFile(DATA_FILE, "r")) {
+                        dataFile.seek(posicionInicial);
+
+                        // Lee el registro completo con base en la longitud obtenida
+                        byte[] registroBytes = new byte[longitud];
+                        dataFile.read(registroBytes);
+
+                        String registro = new String(registroBytes);
+
+                        // Retorna una lista con los datos del índice y el contenido del registro
+                        List<String> resultado = new ArrayList<>();
+                        resultado.add("Contenido del registro: " + registro);
+
+                        return resultado;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Si el VIN no se encuentra, retorna mensaje indicando "no encontrado"
+        return Collections.singletonList("VIN no encontrado.");
+    }
 
     public static void main(String[] args) {
         List<DatosVines> vins = new ArrayList<>();
         vins.add(new DatosVines("Honda", "Hrv", "P057GMF", "VIN123"));
         vins.add(new DatosVines("GMC", "Chevrolet", "P145RTM", "VIN456"));
         vins.add(new DatosVines("Toyota", "Yaris", "P856HQR", "VIN278"));
-        //vins.add(new DatosVines("Ford", "Fiesta", "P123ABC", "VIN0065"));
+        vins.add(new DatosVines("Ford", "Fiesta", "P123ABC", "VIN0065"));
+
+        buscarVin("VIN123").forEach(System.out::println);
 
         agregarNuevosVins(vins);
     }
