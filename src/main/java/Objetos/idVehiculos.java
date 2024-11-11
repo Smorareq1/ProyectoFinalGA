@@ -20,6 +20,9 @@ public class idVehiculos {
     public static void agregarVehiculo(String nombre, Vehiculo nuevoVehiculo) throws IOException {
         GestorDeArchivos.diccionarioNombreVehiculos.put(nombre, nuevoVehiculo);
 
+        //Crear un nuevo dato Vin y meterlo a la lista de vines
+        DatosVines nuevoDatoVines = new DatosVines(nuevoVehiculo.getMarca().getNombre(), nuevoVehiculo.getLinea().getNombreLinea(), nuevoVehiculo.getPlaca(), nuevoVehiculo.getVin());
+
         escribirNuevoVehiculoDatos(nuevoVehiculo);
 
         agregarNuevoIndice(nombre, nuevoVehiculo);

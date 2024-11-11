@@ -1,13 +1,13 @@
 package Objetos;
 
-public class datosVines {
+public class DatosVines {
 
     String nombreMarca;
     String nombreLinea;
     String Placa;
     String Vin;
 
-    public datosVines(String nombreMarca, String nombreLinea, String Placa, String Vin) {
+    public DatosVines(String nombreMarca, String nombreLinea, String Placa, String Vin) {
         this.nombreMarca = nombreMarca;
         this.nombreLinea = nombreLinea;
         this.Placa = Placa;
@@ -22,6 +22,7 @@ public class datosVines {
     @Override
     public String toString() {
         return nombreMarca + "," + nombreLinea + "," + Placa + "," + Vin;
+
     }
 
 
