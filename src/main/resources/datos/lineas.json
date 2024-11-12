@@ -1,4 +1,24 @@
 {
+  "Hummer": {
+    "nombreMarcaDeLinea": "GMC",
+    "nombreLinea": "Hummer",
+    "anioLinea": "2000",
+    "marca": {
+      "nombre": "GMC",
+      "anioDeCreacion": "1940",
+      "fundador": "John Mclister"
+    }
+  },
+  "Fiesta": {
+    "nombreMarcaDeLinea": "Ford",
+    "nombreLinea": "Fiesta",
+    "anioLinea": "2005",
+    "marca": {
+      "nombre": "Ford",
+      "anioDeCreacion": "1863",
+      "fundador": "Henry Ford"
+    }
+  },
   "Hrv": {
     "nombreMarcaDeLinea": "Honda",
     "nombreLinea": "Hrv",
@@ -9,14 +29,24 @@
       "fundador": "Fujitsu Yakimoto"
     }
   },
-  "Hummer": {
+  "Chevrolet": {
     "nombreMarcaDeLinea": "GMC",
-    "nombreLinea": "Hummer",
-    "anioLinea": "2000",
+    "nombreLinea": "Chevrolet",
+    "anioLinea": "1911",
     "marca": {
       "nombre": "GMC",
       "anioDeCreacion": "1940",
       "fundador": "John Mclister"
+    }
+  },
+  "Yaris": {
+    "nombreMarcaDeLinea": "Toyota",
+    "nombreLinea": "Yaris",
+    "anioLinea": "1999",
+    "marca": {
+      "nombre": "Toyota",
+      "anioDeCreacion": "1926",
+      "fundador": "Sakichi Toyoda"
     }
   }
 }

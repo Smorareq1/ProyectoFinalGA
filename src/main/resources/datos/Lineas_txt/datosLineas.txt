@@ -1,2 +1,5 @@
 Honda,Hrv,2014
 GMC,Hummer,2000
+GMC,Chevrolet,1911
+Toyota,Yaris,1999
+Ford,Fiesta,2005

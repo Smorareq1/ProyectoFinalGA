@@ -14,29 +14,41 @@ public class IdVines {
 
     public static void agregarNuevosVins(List<DatosVines> vins) {
         try {
-            cargarIndice();
+            cargarIndice(); // Asegúrate de que listaIndiceVines esté actualizada
+
+            // Inicializa vinUnicos a partir de listaIndiceVines para asegurar que estén sincronizados
+            vinUnicos.clear();
+            for (IndiceVIN indice : listaIndiceVines) {
+                vinUnicos.add(indice.getVin());
+            }
 
             // Prepara el archivo para agregar nuevos VINs
             FileWriter dataWriter = new FileWriter(DATA_FILE, true);
             long posicionInicial = new File(DATA_FILE).length();
 
             for (DatosVines vin : vins) {
-                if (!vinUnicos.contains(vin.getVin())) {
-                    vinUnicos.add(vin.getVin());
-
-                    // Escribe el VIN en el archivo de datos
-                    String entradaDatos = vin.getNombreMarca() + "," + vin.getNombreLinea() + "," + vin.getPlaca() + "," + vin.getVin();
-                    dataWriter.write(entradaDatos + "\n");
-
-                    int longitudRegistro = entradaDatos.length();
-                    listaIndiceVines.add(new IndiceVIN(vin.getVin(), (int) posicionInicial, longitudRegistro, -1));
-                    posicionInicial += longitudRegistro + 1;
-                } else {
+                // Verifica si el VIN ya existe en vinUnicos y en listaIndiceVines antes de agregar
+                if (vinUnicos.contains(vin.getVin())) {
                     System.out.println("El VIN " + vin.getVin() + " ya existe en el índice. No se agregará duplicado.");
+                    continue; // Saltar a la siguiente iteración si ya existe
                 }
+
+                // Agrega el VIN a vinUnicos para evitar duplicados
+                vinUnicos.add(vin.getVin());
+
+                // Escribe el VIN en el archivo de datos
+                String entradaDatos = vin.getNombreMarca() + "," + vin.getNombreLinea() + "," + vin.getPlaca() + "," + vin.getVin();
+                dataWriter.write(entradaDatos + "\n");
+
+                // Calcula la longitud y añade el índice a listaIndiceVines
+                int longitudRegistro = entradaDatos.length();
+                listaIndiceVines.add(new IndiceVIN(vin.getVin(), (int) posicionInicial, longitudRegistro, -1));
+                posicionInicial += longitudRegistro + 1;
             }
+
             dataWriter.close();
 
+            // Ajusta las posiciones de los índices y guarda los cambios
             ajustarPosicionesSiguientes();
             guardarIndice();
 
@@ -45,7 +57,11 @@ public class IdVines {
         }
     }
 
+
+
     private static void cargarIndice() {
+        listaIndiceVines.clear(); // Limpia la lista para evitar duplicados
+
         try {
             File indexFile = new File(INDEX_FILE);
             if (indexFile.exists()) {
@@ -53,16 +69,28 @@ public class IdVines {
                     String line;
                     int lineCount = 0;
                     while ((line = reader.readLine()) != null) {
+                        // Omitir líneas vacías o solo con espacios en blanco
+                        if (line.trim().isEmpty()) {
+                            continue;
+                        }
+
                         if (lineCount == 0) {
                             primeraPosicion = Integer.parseInt(line);
                         } else {
                             String[] data = line.split(",");
+
+                            // Check if the line has the expected number of elements
+                            if (data.length < 4) {
+                                System.out.println("Formato incorrecto en la línea del archivo de índice: " + line);
+                                continue; // Skip this line if it doesn’t have enough data
+                            }
+
                             String vin = data[0];
                             int posicionInicial = Integer.parseInt(data[1]);
                             int longitud = Integer.parseInt(data[2]);
                             int siguiente = Integer.parseInt(data[3]);
                             listaIndiceVines.add(new IndiceVIN(vin, posicionInicial, longitud, siguiente));
-                            vinUnicos.add(vin);
+                            vinUnicos.add(vin); // Actualiza el set para evitar duplicados
                         }
                         lineCount++;
                     }
@@ -74,6 +102,8 @@ public class IdVines {
             e.printStackTrace();
         }
     }
+
+
 
     private static void ajustarPosicionesSiguientes() {
         List<String> vinOrdenados = new ArrayList<>(vinUnicos);
@@ -157,7 +187,7 @@ public class IdVines {
         return -1;
     }
 
-    public static List<String> buscarVin(String vinBuscado) {
+    public static DatosVines buscarVin(String vinBuscado) {
         try (BufferedReader indexReader = new BufferedReader(new FileReader(INDEX_FILE))) {
             String line;
 
@@ -184,9 +214,7 @@ public class IdVines {
                         String registro = new String(registroBytes);
 
                         // Retorna una lista con los datos del índice y el contenido del registro
-                        List<String> resultado = new ArrayList<>();
-                        resultado.add("Contenido del registro: " + registro);
-
+                        DatosVines resultado = new DatosVines(registro);
                         return resultado;
                     }
                 }
@@ -196,7 +224,8 @@ public class IdVines {
         }
 
         // Si el VIN no se encuentra, retorna mensaje indicando "no encontrado"
-        return Collections.singletonList("VIN no encontrado.");
+        DatosVines vinNoEncontrado = new DatosVines("No encontrado", "", "", "");
+        return vinNoEncontrado;
     }
 
     public static void main(String[] args) {
@@ -206,8 +235,9 @@ public class IdVines {
         vins.add(new DatosVines("Toyota", "Yaris", "P856HQR", "VIN278"));
         vins.add(new DatosVines("Ford", "Fiesta", "P123ABC", "VIN0065"));
 
-        buscarVin("VIN123").forEach(System.out::println);
+        DatosVines vinencontrado = buscarVin("VIN0065");
+        System.out.println(vinencontrado.toString());
 
-        agregarNuevosVins(vins);
+        //agregarNuevosVins(vins);
     }
 }
