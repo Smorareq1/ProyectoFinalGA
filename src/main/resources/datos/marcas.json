@@ -1,8 +1,18 @@
 {
+  "Ford": {
+    "nombre": "Ford",
+    "anioDeCreacion": "1863",
+    "fundador": "Henry Ford"
+  },
   "GMC": {
     "nombre": "GMC",
     "anioDeCreacion": "1940",
     "fundador": "John Mclister"
+  },
+  "Toyota": {
+    "nombre": "Toyota",
+    "anioDeCreacion": "1926",
+    "fundador": "Sakichi Toyoda"
   },
   "Audi": {
     "nombre": "Audi",

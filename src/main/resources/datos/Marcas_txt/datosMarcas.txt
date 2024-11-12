@@ -1,3 +1,5 @@
 Honda,1947,Fujitsu Yakimoto
 GMC,1940,John Mclister
 Audi,1948,David Strugen
+Toyota,1926,Sakichi Toyoda
+Ford,1863,Henry Ford

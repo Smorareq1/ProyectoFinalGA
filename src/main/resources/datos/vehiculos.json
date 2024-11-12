@@ -1,5 +1,67 @@
 {
-  "a": {
+  "P057GMF": {
+    "marca": {
+      "nombre": "Honda",
+      "anioDeCreacion": "1947",
+      "fundador": "Fujitsu Yakimoto"
+    },
+    "linea": {
+      "nombreMarcaDeLinea": "Honda",
+      "nombreLinea": "Hrv",
+      "anioLinea": "2014",
+      "marca": {
+        "nombre": "Honda",
+        "anioDeCreacion": "1947",
+        "fundador": "Fujitsu Yakimoto"
+      }
+    },
+    "tipo": {
+      "nombreTipo": "Sedan",
+      "anioTipo": "1940"
+    },
+    "marcaNombreVehiculo": "Honda",
+    "lineaNombreVehiculo": "Hrv",
+    "tipoNombreVehiculo": "Sedan",
+    "modelo": "2020",
+    "color": "Negro",
+    "numeroDeAsientos": "6",
+    "placa": "P057GMF",
+    "chasis": "Chasis1",
+    "motor": "1.2V",
+    "vin": "VIN123"
+  },
+  "P856HQR": {
+    "marca": {
+      "nombre": "Toyota",
+      "anioDeCreacion": "1926",
+      "fundador": "Sakichi Toyoda"
+    },
+    "linea": {
+      "nombreMarcaDeLinea": "Toyota",
+      "nombreLinea": "Yaris",
+      "anioLinea": "1999",
+      "marca": {
+        "nombre": "Toyota",
+        "anioDeCreacion": "1926",
+        "fundador": "Sakichi Toyoda"
+      }
+    },
+    "tipo": {
+      "nombreTipo": "Camion",
+      "anioTipo": "1950"
+    },
+    "marcaNombreVehiculo": "Toyota",
+    "lineaNombreVehiculo": "Yaris",
+    "tipoNombreVehiculo": "Camion",
+    "modelo": "2015",
+    "color": "Magenta",
+    "numeroDeAsientos": "4",
+    "placa": "P856HQR",
+    "chasis": "Chasis3",
+    "motor": "3.2V",
+    "vin": "VIN278"
+  },
+  "P145RTM": {
     "marca": {
       "nombre": "GMC",
       "anioDeCreacion": "1940",
@@ -7,8 +69,8 @@
     },
     "linea": {
       "nombreMarcaDeLinea": "GMC",
-      "nombreLinea": "Hummer",
-      "anioLinea": "2000",
+      "nombreLinea": "Chevrolet",
+      "anioLinea": "1911",
       "marca": {
         "nombre": "GMC",
         "anioDeCreacion": "1940",
@@ -16,18 +78,18 @@
       }
     },
     "tipo": {
-      "nombreTipo": "Pick Up",
-      "anioTipo": "1920"
+      "nombreTipo": "Sedan",
+      "anioTipo": "1940"
     },
     "marcaNombreVehiculo": "GMC",
-    "lineaNombreVehiculo": "Hummer",
-    "tipoNombreVehiculo": "Pick Up",
-    "modelo": "a",
-    "color": "a",
-    "numeroDeAsientos": "a",
-    "placa": "a",
-    "chasis": "a",
-    "motor": "a",
-    "vin": "a"
+    "lineaNombreVehiculo": "Chevrolet",
+    "tipoNombreVehiculo": "Sedan",
+    "modelo": "2018",
+    "color": "Negro",
+    "numeroDeAsientos": "5",
+    "placa": "P145RTM",
+    "chasis": "Chasis2",
+    "motor": "2.2V",
+    "vin": "VIN456"
   }
 }

@@ -1,3 +1,5 @@
 Audi,49,23
+Ford,105,20
 GMC,28,22
 Honda,0,27
+Toyota,78,26

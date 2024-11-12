@@ -1,2 +1,5 @@
+Chevrolet,33,18
+Fiesta,70,16
 Hrv,0,14
 Hummer,15,15
+Yaris,52,17

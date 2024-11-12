@@ -34,7 +34,7 @@
                 </TableView>
                 <HBox alignment="CENTER" layoutX="672.0" layoutY="123.0" prefHeight="100.0" prefWidth="350.0" styleClass="hbox-search" stylesheets="@../Css/MarcasId.css">
                     <children>
-                        <ImageView fx:id="tipoSearchImage" fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="VinSearchImage" fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/Inicio/searchIconMinimalist.png" />
                             </image>

@@ -1,1 +1,7 @@
-GMC,Pick Up,Hummer,a,a,a,a,a,a,a
+Honda,Sedan,Hrv,2024,Verde,6,P057GMF,Chasis1,1.2V,VIN123
+GMC,Camioneta,Chevrolet,2020,Negro,5,P145RTM,Chasis2,2.2V,VIN456
+Honda,Pick Up,Hrv,2024,Negro,5,P057GMF,Chasis1,1.2V,VIN123
+GMC,Sedan,Chevrolet,2018,Negro,5,P145RTM,Chasis2,3.2V,VIN456
+Honda,Sedan,Hrv,2020,Negro,6,P057GMF,Chasis1,1.2V,VIN123
+GMC,Sedan,Chevrolet,2018,Negro,5,P145RTM,Chasis2,2.2V,VIN456
+Toyota,Camion,Yaris,2015,Magenta,4,P856HQR,Chasis3,3.2V,VIN278

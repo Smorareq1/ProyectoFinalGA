@@ -1,25 +1,40 @@
 package Objetos;
 
 public class IndiceVIN {
-    String VIN;
-    long indice;
-    int longitud;
-    long siguiente;
+    private String vin;
+    private int posicionInicial;
+    private int longitud;
+    private int siguiente; // Posición en bytes del siguiente VIN en el archivo de índice
 
-    public IndiceVIN(String VIN, long indice, int longitud, long siguiente) {
-        this.VIN = VIN;
-        this.indice = indice;
+    public IndiceVIN(String vin, int posicionInicial, int longitud, int siguiente) {
+        this.vin = vin;
+        this.posicionInicial = posicionInicial;
         this.longitud = longitud;
         this.siguiente = siguiente;
     }
 
-    public String getVIN() { return VIN; }
-    public long getIndice() { return indice; }
-    public int getLongitud() { return longitud; }
-    public long getSiguiente() { return siguiente; }
+    public String getVin() {
+        return vin;
+    }
+
+    public int getPosicionInicial() {
+        return posicionInicial;
+    }
+
+    public int getLongitud() {
+        return longitud;
+    }
+
+    public int getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(int siguiente) {
+        this.siguiente = siguiente;
+    }
 
     @Override
     public String toString() {
-        return VIN + "," + indice + "," + longitud + "," + siguiente;
+        return vin + "," + posicionInicial + "," + longitud + "," + siguiente;
     }
 }

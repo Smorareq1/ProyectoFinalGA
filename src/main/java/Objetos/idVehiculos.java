@@ -14,11 +14,18 @@ public class idVehiculos {
     private static final String DATA_FILE = "src/main/resources/datos/Vehiculos_txt/datosVehiculos.txt";
     private static final String INDEX_FILE = "src/main/resources/datos/Vehiculos_txt/indiceVehiculos.txt";
     private static final String INDEX_SORTED_FILE ="src/main/resources/datos/Vehiculos_txt/indiceVehiculosOrdenado.txt";
+    private static List<DatosVines> vins = new ArrayList<>();
 
     ////////////////////////////////////////////// AGREGAR ///////////////////////////////////////////////
 
     public static void agregarVehiculo(String nombre, Vehiculo nuevoVehiculo) throws IOException {
         GestorDeArchivos.diccionarioNombreVehiculos.put(nombre, nuevoVehiculo);
+
+        //Crear un nuevo dato Vin y meterlo a la lista de vines
+
+        DatosVines nuevoDatoVines = new DatosVines(nuevoVehiculo.getMarca().getNombre(), nuevoVehiculo.getLinea().getNombreLinea(), nuevoVehiculo.getPlaca(), nuevoVehiculo.getVin());
+        vins.add(nuevoDatoVines);
+        IdVines.agregarNuevosVins(vins);
 
         escribirNuevoVehiculoDatos(nuevoVehiculo);
 
